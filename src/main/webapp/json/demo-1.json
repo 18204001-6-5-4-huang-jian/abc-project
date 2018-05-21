@@ -1,0 +1,53 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1493702959000,
+		"data": {
+			"rows": [{
+				"name": "Previous Close",
+				"value": "243.4"
+			}, {
+				"name": "High",
+				"value": "247.8"
+			}, {
+				"name": "Low",
+				"value": "244.8"
+			}, {
+				"name": "52 Week High",
+				"value": "247.8"
+			}, {
+				"name": "52 Week Low",
+				"value": "152.15"
+			}, {
+				"name": "Volume",
+				"value": "11,243,335"
+			}, {
+				"name": "Avg. Volume",
+				"value": "1,208,452"
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "name",
+						"type": "text",
+						"title": ""
+					}, {
+						"field": "value",
+						"align": "right",
+						"type": "text",
+						"cellStyle": {
+							"font-weight": "bold"
+						},
+						"title": ""
+					}]
+				},
+				"changePer": "1.31%",
+				"cur": "HK $246.60",
+				"change": "3.20"
+			}
+		},
+		"chartLib": "custom",
+		"chart_update_time": "1494389970690"
+	}
+}

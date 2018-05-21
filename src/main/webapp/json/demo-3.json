@@ -1,0 +1,41 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1493344800000,
+		"data": {
+			"rows": [{
+				"prediction": "???",
+				"title": "No. of Analysts"
+			}, {
+				"prediction": "???",
+				"title": "Estimate REV"
+			}, {
+				"prediction": "???",
+				"title": "Estimate EPS"
+			}, {
+				"prediction": "???",
+				"title": "Our Outlook"
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "title",
+						"type": "text",
+						"title": "Title"
+					}, {
+						"field": "prediction",
+						"align": "right",
+						"type": "text",
+						"cellStyle": {
+							"font-weight": "bold"
+						},
+						"title": "Prediction"
+					}]
+				}
+			}
+		},
+		"chartLib": "custom",
+		"chart_update_time": "1494389970707"
+	}
+}

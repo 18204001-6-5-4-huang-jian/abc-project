@@ -1,0 +1,53 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1493702959000,
+		"data": {
+			"rows": [{
+				"name": "昨收",
+				"value": "243.4"
+			}, {
+				"name": "今高",
+				"value": "247.8"
+			}, {
+				"name": "今低",
+				"value": "244.8"
+			}, {
+				"name": "52周最高",
+				"value": "247.8"
+			}, {
+				"name": "52周最低",
+				"value": "152.15"
+			}, {
+				"name": "成交量",
+				"value": "11,243,335"
+			}, {
+				"name": "平均成交量",
+				"value": "1,208,452"
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "name",
+						"type": "text",
+						"title": ""
+					}, {
+						"field": "value",
+						"align": "right",
+						"type": "text",
+						"cellStyle": {
+							"font-weight": "bold"
+						},
+						"title": ""
+					}]
+				},
+				"changePer": "1.31%",
+				"cur": "HK $246.60",
+				"change": "3.20"
+			}
+		},
+		"chartLib": "highChart",
+		"chart_update_time": "1494395041624"
+	}
+}

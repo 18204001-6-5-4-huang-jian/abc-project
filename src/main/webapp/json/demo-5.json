@@ -1,0 +1,42 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1492502554000,
+		"data": {
+			"rows": [{
+				"prediction": "???",
+				"title": "Prob of Double Beats"
+			}, {
+				"prediction": "???",
+				"title": "Percentage of Open up"
+			}, {
+				"prediction": "???",
+				"title": "Prob of Beats on EPS"
+			}, {
+				"prediction": "???",
+				"title": "Prob of Beats on REV"
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "title",
+						"type": "text",
+						"width": "70%",
+						"title": "Title"
+					}, {
+						"field": "prediction",
+						"align": "right",
+						"type": "text",
+						"cellStyle": {
+							"font-weight": "bold"
+						},
+						"title": "Prediction"
+					}]
+				}
+			}
+		},
+		"chartLib": "custom",
+		"chart_update_time": "1494389970717"
+	}
+}

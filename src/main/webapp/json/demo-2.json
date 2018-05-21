@@ -1,0 +1,129 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1483113600000,
+		"data": {
+			"rows": [{
+				"shareholder_en": "Stone Ian Charles",
+				"proportion": 0.0,
+				"pub_date": "2016-12-28",
+				"change_shares_number": "-1.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 5.97,
+				"pub_date": "2016-12-20",
+				"change_shares_number": "-420.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 6.01,
+				"pub_date": "2016-12-13",
+				"change_shares_number": "596.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 5.95,
+				"pub_date": "2016-12-12",
+				"change_shares_number": "-5379.00"
+			}, {
+				"shareholder_en": "Lau Chi Ping Martin",
+				"proportion": 0.46,
+				"pub_date": "2016-08-26",
+				"change_shares_number": "-50.00"
+			}, {
+				"shareholder_en": "Lau Chi Ping Martin",
+				"proportion": 0.47,
+				"pub_date": "2016-08-25",
+				"change_shares_number": "-50.00"
+			}, {
+				"shareholder_en": "Lau Chi Ping Martin",
+				"proportion": 0.47,
+				"pub_date": "2016-08-24",
+				"change_shares_number": "-30.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 6.95,
+				"pub_date": "2016-08-03",
+				"change_shares_number": "-476.00"
+			}, {
+				"shareholder_en": "Ma Huateng",
+				"proportion": 8.79,
+				"pub_date": "2016-07-14",
+				"change_shares_number": "-200.00"
+			}, {
+				"shareholder_en": "Advance Data Services Limited",
+				"proportion": 8.79,
+				"pub_date": "2016-07-14",
+				"change_shares_number": "-200.00"
+			}, {
+				"shareholder_en": "Stone Ian Charles",
+				"proportion": 0.0,
+				"pub_date": "2016-07-11",
+				"change_shares_number": "-6.00"
+			}, {
+				"shareholder_en": "Yang Siu Shun",
+				"proportion": 0.0,
+				"pub_date": "2016-07-06",
+				"change_shares_number": "1.00"
+			}, {
+				"shareholder_en": "Lau Chi Ping Martin",
+				"proportion": 0.48,
+				"pub_date": "2016-07-04",
+				"change_shares_number": "-60.00"
+			}, {
+				"shareholder_en": "Li Dong Sheng",
+				"proportion": 0.0,
+				"pub_date": "2016-06-03",
+				"change_shares_number": "-1.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 7.01,
+				"pub_date": "2016-05-18",
+				"change_shares_number": "242.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 6.91,
+				"pub_date": "2016-05-05",
+				"change_shares_number": "-873.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 7.0,
+				"pub_date": "2016-05-04",
+				"change_shares_number": "260.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 6.95,
+				"pub_date": "2016-04-28",
+				"change_shares_number": "-449.00"
+			}, {
+				"shareholder_en": "JPMorgan Chase & Co.",
+				"proportion": 7.0,
+				"pub_date": "2016-04-21",
+				"change_shares_number": "106.00"
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "pub_date",
+						"type": "text",
+						"title": "Transaction Date"
+					}, {
+						"field": "shareholder_en",
+						"type": "text",
+						"title": "Shareholder Name"
+					}, {
+						"field": "change_shares_number",
+						"type": "text",
+						"title": "NO. Of Share Changed(In Ten Thousand)"
+					}, {
+						"field": "proportion",
+						"type": "text",
+						"title": "Ownership Percentage(%)"
+					}],
+					"showHeader": true
+				}
+			}
+		},
+		"chartLib": "custom",
+		"chart_update_time": "1483113600000"
+	}
+}

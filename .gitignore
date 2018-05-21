@@ -1,0 +1,66 @@
+/.gradle/
+/build/
+/out/
+/file_pool/
+/classes/
+# User-specific stuff:
+.idea/workspace.xml
+.idea/tasks.xml
+/src/main/main.iml
+/src/main/webapp/.idea/workspace.xml
+/src/main/webapp/.idea/modules.xml
+/src/main/webapp/.idea/webapp.iml
+
+# Sensitive or high-churn files:
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/uiDesigner.xml
+
+# Gradle:
+.idea/gradle.xml
+.idea/libraries
+.idea/artifacts
+
+# Mongo Explorer plugin:
+.idea/mongoSettings.xml
+
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+.idea/modules/
+.idea/modules.xml
+.idea/vcs.xml
+.idea/sqldialects.xml
+.idea/misc.xml
+/.idea/dataSources/
+key.txt
+npm-debug.log
+.idea/jsLibraryMappings.xml
+
+# webpack/npm
+.DS_Store
+node_modules/
+bower_components/
+npm-debug.log.*
+entries.js
+logs/
+.syntastic_javac_config
+.idea/dictionaries
+*.swp
+/bin/
+.classpath
+.project
+.settings
+debug.log
+*.log
+*.bak
+*.un~
+*.dat
+*.tgz

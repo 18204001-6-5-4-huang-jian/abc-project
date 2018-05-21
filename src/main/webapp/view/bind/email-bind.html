@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>email-verification</title>
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<style type="text/css">
+	    *{
+		padding: 0;
+		margin: 0;
+	    }
+		body,html{
+			height: 100%;
+			width: 100%;
+			overflow: auto;
+		}
+		.header{
+			width: 100%;
+			height: 200px;
+			background:#091f27;;
+		}
+		.header .img{
+			width: 70px;
+		    height: 70px;
+		    float: left;
+		    margin-left: 50px;
+		    margin-top: 30px;
+		    cursor: pointer;
+		}
+		.header .title{
+			color:#FFFFFF;
+			float: left;
+			margin-top: 120px;
+			margin-left: 100px;
+		}
+		.user_form{
+			width: 800px;
+			height:400px;
+			margin: 0 auto;
+		}
+		.user_form h3{
+			width:520px;
+			text-align: center;
+			margin: 0 auto;
+		}
+	    .user_form h5{
+	    	width: 800px;
+	    	height: 30px;
+	    	line-height:30px;
+	    	margin: 0 auto;
+	    	margin-top:40px;
+	    	text-align: center;
+	    }
+		.user_form h5 #_a{
+			color: deepskyblue;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+		.form{
+			margin-top:100px;
+		}
+	    .back-to{
+	    	margin-left: 50px;
+	    	margin-top: 30px;
+	    	cursor: pointer;
+	    	font-style: normal;
+	    	font-weight: normal;
+	    	width: 250px;
+	    	text-decoration: underline;
+	    	display: none;
+	    }
+	    
+	</style>
+	<body>
+		<div class="header">
+			<img src="../../images/bind-logo.png" class="img" onclick="img_click()"/>
+			<h1 class="title">Account Activation</h1>
+		</div>
+		<h4 class="back-to"><<a onclick="back()">Back to Account Setting</a></h4>
+		<div class="user_form form">
+			<h3>The email address you entered needs to be activated</h3>
+			<h5><span class="first-span">Please check your Business Email </span><span id="_a" onclick="huang()"></span><span class="last-span"> and complete your account activation.</span></h5>
+		</div>
+	</body>
+	<script type="text/javascript">
+	(function(){
+		 if (window.location.hostname == 'www.eversight.ai'){
+			 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			  ga('create', 'UA-99297697-1', 'auto');
+				ga('set', 'userId', window.localStorage.getItem('uid')); // 使用已登录的 user_id 来设置用户 ID
+				ga('set', 'dimension1', window.localStorage.getItem('uid'));
+			  ga('send', 'pageview');
+		};
+	})()
+	</script>
+	<script type="text/javascript">
+		var _email = localStorage.getItem("useremail");
+		var _openid = sessionStorage.getItem("openid");
+		var catrgory = localStorage.getItem("黄健");
+		console.log(_email);
+		console.log(_openid);
+		$("#_a").text(_email);
+	    if(catrgory){
+	    	$(".title").text("Welcome to EVERSIGHT.AI!");
+	    	$(".user_form h3").text("Thank you for creating an account at Eversight.AI");
+	    	if(localStorage.getItem("lang") == "zh_CN"){
+	    		$(".title").text("欢 迎 使 用 EVERSIGHT.AI");
+	    	    $(".user_form h3").text("感谢您注册Eversight.AI。");
+	    	    $(".first-span").text("我们给您发送了一封验证邮件，请登录您的公司邮箱");
+	    	    $(".last-span").text("完成激活。");
+	    	}
+	    }else if(localStorage.getItem("lang") == "zh_CN"){
+	    	$(".title").text("账 号 激 活");
+	    	$(".user_form h3").text("您的邮箱账号尚未激活");
+	    	$(".first-span").text("我们给您发送了一封验证邮件，请登录您的公司邮箱");
+	    	$(".last-span").text("完成激活。");
+	    }
+		function huang(){
+		//通过邮箱帐户获取邮箱类型mailType(163、qq邮箱等) 
+		var mailAccount = $("#_a").text(); 
+        var start = mailAccount.indexOf("@") + 1; 
+        var end = mailAccount.indexOf("."); 
+        var mailType = mailAccount.substring(start, end);
+        var _link =  "http://www.mail." + mailType + ".com"; 
+        window.open(_link); 
+		}
+		 function img_click(){
+	 	if(document.location.protocol == "https:"){  
+		        location.href = 'https://' + location.hostname + '/#/';  
+		}else{
+		    	location.href = 'http://' + location.host + '/#/';
+		}
+	   }
+		 function back(){
+		 	if(localStorage.getItem("huang")){
+		 		if(document.location.protocol == "https:"){
+		 			location.href = 'https://' + location.hostname + '/#/registration'
+		 		}else{
+		 			location.href = 'http://' + location.host + '/#/registration'
+		 		}
+		 	}else{
+		 			location.href = "bind.html";
+		 	}
+		 }
+	</script>
+</html>

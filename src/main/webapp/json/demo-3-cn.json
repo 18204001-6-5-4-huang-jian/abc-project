@@ -1,0 +1,41 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1493344800000,
+		"data": {
+			"rows": [{
+				"prediction": "???",
+				"title": "分析师数量"
+			}, {
+				"prediction": "???",
+				"title": "营收预期"
+			}, {
+				"prediction": "???",
+				"title": "每股盈利预期"
+			}, {
+				"prediction": "???",
+				"title": "我们的预测"
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "title",
+						"type": "text",
+						"title": "Title"
+					}, {
+						"field": "prediction",
+						"align": "right",
+						"type": "text",
+						"cellStyle": {
+							"font-weight": "bold"
+						},
+						"title": "Prediction"
+					}]
+				}
+			}
+		},
+		"chartLib": "highChart",
+		"chart_update_time": "1494395041637"
+	}
+}

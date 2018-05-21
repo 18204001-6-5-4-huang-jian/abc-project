@@ -1,0 +1,42 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1492502554000,
+		"data": {
+			"rows": [{
+				"prediction": "???",
+				"title": "打败营收及盈利预期的概率"
+			}, {
+				"prediction": "???",
+				"title": "季报后高开概率"
+			}, {
+				"prediction": "???",
+				"title": "打败盈利预期的概率"
+			}, {
+				"prediction": "???",
+				"title": "打败营收预期的概率"
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "title",
+						"type": "text",
+						"width": "70%",
+						"title": "Title"
+					}, {
+						"field": "prediction",
+						"align": "right",
+						"type": "text",
+						"cellStyle": {
+							"font-weight": "bold"
+						},
+						"title": "Prediction"
+					}]
+				}
+			}
+		},
+		"chartLib": "highChart",
+		"chart_update_time": "1494395041679"
+	}
+}

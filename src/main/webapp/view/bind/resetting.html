@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>account-setting</title>
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	    <script type="text/javascript" src="/vendor/jquery-md5/jquery.md5.js"></script>
+	    <script type="text/javascript" src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+	</head>
+	<style type="text/css">
+	   *{
+		padding: 0;
+		margin: 0;
+	    }
+		body,html{
+			height: 100%;
+			width: 100%;
+			overflow: auto;
+		}
+		.header{
+			width: 100%;
+			height: 100px;
+			background:#091f27;;
+		}
+		.header .img{
+			width: 70px;
+		    height: 70px;
+		    float: left;
+		    margin-left: 50px;
+		    margin-top: 10px;
+		    cursor: pointer;
+		}
+		.user_form{
+			width: 800px;
+			height:600px;
+			margin: 0 auto;
+		}
+		.form{
+			margin-top:50px;
+		}
+		.user_form .form-container{
+			width: 100%;
+			height:400px;
+			margin-top: 25px;
+		}
+		.user_form .form-container ul{
+			list-style: none;
+		}
+		.user_form .form-container ul li{
+			padding:20px 0;
+			width: 100%;
+			height: 30px;
+			line-height:30px;
+			vertical-align: middle;
+		}
+		.user_form .form-container ul li label{
+			display: block;
+			float: right;
+			margin-right: 600px;
+		}
+		.user_form .form-container ul li input{
+			font-size:14px;
+			margin-top: -25px;
+			display: block;
+			width:300px;
+			float: right;
+			margin-right:290px;
+			outline: none;
+			border: none;
+			border-bottom: 1px solid gray;
+		}
+		.user_form .form-container ul li button{
+			display: block;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			background: #FFFFFF;
+			color:#355867;
+			width: 50px;
+			height: 20px;
+			float: right;
+			margin-top: -30px;
+			margin-right: 230px;
+		}
+		.form-container .confirm{
+			width: 302px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			background:#355867;
+			color:#FFFFFF;
+			margin-left:210px;
+			margin-top: 20px;
+			border: none;
+			cursor: pointer;
+			font-size: 16px;
+			border-radius: 5px;
+		}
+	</style>
+	<body>
+		<div class="header">
+			<img src="../../images/bind-logo.png" class="img" onclick="img_click()"/>
+		</div>
+		<div class="user_form form">
+			<h2>Account Settings</h2>
+			<div class="form-container">
+				<ul>
+					<li>
+						<label>Work Email : </label>
+						<input type="email" class="email"/>
+					</li>
+					<li>
+						<label>Name : </label>
+						<input type="text" class="name"/>
+					</li>
+					<li class="li_company">
+						<label>Company : </label>
+						<input type="text" class="company huangjian"/>
+						<button>Reset</button>
+					</li>
+					<li class="li_password">
+						<label class="huang">Password : </label>
+						<input type="password" class="password"/>
+						<button>Reset</button>
+					</li>
+					<li style="display:none;" class="lastli">
+						<label>New Password : </label>
+						<input type="password" class="new_password huangjian"/>
+					</li>
+				</ul>
+				<input type="button" value="Done" class="confirm" onclick="confirm()"/>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+	(function(){
+		 if (window.location.hostname == 'www.eversight.ai'){
+			 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			  ga('create', 'UA-99297697-1', 'auto');
+				ga('set', 'userId', window.localStorage.getItem('uid')); // 使用已登录的 user_id 来设置用户 ID
+				ga('set', 'dimension1', window.localStorage.getItem('uid'));
+			  ga('send', 'pageview');
+		};
+	})()
+	</script>
+	<script type="text/javascript">
+	     //获取用户信息展示页面
+		var token = localStorage.getItem("token");
+		var user_id = localStorage.getItem('uid');
+		$.ajax({
+			url:"/api/v1/account/" + user_id,
+			type:"get",
+			contentType:'application/x-www-form-urlencoded;charset=utf-8',
+			success:function(res){
+				console.log(res);
+				var username = res.data.username;
+				var useremail = res.data.email;
+				var usercompany = res.data.company;
+				var userpassword = res.data.pwd_ends;
+				$(".name").attr("value",username);
+			    $(".email").attr("value",useremail);
+			    $(".company").attr("value",usercompany);
+			    $(".password").attr("value",userpassword);
+			},
+			error:function(error){
+				console.log(error);
+			}
+		})
+		var huang = false;
+		var huang_ = false;
+	    $(".name").attr("readonly","readonly");
+	    $(".email").attr("readonly","readonly");
+	    $(".company").attr("readonly","readonly");
+        $(".password").attr("readonly","readonly");
+	    $(".li_company button").click(function(){
+	    	huang = true;
+			$(".company").val("");
+		    $(".company").removeAttr("readonly");
+		    $(".company").focus();
+		})
+		$(".li_password button").click(function(){
+			huang_ = true;
+			$(".lastli").css("display","block");
+			$(".huang").text("Old Password : ");
+			$(".password").val("");
+            $(".password").removeAttr("readonly");
+			$(".password").focus();
+			$(".password").attr("placeholder","Please enter your old password");
+			$(".new_password").attr("placeholder","Set a new password");
+		})
+		
+		function confirm(){
+			var _useremail = $(".email").val();
+			var _username = $(".name").val();
+			var _userpassword = $(".password").val();
+			var _company = $(".company").val();
+			var reg_mail =  /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+			if(_useremail == ""){
+				layer.msg("输入邮箱不能为空!");
+				return false;
+			}
+			if(reg_mail.test(_useremail) == false){
+				layer.msg("输入邮箱不合法");
+				return false;
+			}
+			if(_username == ""){
+				 layer.msg("输入名字不能为空!");
+				 return false;
+			}
+			if(_company.trim() == ""){
+				layer.msg("输入公司不能为空!");
+				return false;
+			}
+			if(_userpassword.trim() == ""){
+				layer.msg("输入旧密码不能为空!");
+				return false;
+		     }
+			
+			if($(".lastli").css("display") == 'block'){
+			   if($(".new_password").val().trim() == ""){
+				layer.msg("输入新密码不能为空!");
+				return false;
+			   }
+			}
+			if( huang == true && huang_ == false){
+				var oldpassword = "";
+				var newpassword = "";
+			}else if(huang == false && huang_ == true){
+				var oldpassword = _userpassword;
+				var newpassword = $(".new_password").val();
+			}else if(huang == true && huang_ ==true){
+				var oldpassword = _userpassword;
+				var newpassword = $(".new_password").val();
+			}else if(huang == false && huang_ == false){
+                var oldpassword = "";
+                var newpassword = "";
+			}
+			//重新setting
+			$.ajax({
+				url:" /api/v1/account/edit",
+				type:"post",
+				contentType:'application/x-www-form-urlencoded;charset=utf-8',
+				data:{
+					email:_useremail,
+					username:_username,
+					pwd_ends:_userpassword,
+					company:_company,
+					old_password:oldpassword == "" ?  "" : $.md5(oldpassword),
+					new_password:newpassword == "" ?  "" : $.md5(newpassword),
+					token:token
+				},
+				success:function(res){
+					if(res.success == true){
+						if(document.location.protocol == "https:"){  
+					        location.href = 'https://' + location.hostname + '/#/my';  
+					}else{
+					    	location.href = 'http://' + location.hostname + '/#/my';
+					}
+					}else if(res.success == false && res.status == 5){
+						layer.msg("您输入的旧密码不正确！");
+					}
+				},
+				error:function(error){
+					console.log(error);
+				}
+			})
+	}	
+	$('.huangjian').bind('keypress',function(event){
+		 if(event.keyCode == "13"){
+			var _useremail = $(".email").val();
+			var _username = $(".name").val();
+			var _userpassword = $(".password").val();
+			var _company = $(".company").val();
+			var reg_mail =  /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+			if(_useremail == ""){
+				layer.msg("输入邮箱不能为空!");
+				return false;
+			}
+			if(reg_mail.test(_useremail) == false){
+				layer.msg("输入邮箱不合法");
+				return false;
+			}
+			if(_username == ""){
+				 layer.msg("输入名字不能为空!");
+				 return false;
+			}
+			if(_company.trim() == ""){
+				layer.msg("输入公司不能为空!");
+				return false;
+			}
+			if(_userpassword.trim() == ""){
+				layer.msg("输入旧密码不能为空!");
+				return false;
+		     }
+			if($(".lastli").css("display") == 'block'){
+			   if($(".new_password").val().trim() == ""){
+				layer.msg("输入新密码不能为空!");
+				return false;
+			   }
+			}
+			if( huang == true && huang_ == false){
+				var oldpassword = "";
+				var newpassword = "";
+			}else if(huang == false && huang_ == true){
+				var oldpassword = _userpassword;
+				var newpassword = $(".new_password").val();
+			}else if(huang == true && huang_ ==true) {
+                var oldpassword = _userpassword;
+                var newpassword = $(".new_password").val();
+            }else if(huang == false && huang_ == false){
+                var oldpassword = "";
+                var newpassword = "";
+            }
+			//重新setting
+			$.ajax({
+				url:" /api/v1/account/edit",
+				type:"post",
+				contentType:'application/x-www-form-urlencoded;charset=utf-8',
+				data:{
+					email:_useremail,
+					username:_username,
+					pwd_ends:_userpassword,
+					company:_company,
+					old_password:oldpassword == "" ?  "" : $.md5(oldpassword),
+					new_password:newpassword == "" ?  "" : $.md5(newpassword),
+					token:token
+				},
+				success:function(res){
+					if(res.success == true){
+						if(document.location.protocol == "https:"){  
+					        location.href = 'https://' + location.hostname + '/#/my';  
+					}else{
+					    	location.href = 'http://' + location.host + '/#/my';
+					}
+					}else if(res.success == false && res.status == 5){
+						layer.msg("您输入的旧密码不正确！");
+					}
+				},
+				error:function(error){
+					console.log(error);
+				}
+			})
+		 }
+	})
+	 function img_click(){
+	 	if(document.location.protocol == "https:"){  
+	        location.href = 'https://' + location.hostname + '/#/';  
+	}else{
+	    	location.href = 'http://' + location.host + '/#/';
+	}
+	 }
+	</script>
+</html>

@@ -1,0 +1,1671 @@
+/*mobile适配*/
+.desktop{
+	font-size: 20px !important;
+}
+/*移动端滚动条*/
+html,body{
+	overflow:hidden;
+	overflow-y:auto;
+}
+/*提示框样式*/
+.ui-pnotify-text{
+	word-break: break-all;
+}
+.tablet .ui-pnotify.ui-pnotify-fade-normal.ui-pnotify-mobile-able.ui-pnotify-move.ui-pnotify-in.ui-pnotify-fade-in{
+	width: 10rem!important;
+	font-size: 1rem;
+	left: auto!important;
+	right: 3rem!important;
+	height: 4rem!important;
+}
+.mobile .brighttheme.ui-pnotify-container {
+	padding: 1.2rem 0 0;
+	text-align: center;
+}
+.mobile .ui-pnotify-icon,
+.mobile .ui-pnotify-icon span,
+.mobile .ui-pnotify-text {
+	float: none;
+	display: inline-block;
+	vertical-align: text-bottom;
+}
+/* 
+	loading
+ */
+.tablet .load-mask .loader-inner ,
+.mobile .load-mask .loader-inner {
+	width: 10rem;
+	height: 9rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -5rem;
+	margin-top: -4.5rem;
+}
+.tablet .load-mask #load-progress ,
+.mobile .load-mask #load-progress {
+	position: absolute;
+	font-size: 1.4rem;
+	bottom: 0;
+	width: 100%;
+	color: #92bdd2;
+	text-align: center;
+}
+.tablet .load-mask .loader ,
+.mobile .load-mask .loader {
+	font-size: 2.4rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+/* 
+	logo
+ */
+.abcdata-wrapper.mobile .logo.pointer{
+	width: 3rem;
+	height: 3rem;
+	background: url(/images/logo-70.png) no-repeat center;
+	background-size: cover;
+	/*新增*/
+	position: relative;
+	top: 0.5rem;
+}
+
+/* 
+	首页
+ */
+.abcdata-wrapper.mobile{
+	min-width: auto;
+	font-size: 1.4rem;
+}
+.abcdata-wrapper.mobile .item-960,
+.abcdata-wrapper.mobile .item-1180{
+	width: 100%;
+	margin: 0;
+}
+.abcdata-wrapper.mobile .introduction-price,
+.abcdata-wrapper.mobile .introduction-product-list,
+.abcdata-wrapper.mobile .introduction-contact-us{
+	padding: 3rem 0;
+	height: auto;
+}
+/*暂时隐藏预测页面*//*liu轮播图*/
+.abcdata-wrapper.mobile .introduction-price{
+   display: block;	
+}
+.abcdata-wrapper.mobile .section-title{
+	font-size: 2rem;
+	margin-bottom: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-price #box{
+	width: 100%;
+	margin-left: 16.5rem;
+}
+.abcdata-wrapper.mobile #box li{
+	display: block;
+	width: 80% !important;
+}
+
+.abcdata-wrapper.mobile #box li .dashboard_img {
+	position: absolute;
+	left: 5.5rem;
+	top: 2rem;
+}
+
+.abcdata-wrapper.mobile #box li ._img {
+	width: 9rem;
+	position: absolute;
+	left: 0.5rem;
+	bottom: 1rem;
+}
+
+.abcdata-wrapper.mobile #box li h4 {
+	font-size: 1.5rem;
+	position: absolute;
+	left: 3rem;
+	bottom: 3.5rem;
+	text-align: center;
+}
+
+.abcdata-wrapper.mobile #box li h5 {
+	position: absolute;
+	left: 2.6rem;
+	bottom: 5.5rem;
+	font-size: 1.4rem;
+}
+
+.abcdata-wrapper.mobile #box li .div {
+	width: 100%;
+	height: 5rem;
+	position: absolute;
+    top: 7rem;
+    left: 7.3rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p {
+	position: relative;
+	width: 100%;
+	height: 5rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p span {
+	font-size: 1.5rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p .right-span {
+	position: absolute;
+    left: -0.5rem;
+    bottom: -1rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p:nth-child(2) .left-span {
+	position: absolute;
+	left: 2rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p:nth-child(3) {
+	position: absolute;
+	right: -7rem;
+	bottom: -12rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
+	position: relative;
+	right: 1.5rem;
+	bottom: -2rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p:nth-child(3) .right-span {
+	position: absolute;
+	left: -1rem;
+	bottom: -2.5rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p:nth-child(4) {
+	position: absolute;
+	right: -7rem;
+	bottom: -17rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p:nth-child(4) .left-span {
+	position: absolute;
+	left: -1.2rem;
+    bottom: 0.5rem;
+}
+
+.abcdata-wrapper.mobile #box li .div p:nth-child(4) .right-span {
+	position: absolute;
+	left: -1rem;
+	bottom: -1.5rem;
+}
+
+.font-10{
+	font-size : 12px;
+	*font-size:10px;
+	-webkit-transform : scale(0.84,0.84);
+}
+/*banner*/
+.abcdata-wrapper.mobile .introduction-nav-bar{
+	margin: 1rem;
+}
+/*liu修改*/
+.abcdata-wrapper.mobile .login{
+	font-size: 1.2rem;
+	font-weight: normal;
+	/*margin-top: 1.5rem;*/
+	margin-top: 0.6rem !important;
+	/*新增*/
+	margin-left: -1.5rem;
+	width: 8rem;
+	height: 3rem;
+	line-height: 3rem;
+	border-radius: .3rem;
+}
+.abcdata-wrapper.mobile .icon-login{
+	width: 1rem;
+	height: 1.2rem;
+}
+.abcdata-wrapper.mobile .introduction-title-wrap{
+	width: 100%;
+}
+.abcdata-wrapper.mobile .introduction-title{
+	font-size: 2rem;
+	margin-bottom: 0;
+}
+.abcdata-wrapper.mobile .introduction-title:after{
+	content: '';
+	display: block;
+	margin: 1.7rem auto;
+	width: 5rem;
+	border-bottom: 1px solid #fff;
+}
+.abcdata-wrapper.mobile .introduction-subtitle{
+	font-size: 1rem;
+	padding: 0 1rem;
+}
+/*description*/
+.abcdata-wrapper.mobile .introduction-description{
+	height: auto;
+	padding: 4rem 1rem;
+	text-align: left;
+}
+.abcdata-wrapper.mobile .description-title{
+	margin-bottom: 2rem;
+	font-size: 2.7rem;	
+}
+.abcdata-wrapper.mobile .description-title:after{
+	content: '';
+	display: block;
+	border-bottom: 1px solid #fff;
+	margin-top: 2rem;
+	width: 5rem;
+}
+.abcdata-wrapper.mobile .description-text{
+	font-size: 1rem;	
+}
+/*product list*/
+.abcdata-wrapper.mobile .introduction-products{
+	padding: 0 1rem;
+}
+.abcdata-wrapper.mobile .introduction-products-item{
+	width: 50%;
+	height: 7rem;
+	border: 1px solid #eee;
+}
+.abcdata-wrapper.mobile .introduction-products-item.right-product{
+	border-right: 1px solid #eee!important;
+	border-left: none;
+}
+.abcdata-wrapper.mobile .introduction-products-item.last{
+	border-right: 1px solid #eee!important;
+}
+.abcdata-wrapper.mobile .introduction-products-item.odd{
+	border-top: none;
+	border-bottom: none;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon{
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: static;
+	margin: 0;
+	left: auto;
+	top: auto;
+}
+/*plan*/
+.abcdata-wrapper.mobile .introduction-wrap .price-list{
+	padding: 0 1rem;
+}
+.abcdata-wrapper.mobile .introduction-wrap .price-list-card{
+	margin-bottom: 1rem;
+}
+.abcdata-wrapper.mobile .order-wrap{
+	width: 100%;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-item{
+	width: 60%;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-style{
+	
+}
+.abcdata-wrapper.mobile .order-wrap .payment-information{
+	width: 100%;
+	min-height:2.77rem;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-information p img{
+	right:4rem;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-information p{
+	font-size: 0.16rem;
+	padding:0.8rem 0;
+	text-indent: 0.3rem;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-information p input{
+	width:10rem;
+}
+.abcdata-wrapper.mobile .order-wrap .finish-remittance{
+	width:80%;
+	margin:1rem 10%;
+}
+.abcdata-wrapper.mobile .introduction-wrap .serve-category{
+	font-size: 4rem;
+	margin: 0 auto;
+}
+.abcdata-wrapper.mobile .rights-list{
+	height: auto;
+}
+.abcdata-wrapper.mobile .rights{
+	display: flex;
+}
+.abcdata-wrapper.mobile .icon-rights{
+	width: 2rem;
+	height: 2rem
+}
+.abcdata-wrapper.mobile .rights-text{
+	width: auto;
+	display: flex;
+	flex: 1;
+	font-size: 1rem;
+}
+.abcdata-wrapper.mobile .introduction-wrap .price-list-card{
+	width: 100%;
+	height: auto;
+	display: block;
+	padding: 1rem;
+	padding-bottom: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-wrap .price-list-card .btn-purchase{
+	width: 10rem;
+	height: 3.5rem;
+	font-size: 1.4rem;
+}
+.abcdata-wrapper.mobile .introduction-wrap .price-list-card .amount{
+	font-size: 3.5rem;
+}
+.abcdata-wrapper.mobile .introduction-wrap .price-list-card .unit-price{
+	font-size: 1.2rem;
+}
+/*contact*/
+.abcdata-wrapper.mobile .introduction-contact-us{
+	padding: 3rem 1rem;
+}
+.abcdata-wrapper.mobile .contact-methods{
+	width: 100%;
+	height: auto;
+	margin: 1rem 0;
+	padding: 1rem 0;
+}
+.abcdata-wrapper.mobile .introduction-contact-us .contact-methods .abcdata-icon{
+	margin: 0 auto;
+	display: block;
+	width: 5.5rem;
+	height: 5.5rem;
+}
+.abcdata-wrapper.mobile .introduction-contact-us .contact-methods .contact-text{
+	margin: 1rem;
+	font-size: 1.8rem;
+}
+.abcdata-wrapper.mobile .introduction-contact-us .contact-methods .contact-detail{
+	margin: 1rem;
+	font-size: 1.2rem;
+}
+.abcdata-wrapper.mobile .footer{
+	margin-top: 2rem;
+	line-height: 1.5;
+	height: auto;
+	padding-top: 2rem;
+	font-size: 1rem;
+	text-align: center;
+}
+/*背景图微调*/
+.abcdata-wrapper.mobile .abcdata-icon{
+	background-size: 118rem 78.1rem;
+}
+
+.abcdata-wrapper.mobile .icon-login{
+	background-position: 0rem -44.4rem;
+}
+.abcdata-wrapper.mobile .login:hover .icon-login{
+	background-position: -1.1rem -44.4rem;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon{
+	background-size: 80%!important;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.tencent{
+	background: url(/images/tencent_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.momo{
+	background: url(/images/momo_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.sina{
+	background: url(/images/weibo_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.net-easy{
+	background: url(/images/netease_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.baidu{
+	background: url(/images/baidu_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.alibaba{
+	background: url(/images/ali_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.jd{
+	background: url(/images/jd_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.cheetah{
+	background: url(/images/cheetah_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.ctrip{
+	background: url(/images/ctrip_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .introduction-products-item .abcdata-icon.vip{
+	background: url(/images/vip_01.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .icon-rights{
+	background: url(/images/check.png) no-repeat center;
+	background-size: cover;
+}
+.abcdata-wrapper.mobile .contact-methods.email .abcdata-icon{
+	background: url(/images/message.png) no-repeat center;
+	background-size: cover;
+}
+.abcdata-wrapper.mobile .contact-methods.phone .abcdata-icon{
+	background: url(/images/demo.png) no-repeat center;
+	background-size: cover;
+}
+.abcdata-wrapper.mobile .contact-methods.address .abcdata-icon{
+	background: url(/images/address.png) no-repeat center;
+	background-size: cover;
+}
+
+/*
+	 登陆页
+ */
+.tablet .abcdata-wrapper.mobile .login-head{
+	padding-bottom: 0;
+}
+.abcdata-wrapper.mobile .login-head{
+	padding: 1rem;
+}
+.abcdata-wrapper.mobile .login-container{
+	width: 100%;
+	margin: 0;
+	left: auto;
+	top: auto;
+	position: relative;
+	min-height: auto;
+	padding: 0 1rem;
+}
+.abcdata-wrapper.mobile .login-container .switch_btn{
+	width:50%;
+}
+.abcdata-wrapper.mobile .login-container .btn_underline{
+	width: 0;
+}
+.abcdata-wrapper.mobile .login-container .atLeft{
+	left: 50px;
+}
+.abcdata-wrapper.mobile .login-container .atRight{
+	left: 225px;
+}
+.abcdata-wrapper.mobile .login-welcome{
+	margin-bottom: 3rem;
+	font-size: 2rem;
+}
+.abcdata-wrapper.mobile .login-form-control{
+	height: auto;
+	font-size: 1.4rem;
+	margin-bottom: 1.5rem;
+}
+.abcdata-wrapper.mobile .login-form-control .login-label.up{
+	top: .3rem;
+	font-size: 1.4rem;
+}
+.abcdata-wrapper.mobile .login-form-control .login-label{
+	top: 2rem;
+	font-size: 1.6rem;
+}
+.abcdata-wrapper.mobile .login-input{
+	width: 100%;
+	height: 2.5rem;
+	font-size: 1.6rem;
+	margin-top: 2rem;
+}
+.abcdata-wrapper.mobile .login-form-control.wrong-tip{
+	height: 3rem;
+	font-size: 1.2rem;
+}
+.abcdata-wrapper.mobile .btn-login{
+	width: 100%;
+	font-size: 1.6rem;
+	line-height: 4rem;
+}
+.abcdata-wrapper.mobile .login-footer{
+	left: 0;
+	width: 100%;
+	text-align: center;
+	line-height: 2rem;
+	padding: .8rem 0;
+}
+.abcdata-wrapper.mobile .login-footer .contact,
+.abcdata-wrapper.mobile .login-footer .copyright{
+	float: none;
+	margin: 0;
+	font-size: 1rem;
+}
+/*
+	 注册页
+ */
+.abcdata-wrapper.mobile .register-head{
+	padding: 1rem;
+}
+.abcdata-wrapper.mobile .register-container{
+	position: relative;
+	min-height: auto;
+	width: 100%;
+	margin: 0;
+	left: auto;
+	top: auto;
+	padding: 0 1rem;
+}
+.abcdata-wrapper.mobile .register-welcome{
+	margin-bottom: 3rem;
+	font-size: 2rem;
+}
+.abcdata-wrapper.mobile .register-form-control{
+	height: auto;
+	font-size: 1.4rem;
+	margin-bottom: 0.5rem;
+}
+.abcdata-wrapper.mobile .register-form-control .register-label.up{
+	top: .3rem;
+	font-size: 1.4rem;
+}
+.abcdata-wrapper.mobile .register-form-control .register-label{
+	top: 2rem;
+	font-size: 1.6rem;
+}
+.abcdata-wrapper.mobile .register-input{
+	width: 100%;
+	height: 2.5rem;
+	font-size: 1.6rem;
+	margin-top: 2rem;
+}
+.abcdata-wrapper.mobile .register-form-control.wrong-tip{
+	height: 3rem;
+	font-size: 1.2rem;
+}
+.abcdata-wrapper.mobile .btn-register{
+	width: 100%;
+	font-size: 1.6rem;
+	line-height: 4rem;
+}
+.abcdata-wrapper.mobile .register-footer{
+	left: 0;
+	width: 100%;
+	text-align: center;
+	line-height: 2rem;
+	padding: .8rem 0;
+}
+.abcdata-wrapper.mobile .register-footer .contact,
+.abcdata-wrapper.mobile .register-footer .copyright{
+	float: none;
+	margin: 0;
+	font-size: 1.4rem;
+}
+.tablet .abcdata-wrapper.mobile .register-form-control{
+	margin-bottom: 0;
+}
+.tablet .abcdata-wrapper.mobile .register-welcome{
+	margin-bottom: 2rem;
+}
+/* 
+	订单页
+ */
+.abcdata-wrapper.mobile .order-nav-bar{
+	margin: 0;
+	height: auto;
+}
+.abcdata-wrapper.mobile .order-head .item-960{
+	padding: 2rem 1rem;
+}
+.abcdata-wrapper.mobile .order-head{
+	height: 7.3rem;/*height auto*/
+	padding: 1rem 0;
+}
+.abcdata-wrapper.mobile .form-wrapper{
+	width:100%;
+}
+.abcdata-wrapper.mobile .form-wrapper .item-960{
+	padding: 1rem;
+}
+.abcdata-wrapper.mobile .order-head .item-960 .order-title{
+	font-size:1.8rem;
+}
+.abcdata-wrapper.mobile .order-head .order-title h1,.abcdata-wrapper.mobile .order-head .order-title h3{
+	font-size:1.8rem;
+}
+.abcdata-wrapper.mobile .order-head .order-title h3{
+	padding:0 1rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .solution-plan{
+	margin: 1.5rem 0;
+}
+.abcdata-wrapper.mobile .form-wrapper .steps{
+	margin-bottom: 2rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .step-name-container{
+	font-size: 2rem;
+	height: 2.5rem;
+	line-height: 2.5rem;
+}
+.abcdata-wrapper.mobile .order-wrap .serve-category{
+	font-size: 1rem;
+	height: 6rem;
+	line-height: 1rem;
+}
+.abcdata-wrapper.mobile .order-wrap .serve-category p{
+	font-size: 0.5rem;
+	padding-top: 1rem;
+}
+.abcdata-wrapper.mobile .order-wrap .price-list-card{
+	font-size:1rem;
+	height: 7rem;
+	width: 49.5%;
+	padding: .5rem;
+}
+.abcdata-wrapper.mobile .order-wrap .solution-plan .icon-yellow-checked-20{
+	width: 15px;
+	height: 15px;
+	background: url(/images/img-icon_40.png) no-repeat center;
+	right:0rem;
+	top: 0rem;
+	background-size: 80%;
+}
+.abcdata-wrapper.mobile .order-wrap .price-list-card .amount{
+	margin: 0;
+	font-size: 1.2rem;
+}
+.abcdata-wrapper.mobile .order-wrap .price-list-card.first .amount{
+	margin-bottom: 1.5rem;
+}
+.abcdata-wrapper.mobile .order-wrap .price-list-card .previously-amount{
+	margin: 0;
+}
+.abcdata-wrapper.mobile .order-wrap .price-list-card .duration{
+	font-size: 1.4rem;
+}
+.abcdata-wrapper.mobile .order-wrap .abcdata-icon.icon-add{
+	background: url(/images/add.png)  no-repeat center;
+	background-size: cover;
+	margin-left: -2rem;
+	margin-right: 2rem;
+}
+.abcdata-wrapper.mobile .order-wrap .company-list{
+	border: 1px solid #dbe6ea;
+	min-height: 7rem;
+	padding-bottom: 0.5rem;
+}
+.abcdata-wrapper.mobile .order-wrap .company-capsule{
+	height: 3rem;
+	line-height: 3rem;
+	margin: 2% 1% 0;
+	width: 31%;
+}
+.abcdata-wrapper.mobile .order-wrap .company-capsule .abcdata-icon.icon-delect{
+	width: 16px;
+	height: 16px;
+	background: url(/images/img-icon_34.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .order-wrap .company-capsule .abcdata-icon.icon-delect:hover{
+	background: url(/images/img-icon_35.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .order-wrap .subname-container{
+	height: 5.5rem;
+	line-height: 5.5rem;
+	font-size: 1.2rem;
+}
+.abcdata-wrapper.mobile .account-form-label{
+	margin-bottom: -1rem;
+}
+.abcdata-wrapper.mobile .order-wrap .production-title:before,
+.abcdata-wrapper.mobile .account-form-label.required:before{
+	font-size: 1.6rem;
+}
+.abcdata-wrapper.mobile .order-wrap .order-title{
+	width: 100%;
+}
+.abcdata-wrapper.mobile .account-settings-input{
+	height: 4rem;
+	border: 1px solid #dbe6ea;
+}
+.abcdata-wrapper.mobile .select-wrap{
+	height: 4rem !important;
+	line-height: 4rem !important;
+}
+.abcdata-wrapper.mobile .select.cur-select{
+	height: 4rem !important;
+	line-height: 4rem !important;
+}
+.abcdata-wrapper.mobile .options{
+	line-height: 1.8rem !important;
+	width: 15rem !important;
+}
+.abcdata-wrapper.mobile .form-footer.item-960{
+	border-top: 1px solid #dbe6ea;
+}
+.abcdata-wrapper.mobile .form-footer-right{
+	padding:  3rem 0;
+}
+.abcdata-wrapper.mobile .form-footer-right .btn-confirm{
+	height: 3rem;
+	width: 10rem;
+	font-size: 1.8rem;
+}
+.abcdata-wrapper.mobile .order-footer.item-960{
+	width: auto;
+	margin: 0 1rem;
+}
+.abcdata-wrapper.mobile .order-footer{
+	padding: 2rem 0rem;
+	line-height: 1.5;
+	text-align: center;
+}
+.abcdata-wrapper.mobile .order-footer .copyright{
+	font-size: 1rem;
+	float: none;
+}
+.abcdata-wrapper.mobile .order-footer .contact{
+	font-size: 1rem;
+	float: none;
+}
+.abcdata-wrapper.mobile .mask .mask-inner{
+	width: 100%;
+	min-height: 4rem;
+	height: auto;
+}
+.abcdata-wrapper.mobile .mask .mask-inner .dialog-head{
+	font-size: 1.3rem;
+}
+.abcdata-wrapper.mobile .mask .mask-inner .company-capsule{
+	height: 2.5rem;
+	line-height: 2.5rem;
+	margin: 2% 1% 0;
+	width: 48%;
+}
+.abcdata-wrapper.mobile .mask .mask-inner .company-name{
+	width: auto;
+}
+.abcdata-wrapper.mobile .mask .mask-inner .abcdata-icon.icon-yellow-checked{
+	background: url(/images/img-icon_40.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .mask .mask-inner .abcdata-icon.icon-close{
+	background: url(/images/img-icon_34.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .mask .mask-inner .abcdata-icon.icon-close:hover{
+	background: url(/images/img-icon_35.png) no-repeat center;
+}
+.abcdata-wrapper.mobile .mask .mask-inner .btn-confirm{
+	height: 3rem;
+	width: 9rem;
+	font-size: 1.4rem;
+}
+.tablet .abcdata-wrapper.mobile .item-960 .abcdata-icon,
+.tablet .abcdata-wrapper.mobile .mask .mask-inner .abcdata-icon{
+	width: 2rem;
+	height: 2rem;
+	vertical-align: -0.5rem;
+	background-size: cover;
+}
+.tablet .abcdata-wrapper.mobile .mask .mask-inner .company-list{
+	min-height: 7rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .payment{
+	width: 100%;
+	margin-top: 1rem;
+	font-size: 1.2rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .payment-style{
+	width: 100%;
+	font-size:0.22rem;
+	margin-top: 1rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .payment-style input{
+	
+}
+/* 
+	订单完成页
+ */
+.abcdata-wrapper.mobile .order-finish-wrap .order-head .order-title{
+	font-size: 1.8rem;
+	padding: 1rem 0.5rem;
+}
+.abcdata-wrapper.mobile .order-finish-wrap .icon-order-finish{
+	width: 10rem;
+	height: 10rem;
+	margin: 5.5rem auto 0;
+}
+
+.tablet .abcdata-wrapper.mobile .order-finish-wrap .icon-order-finish{
+	margin-top: 3.5rem;
+}
+.abcdata-wrapper.mobile .order-finish-wrap .order-success-title{
+	font-size: 1.4rem;
+	margin: 2rem 0 1.8rem;
+}
+.abcdata-wrapper.mobile .order-finish-footer{
+	line-height: 1.5;
+	text-align: center;
+	width: 100%;
+	padding: 1.5rem 0;
+	left: auto;
+	transform: none;
+	font-size: 1rem;
+}
+.abcdata-wrapper.mobile .order-finish-footer .copyright{
+	float: none;
+}
+
+.abcdata-wrapper.mobile .order-finish-footer .contact{
+	float: none;
+}
+/* 
+	看板初步适配
+ */
+.abcdata-wrapper.mobile .vue-grid-item{
+	width: 100%!important;
+	left:auto!important;
+	position: relative!important;
+	top: auto!important;
+	margin: 1rem 0;
+}
+.abcdata-wrapper.mobile .fullscreen-wrapper .chart-header-wrapper .chart-header-wrapper-fullscreen .btn-back{
+	width: auto;
+	padding: 0 1rem;
+}
+.abcdata-wrapper.mobile .fullscreen-wrapper .chart-header-wrapper .chart-header-wrapper-fullscreen .chart-header-chart-title{
+	overflow: hidden;
+	flex-grow: 1;
+	font-size: 1rem !important;
+	word-break: break-all;
+	position: relative;
+	left: auto;
+	transform: none;
+}
+.abcdata-wrapper.mobile .fullscreen-wrapper .chart-header-wrapper .chart-header-change-tab .icon{
+	width: 4rem;
+	height: 1.5rem;
+	background: url(/images/icon-change.png) no-repeat center;
+	background-size: 100%;
+}
+.abcdata-wrapper.mobile .fullscreen-wrapper .cc-body{
+	padding: 0 !important;
+}
+.abcdata-wrapper.mobile .time-line-wrap{
+	display: none !important;
+}
+/*
+	用户中心适配
+ */
+.abcdata-wrapper.mobile .order-wrap .proList{
+	width: 100%;
+	padding: 3.5rem;
+}
+.abcdata-wrapper.mobile .order-wrap .proList li{
+	width: 100%;
+	margin: 1rem 0;
+	height: 12rem;
+}
+.abcdata-wrapper.mobile .order-nav-bar{
+	position: relative;
+	/*liu新增*/
+	margin-top: 0.8rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .huang-dashboard{
+	width: 100%;
+	float: left;
+} 
+.abcdata-wrapper.mobile .form-wrapper .tooltip_daily{
+	margin:0 auto;
+	margin-top: 0.7rem;
+	width: 100%;
+	/*liu改*/
+	height: auto !important;
+	font-size: 1rem;
+	float: none;
+}
+.abcdata-wrapper.mobile .form-wrapper .tooltip_daily h5 {
+	margin: 0.4rem auto;
+}
+
+.abcdata-wrapper.mobile .form-wrapper .tooltip_daily p {
+	margin: 0.4rem auto;
+}
+
+.abcdata-wrapper.mobile .form-wrapper .daily{
+	width: 100%;
+	margin-top: 0;
+}
+/*liu修改*/
+.abcdata-wrapper.mobile .form-wrapper .daily .daily-title {
+	width: 100%;
+	height: auto;
+	line-height: 1.8rem;
+	font-size: 1rem;
+	padding: 0 10%;
+	margin-top: 0.7rem;
+	margin-bottom: 0;
+	word-wrap:break-word;
+	text-align: inherit;
+}
+
+.abcdata-wrapper.mobile .form-wrapper .daily .daily-title span {
+	float: right;
+	width: 10px;
+	height: 2rem;
+	line-height: 2rem;
+	margin-left: 0;
+	margin-right: 0.5rem;
+}
+
+.abcdata-wrapper.mobile .form-wrapper .daily .daily_content ul li{
+	width: 100%;
+	font-size: 1rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .daily .daily_content ul li .left_div{
+	width: 25%;
+}
+.abcdata-wrapper.mobile .form-wrapper .daily .daily_content ul li .right_div{
+	width: 75%;
+}
+.abcdata-wrapper.mobile .form-wrapper .daily .daily_content ul li .right_div p{
+	width: 86%;
+}
+.abcdata-wrapper.mobile .form-wrapper .daily .tab_bar{
+	width: 25%;
+	margin-top:1.38rem;
+	color: #000000;
+}
+.abcdata-wrapper.mobile .form-wrapper .daily .huang_btn{
+	width:100%;
+	height:100%;
+	margin-top: 10%;
+	font-size:1.4rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .daily .search_div{
+	float: right;
+}
+.abcdata-wrapper.mobile .order-nav-bar .userBar{
+	max-width: 8rem;
+	font-size: 0.5rem;
+	margin-top: 0.5rem;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.abcdata-wrapper.mobile .order-nav-bar .userBar ul{
+	width: 50%;
+	font-size: 1rem;
+	/*liu修改*/
+	top: 4rem;
+}
+.abcdata-wrapper.mobile .order-nav-bar .userBar ul .try_product{
+	right: 1rem;
+}
+.abcdata-wrapper.mobile .order-nav-bar .userBar .headimg{
+	width:1rem;
+	height: 1rem;
+}
+.abcdata-wrapper.mobile .order-nav-bar .huangjian-box{
+	width: 40%;
+     bottom: 1rem;
+}
+.abcdata-wrapper.mobile .order-nav-bar .switch_bar{
+	width: 130%;/*120%*/
+	margin-left: 10%;
+	font-size: 1.4rem !important;
+	/*liu新增*/
+	position: absolute;
+	top: 0.45rem;
+}
+.abcdata-wrapper.mobile .order-nav-bar .switch_bar .switch_btn{
+	width: 50%;
+	height: 6rem;
+	line-height: 6rem;
+	/*liu改字体大小*/
+	font-size: 1rem;
+	text-align: left;
+}
+.abcdata-wrapper.mobile .order-nav-bar .btn_underline{
+	width: 0;
+}
+/*my*/
+.abcdata-wrapper.mobile .order-wrap .item-title{
+	font-size: 1rem;
+}
+.abcdata-wrapper.mobile .order-wrap .item-title_{
+	font-size: 1rem;
+}
+.abcdata-wrapper.mobile .order-wrap .dashboard_tab_bar{
+	width:14rem;
+}
+.abcdata-wrapper.mobile .order-wrap .dashboard_tab_bar .dashboard_switch_btn{
+	font-size: 1rem;
+}
+/*订单历史*/
+.abcdata-wrapper.mobile .order-wrap .form-wrapper h2{
+	font-size: 2rem;
+}
+.abcdata-wrapper.mobile .order-wrap .form-wrapper table{
+	width: 100%;
+	font-size: 0.5rem;
+}
+.abcdata-wrapper.mobile .order-wrap .form-wrapper table td{
+	font-size: 0.5rem;
+}
+
+/*Waiting for payment confirmation*/
+.abcdata-wrapper.mobile .order-wrap  .img{
+	width: 10rem;
+	height: 10rem;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-item .img_{
+	width: 1rem;
+	height: 1rem;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-item .p{
+	font-size: 1.5rem;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-item p span{
+	font-weight: normal;
+}
+.abcdata-wrapper.mobile .order-wrap .payment-item .finish-remittance{
+	width: 70%;
+	margin:1rem 15%;
+	background:#355867;
+	color: #FFFFFF;
+	font-size: 1.2rem;
+	
+}
+.abcdata-wrapper.mobile .order-wrap .payment-item button{
+	font-size: 1rem;
+	width: 12rem;
+	color: #000000;
+	background: none;
+	white-space:nowrap;
+}
+/*liu修改头部*/
+.abcdata-wrapper.mobile .introduction-banner .language-tab {
+	margin: 1rem 0.4rem 0 !important;
+	position: absolute;
+    left: 6rem;
+    top: 0.8rem;
+    width: 10rem;
+}
+
+/*liu新增*/
+.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .holder {
+	width: 90%;
+}
+
+/*liu新增*/
+.abcdata-wrapper.mobile .order-nav-bar .langchange {
+	width: 12.5rem;
+	height: 2.5rem;
+	position: absolute;
+	left: 14%;
+	bottom: -2rem;
+	font-size: 1rem;
+}
+.abcdata-wrapper.mobile .order-nav-bar .notification-bell {
+	width: 2.83rem;
+	height: 2.83rem;
+	position: absolute;
+	right: 3rem;
+	bottom: -2.5rem;
+}
+
+.abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification {
+	display: block;
+    width: 95%;
+    height: auto;
+    overflow-y: auto;
+    position: fixed;
+    top: 8rem; 
+}
+
+.abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul {
+	display: block;
+    width: 100%;
+    height: auto;
+    font-size: 1rem;
+}
+
+.abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li {
+	display: block;
+    width: 100%;
+    height: auto;
+    padding-top: 1px;
+    position: relative;
+}
+
+.abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li .content {
+	clear: both;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 0.7rem;
+	word-wrap: break-word; 
+	word-break: normal; 
+}
+
+.abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li .time {
+	clear: both;
+    width: 80%;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    color: black !important;
+    font-size: 0.83rem;
+    margin-left: 2.9rem;
+    margin-top: 0.9rem;
+}
+
+.abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li .timemargin {
+	position: absolute;
+	left: 2.9rem;
+	top: 3.9rem;
+}
+.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul {
+	margin-top: 2rem;
+	padding-left: 3%;
+}
+
+.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly {
+	float: none;
+	width: 100%;
+	height: auto;
+	margin-top: 0.7rem;
+}
+
+.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly > div {
+	height: auto; 
+}
+
+.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .divborder {
+	max-height: 10.2rem;
+}
+/*英文样式*/
+.abcdata-wrapper.mobile .form-wrapper .height_ h5 {
+	width: 90%;
+	margin: 0.4rem auto;
+}
+
+.abcdata-wrapper.mobile .form-wrapper .height_ p {
+	width: 90%;
+	margin: 0.4rem auto;
+}
+
+/*轮播*/ 
+@media only screen and (min-width: 412px) and (max-width: 732px) {
+	.abcdata-wrapper.mobile #box li {
+		position: absolute !important;
+		left: 42% !important;
+	}
+
+	.abcdata-wrapper.mobile #box li h4 {
+	    position: absolute;
+	    left: 3rem;
+	    bottom: 3rem;
+	    text-align: center;
+	}
+
+	.abcdata-wrapper.mobile #box li h5 {
+	    position: absolute;
+	    left: 2.7rem;
+	    bottom: 5.5rem;
+	    font-size: 1.3rem;
+	}
+	
+	.abcdata-wrapper.mobile #box li .div p span {
+		font-size: 1.5rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p .right-span{
+		position: absolute;
+	    left: 0.1rem;
+	    bottom: -0.3rem;
+	}
+
+	.abcdata-wrapper.mobile #box li ._img {
+		position: absolute;
+		bottom: 0.5rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
+		position: relative;
+    	right: 1.5rem;
+    	top: 1rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .right-span {
+	    position: absolute;
+	    left: -1rem;
+	    top: 3rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .left-span {
+	    position: absolute;
+	    left: -1.3rem;
+	    top: -0.3rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .right-span {
+	    position: absolute;
+	    left: -1rem;
+	    top: 1.6rem;
+	}
+	
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily-title {
+		padding: 0 11%;
+	}
+	/*修改大数据日报样式*/
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul {
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly {
+		width: 100%;
+	}
+
+}
+
+/*ipad*/
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+	/*头部*/
+	.abcdata-wrapper.mobile .introduction-banner .language-tab {
+		width: 13rem;
+    	margin: 1.7rem 1rem 0 !important;
+	}
+
+	/*首页轮播*/
+	.abcdata-wrapper.mobile .introduction-price #box {
+		width: 100%;
+		margin-left: 1.5rem;
+	}
+
+	.abcdata-wrapper.mobile #box li {
+		width: 80% !important;
+		height: 85% !important;
+	}
+	
+	.abcdata-wrapper.mobile #box li .dashboard_img {
+		width: 8rem;
+	    position: absolute;
+	    left: 8.5rem;
+	    top: 1rem;
+	}
+	
+	.abcdata-wrapper.mobile #box li ._img {
+	    width: 6rem;
+	    position: absolute;
+	    left: 2.5rem;
+	    bottom: 0.5rem;
+	}
+	
+	.abcdata-wrapper.mobile #box li h5 {
+		width: 3rem;
+	    position: absolute;
+	    left: 4rem;
+	    bottom: 4rem;
+	    font-size: 1rem;
+	}
+
+
+	.abcdata-wrapper.mobile #box li h4 {
+		font-size: 1.5rem;
+	    position: absolute;
+	    left: 3.4rem;
+	    bottom: 2.5rem;
+	    text-align: center;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p span {
+		font-size: 1.25rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div {
+		width: 100%;
+	    height: 5rem;
+	    position: absolute;
+	    top: 4rem;
+	    left: 8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p .right-span {
+		position: absolute;
+	    left: 0;
+	    bottom: 1.8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(2) .left-span {
+		position: absolute;
+	    left: 2rem;
+	    bottom: 5.3rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(2) .right-span {
+		position: absolute;
+		bottom: 3.8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
+	    position: relative;
+	    right: 1.5rem;
+	    bottom: 4.8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .right-span {
+	    position: absolute;
+	    left: -1rem;
+	    bottom: 6.8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .left-span {
+	    position: absolute;
+	    left: -1.2rem;
+	    bottom: 10.5rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .right-span {
+		position: absolute;
+	    left: -1rem;
+	    bottom: 9rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .userBar {
+		width: 11rem;
+		height: 1rem;
+	    font-size: 1rem;
+	    margin-top: 0.5rem;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .userBar .user-bar-dropdown .userInfo .try_product {
+		width: 3rem;
+		height: 1.5rem;
+		line-height: 1.5rem;
+		font-size: 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .userBar .user-bar-dropdown .userInfo .user-name {
+		height: 1.5rem;
+		line-height: 1.5rem;
+		font-size: 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .userBar .user-bar-dropdown .userInfo .user-mail {
+		height: 1rem;
+		line-height: 1rem;
+		font-size: 0.6rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .switch_bar {
+	    width: 130%;
+	    margin-left: 10%;
+	    font-size: 1.4rem !important;
+	    position: absolute;
+	    top: -1.75rem;
+	}
+	.abcdata-wrapper.mobile .order-nav-bar .notification-bell img {
+		width: 2.5rem;
+		height: 2.5rem;
+		position: relative;
+    	bottom: 0.5rem;
+	}
+	.abcdata-wrapper.mobile .form-wrapper .daily .search_div {
+		float: right;
+    	width: 50%;
+    	margin-top: 2rem;
+    	height: 2rem;
+	}
+	.abcdata-wrapper.mobile .form-wrapper .daily .search_div .stock_search {
+		font-size: 0.65rem;
+	}
+	.abcdata-wrapper.mobile .form-wrapper .daily .search_div img {
+		width: 1rem;
+		height: 1rem;
+		position: absolute;
+		top: 0.5rem;
+	}
+	.abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification {
+		display: block;
+	    width: 95%;
+	    height: auto;
+	    overflow-y: auto;
+		position: fixed;
+		top: 7rem;
+		right: 0.7rem;
+	}
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_daily{
+		width: 100%;
+		height: auto !important;
+		font-size: 1rem;
+		margin:0 auto;
+		margin-top: 0.4rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_daily h5 {
+		font-size: 0.9rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_daily p {
+		font-size: 0.9rem;
+	}
+	 
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily-title {
+		padding: 0 11%;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul {
+		padding-left: 3%;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul li .left_div p {
+		font-size: 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul li .right_div p {
+		font-size: 0.8rem !important;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly {
+		width: 100%;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr {
+		line-height: 2rem;
+	}
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr td {
+		font-size: 0.8rem !important;
+		height: 100%;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr select {
+		font-size: 0.8rem !important;
+		width: 7rem;
+		height: 100%;
+		padding-left: 1rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr select option {
+		font-size: 0.5rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly div .second-table h4 {
+		font-size: 0.9rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly div .second-table tr td {
+		font-size: 0.9rem;
+		height: 2rem;
+		padding-left: 0.5rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .divborder {
+	    max-height: 6.1rem;
+	}
+	
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .holder {
+		width: 80%;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .holder a{
+		font-size: 1rem;
+	}
+
+	/*英文*/
+	.abcdata-wrapper.mobile .form-wrapper .height_ {
+	    margin: 0 auto;
+	    width: 100%;
+	    height: auto !important;
+	    font-size: 1rem;
+	    margin-top: 0.5rem;
+	}
+}
+
+/*ipad pro*/
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+	/*首页轮播*/
+	.abcdata-wrapper.mobile .introduction-price #box {
+		width: 100%;
+    	margin-left: -1.8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li {
+		width: 80% !important;
+    	height: 100% !important;
+	}
+
+	.abcdata-wrapper.mobile #box li .div {
+	    width: 100%;
+	    height: 5rem;
+	    position: absolute;
+	    top: 3.5rem;
+	    left: 8rem;
+	}
+	
+	.abcdata-wrapper.mobile #box li .div p .right-span {
+	    position: absolute;
+	    left: 0;
+	    bottom: 2.3rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(2) .left-span {
+	    position: absolute;
+	    left: 2rem;
+	    bottom: 5.8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(2) .right-span {
+	    position: absolute;
+	    bottom: 4.5rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
+	    position: relative;
+	    right: 1.5rem;
+	    bottom: 5.5rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .right-span {
+	    position: absolute;
+	    left: -1rem;
+	    bottom: 8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .left-span {
+	    position: absolute;
+	    left: -1.2rem;
+	    bottom: 11.8rem;
+	}
+
+	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .right-span {
+	    position: absolute;
+	    left: -1rem;
+	    bottom: 10.5rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .userBar .user-bar-dropdown .userInfo .user-name {
+		height: 1.5rem;
+		line-height: 1.5rem;
+		font-size: 1rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .userBar .user-bar-dropdown .userInfo .user-mail {
+		height: 1rem;
+		line-height: 1rem;
+		font-size: 0.9rem;
+	}
+	
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_daily h5 {
+		font-size: 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_daily p {
+		font-size: 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr {
+		height: 2rem;
+		line-height: 2rem;
+		box-sizing: border-box;
+	}
+	
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr td {
+		font-size: 0.8rem !important;
+		height: 100%;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr td select {
+		height: 100%;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .first-table tr select option {
+		font-size: 0.5rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly div .second-table h4 {
+		font-size: 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly div .second-table tr td {
+		font-size: 0.8rem;
+		padding: 0.3rem 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .userBar .user-bar-dropdown li {
+		margin: 0.8rem;
+	}
+
+	.abcdata-wrapper.mobile .order-nav-bar .switch_bar {
+	    width: 130%;
+	    margin-left: 10%;
+	    font-size: 0.8rem !important;
+	    position: absolute;
+	    top: -2.5rem;
+	}
+	.abcdata-wrapper.mobile .form-wrapper .daily .search_div .stock_search {
+		width: 6rem;
+    	font-size: 0.65rem;
+    	position: absolute;
+    	top: 0.5rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul {
+		padding-left: 3%; 
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul li .left_div p {
+		font-size: 0.7rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .content_ul li .right_div p {
+		font-size: 0.7rem !important;
+		line-height: 1.4rem;
+		width: 95%;
+		margin-bottom: 0.5rem;
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly {
+		width: 100%;
+		overflow-y: hidden; 
+	}
+
+	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .divborder {
+	    max-height: 6rem;
+	}
+
+}

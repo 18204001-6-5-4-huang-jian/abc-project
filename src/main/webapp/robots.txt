@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /css/
+Disallow: /scipts/
+Disallow: /images/
+Disallow: /data/
+Disallow: /vendor/
+Disallow: /WEB-INF/

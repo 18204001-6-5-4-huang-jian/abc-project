@@ -1,0 +1,72 @@
+{
+	"success": true,
+	"message": "",
+	"table": {
+		"update_time": 1491835620000,
+		"data": {
+			"rows": [{
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/813330.html",
+					"title": "腾讯控股股东周年大会通告"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/810054.html",
+					"title": "腾讯控股董事会会议召开日期"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/809330.html",
+					"title": "腾讯控股授出购股权"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/792887.html",
+					"title": "腾讯控股董事会会议召开日期"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/787025.html",
+					"title": "腾讯控股根据股份奖励计划发行新股份"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/780201.html",
+					"title": "腾讯控股须予披露交易 - 就收购SUPERCELL OY的大部分股权被视作出售财团的投票股权"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/776272.html",
+					"title": "腾讯控股董事会会议召开日期"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/766694.html",
+					"title": "腾讯控股提名委员会职权范围"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/762128.html",
+					"title": "腾讯控股根据股份奖励计划发行新股份"
+				}
+			}, {
+				"name": {
+					"url": "http://stock.finance.sina.com.cn/hkstock/go/CompanyNoticeDetail/code/00700/aid/762129.html",
+					"title": "腾讯控股授出购股权"
+				}
+			}],
+			"params": {
+				"table": {
+					"columns": [{
+						"field": "name",
+						"type": "link",
+						"title": "文件"
+					}],
+					"showHeader": true
+				}
+			}
+		},
+		"chartLib": "custom",
+		"chart_update_time": "1494395638505"
+	}
+}

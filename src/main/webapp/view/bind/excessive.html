@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>code-login</title>
+	</head>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="/vendor/jquery-md5/jquery.md5.js"></script>
+	<script type="text/javascript">
+	(function(){
+		 if (window.location.hostname == 'www.eversight.ai'){
+			 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			  ga('create', 'UA-99297697-1', 'auto');
+				ga('set', 'userId', window.localStorage.getItem('uid')); // 使用已登录的 user_id 来设置用户 ID
+				ga('set', 'dimension1', window.localStorage.getItem('uid'));
+			  ga('send', 'pageview');
+		};
+	})()
+	</script>
+	<script type="text/javascript">
+		//空白过渡页  根据code返回的数据判断跳转
+		    var url_ = location.href;
+			var codeStr = url_.substring(url_.indexOf('code=') + 5); 
+			var code =  codeStr.substring(0, 32);
+			console.log(code);	
+			$.ajax({
+				type:"post",
+				url:"/api/wechat/login",
+				contentType:'application/x-www-form-urlencoded;charset=utf-8',
+		  		data:{
+                       code:code
+                },
+                success:function(resp){
+                	if(typeof (resp.data.status) == "undefined"){
+						if(resp.success){
+							//注册过用户直接登录
+							console.log(resp);
+							var day = new Date(resp.data.token.expiry.slice(0,-4)).getTime()-new Date();
+							$.cookie("token",resp.data.token.auth_token,{
+								expires:parseInt(day/1000/3600/24),
+								path:'/'
+							});
+							window.localStorage.clear();
+							window.sessionStorage.clear();
+							//保留token用于重置密码
+							localStorage.setItem("token",resp.data.token.auth_token);
+							localStorage.setItem("uid",resp.data.user.id);
+							localStorage.setItem("username",resp.data.user.username);
+							localStorage.setItem("plan_name",resp.data.plan_name);
+							localStorage.setItem("plan_name_zh_CN",resp.data.plan_name_zh_CN);
+							// 判断客户管理权限
+							if(typeof resp.data.manager === 'number' ){
+								localStorage.setItem("manager",resp.data.manager);
+							}
+							savePass(resp.data.user.id,resp.data.user.username,resp.data.user.email);
+							var userid = resp.data.user.id;
+							$.ajax({
+								url:"/api/v1/account/" + userid,
+								type:"get",
+								contentType:'application/json;chartset=utf-8',
+					            success:function(res){
+					            	 console.log(res);
+					            	 localStorage.setItem("useremail",res.data.email);
+					            	 localStorage.setItem("usercompany",res.data.company);
+					            	 localStorage.setItem("userpassword",res.data.pwd_ends);
+					            	 localStorage.setItem("userheadimg",res.data.head_img);
+					            	  if(document.location.protocol == "https:"){  
+									        location.href = 'https://' + location.hostname + '/#/my';  
+									}else{
+									    	location.href = 'http://' + location.host + '/#/my';
+									}
+					            },
+					            error:function(error){
+					            	console.log(error);
+					            }
+							})
+						}
+                    }else if(resp.data.status == 0){
+                    	//微信扫码注册
+//                  	window.localStorage.clear();
+//                  	window.sessionStorage.clear();
+                    	//将openid存在localStorage中用于bind。html中
+                		localStorage.setItem('openid',resp.data.openid);
+                		location.href = "bind.html";
+                	}else if(resp.data.status == 1){
+                		//存下status=1的时候调用接口获取email存在sessionstoraoge
+                		location.href = "email-bind.html";
+                	}
+                },
+                error:function(error){
+                	console.log(error);
+                }
+			});
+			 function savePass(uid,name,email){
+				if(!window.sessionStorage){return false;}
+				if(uid && name && email){
+					sessionStorage.setItem('uid',uid);
+					sessionStorage.setItem('username',name);
+					sessionStorage.setItem('email',email);
+				}
+		    }
+		 
+	</script>
+	<body>
+	</body>
+</html>

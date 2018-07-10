@@ -24,17 +24,19 @@ public class RedisUtil {
     //private static JedisPoolConfig config;
     private static String TAG;
     private static String host_name;
+    private static String PASS;
     private static int port;
     private static int db_id;
     private static int timeout;
 
-    public static void init(String hostName, int p, int databaseIndex, int t, String tag) {
+    public static void init(String hostName, int p, int databaseIndex, int t, String tag,String password) {
         TAG = tag;
         host_name = hostName;
         port = p;
         db_id = databaseIndex;
         timeout = t;
         TAG = tag;
+        PASS = password;
         /*
         config = new JedisPoolConfig();
         config.setMaxTotal(128);
@@ -56,7 +58,7 @@ public class RedisUtil {
             config.setBlockWhenExhausted(false);
             config.setTestOnBorrow(true);
             try {
-                jedisPool = new JedisPool(config, host_name, port, timeout, null, db_id);
+                jedisPool = new JedisPool(config, host_name, port, timeout, PASS, db_id);
             } catch (Exception e) {
                 logger.error("Init msg redis factory error! ", e);
             }

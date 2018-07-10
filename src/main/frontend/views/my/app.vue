@@ -16,15 +16,17 @@
                         <li @click="li_langchange=0" :class="{active:li_langchange==0}">中文</li>
                         <li @click="li_langchange=1" :class="{active:li_langchange==1}">English</li>
                     </ul>
-                    <!-- @click.stop来阻止冒泡 -->
+                    <!-- @click.stop来阻止事件冒泡 -->
                     <!-- 消息提醒 -->
                      <div class="notification-bell" @click.stop="quarterlygn()">
                          <p  v-if="quarterly==0 && quarterlyNumber != 0" v-text="quarterlyNumber" @click.stop="quarterlygn()"></p>
                          <img src="../../../webapp/images/bell-icon.png" @click.stop="quarterlygn()"/>
+                         <!-- 向上箭头 -->
+                         <div v-show="isnotification" class="triangle-up"></div>
                          <div v-show="isnotification" class="isnotification">
-                        <ul>
-                        <h3 v-if="quarterlyArray.length == 0 " style="text-align:center;color:black;margin:0 auto;width:80%;margin-top:60px;">&nbsp;&nbsp;&nbsp;您暂时没有未通知消息</h3>
+                         <h3 v-if="quarterlyArray.length == 0 " style="text-align:center;color:black;margin:0 auto;width:80%;margin-top:60px;">&nbsp;&nbsp;&nbsp;您暂时没有未通知消息</h3>
                         <img src="../../../webapp/images/regret.png" v-if="quarterlyArray.length == 0 " style="width:128px;height:128px;margin:20px auto;display:block;" />
+                        <ul>
                         <li v-for="item in quarterlyArray">
                            <div class="content">
                            <span v-text="item.company" class="company" @click="joindashboard_(item,item.up_id)"></span>&nbsp;
@@ -77,11 +79,6 @@
                                         <td v-text="item.company"></td> 
                                         <td v-text="item.type"></td>    
                                     </tr>
-                            <!--  <tr>
-                                <td>1</td>
-                                <td>2</td> 
-                                <td>3</td> 
-                             </tr> -->
                             </table> 
                         </div>
                     </div>
@@ -103,6 +100,8 @@
                                 <p class="daily-title" v-show="expired_?false:expired">
                                 您收看Data Daily的权限已过期，如需收看最新日报请<i @click="joinorder()">点击订阅</i><span @click="gn()"> X </span>
                                 </p>
+                                <!-- 搜索的lmage -->
+                                <Img :src="searchImgName" v-if="isShowSearchImg" class="showSearchImg"/>
                             <ul id="itemContainer" class="content_ul">
                                     <li v-for="(item,index) in dailyArr">
                                     <div class="left_div">
@@ -235,14 +234,14 @@
                 quarterlyData:[],
                 status:0,
                 buy:0,
-                nobuy:0
+                nobuy:0,
+                isShowSearchImg:false,
+                searchImgName:''
             }
         },
         mounted(){
             GaHelper.sendPageView();
         	var self = this;
-            //console.log(self.lang);
-            //console.log(self.manager);
             //判断登录状态回到首页之前的lang类型保持一致
             if(self.lang == 'en'){
                self.li_langchange = 1; 
@@ -277,8 +276,8 @@
 		            //keyBrowse: true,键盘切换  
 		            //scrollBrowse: true滚轮切换  
 		            callback: function(pages, items) {  
-//		                console.log(pages);  
-//		                console.log(items);
+                    //console.log(pages);  
+                    //console.log(items);
 		                $("html,body").animate({scrollTop:0},500);
 		            },   
 		        });  
@@ -424,6 +423,10 @@
                     console.log(error);
                 }
 
+            })
+            //监听滚动事件
+            $('body').scroll(function(){
+                self.isnotification = false;
             })
         },
         watch:{
@@ -774,9 +777,9 @@
             },
             //删除搜索框
             imgclick(){
+                var self = this;
             	$(".load-mask").show();
             	$(".loader").show();
-            	var self = this;
             	$(".icon_delete").hide();
             	$(".stock_search").val("");
             	$.get({
@@ -800,8 +803,10 @@
 		            //keyBrowse: true,//键盘切换  
 		            //scrollBrowse: true,//滚轮切换  
 		            callback: function(pages, items) {  
-		                console.log(pages);  
-		                console.log(items);
+		                // console.log(pages);  
+		                // console.log(items);
+                        self.isShowSearchImg = false;
+                        self.searchImgName = '';
 		                $("html,body").animate({scrollTop:0},500);
 		            },   
 		        });  
@@ -824,7 +829,7 @@
             //搜索
             img_click(){
             	var self = this;
-            	self.search_val = $('.stock_search').val();
+            	self.search_val = $('.stock_search').val().trim();
             	$.get({
             	url:"/api/v1/reports?sort="+self.sort+"&order="+self.order+"&q="+self.search_val+"&offset="+self.offset+"&limit="+self.limit + "&lang="+self.lang,
             	contentType:'application/json;charset=utf-8',
@@ -839,7 +844,20 @@
             		if(res.data.total == 0){
             			layer.msg("暂时没有您搜索的相关内容");
             			$(".holder").hide();
-            		}
+                        self.searchImgName = '';
+                        self.isShowSearchImg = false;
+            		}else{
+                        if(self.search_val == ''){
+                            self.searchImgName = '';
+                            self.isShowSearchImg = false;
+                        }else{
+                            // self.searchImgName = self.dailyArr[0].product_code.toLowerCase();
+                             self.dailyArr = res.data.list;
+                             self.searchImgName = self.dailyArr[0].image_url;
+                             self.isShowSearchImg = true;
+                        }
+                         
+                    }
             		self.dailyArr = res.data.list;
             		self.$nextTick(function(){
             		$('div.holder').jPages({  
@@ -852,8 +870,8 @@
 		            //keyBrowse: true,//键盘切换  
 		            //scrollBrowse: true,//滚轮切换  
 		            callback: function(pages, items){
-		                console.log(pages); 
-		                console.log(items);
+		                // console.log(pages); 
+		                // console.log(items);
 		                $("html,body").animate({scrollTop:0},500);
 		            },   
 		            });  
@@ -879,7 +897,12 @@
                   	this.huangj = 1;
                     break;
                 	}else{
-                	this.huangj = 2;
+                    this.huangj = 2;
+                    //remaining为0时，提示User看板到期
+                     // new PNotify({
+                     //            text: '您的看板权限已经到期,请续费',
+                     //            type: 'error'
+                     //    })
                 	}
                 }
                 if(this.huangj == 1){
@@ -929,14 +952,18 @@
                        }
                     })
                     }else if(pro.remaining==0){
-                       if(pro.status==0){
-                        self.status=1;
-                        self.displayself();
-                        self.nobuy=1
-                        }else if(pro.status==3){
-                        self.status=1;
-                        self.displayself();
-                        self.buy=1;
+                        new PNotify({
+                                text: '您的看板权限已经到期,请续费',
+                                type: 'error'
+                        })
+                      if(pro.status == 0){
+                            self.status = 1;
+                            self.displayself();
+                            self.nobuy = 1;
+                        }else if(pro.status == 3){
+                            self.status = 1;
+                            self.displayself();
+                            self.buy = 1;
                         }
                         
                     }
@@ -969,7 +996,7 @@
             	contentType:'application/json;charset=utf-8',
             	cache:false,
             	success:function(res){
-            		console.log(res);
+            		// console.log(res);
             		if(res.status == 0){
 	        			if(self.hj == 1){
 	    			        self.jhuang = false;
@@ -999,7 +1026,7 @@
             	contentType:'application/json;charset=utf-8',
             	cache:false,
             	success:function(res){
-            		console.log(res);
+            		// console.log(res);
             		if(res.status == 0){
             			if(self.hj == 1){
 	    			        self.jhuang = false;
@@ -1022,18 +1049,23 @@
 	            	}
 	                })
             },
+            //点击消息提醒bell
             quarterlygn(){
                 localStorage.setItem("quarterly",1);
                 var self = this;
                 self.quarterly = 1;
-                self.isnotification = true;
-                self.$nextTick(function(){
+                if(self.isnotification){
+                    self.isnotification = false;
+                }else{
+                    self.isnotification = true;
+                    self.$nextTick(function(){
                     $("html").click(function(){
                         if(!self.isnotification){return;}
                         self.isnotification = false;
                         $("html").unbind('click');
                     })
-                })
+                  })
+                }
             },
             changTime(e){
                 var self = this;
@@ -1491,6 +1523,13 @@
         margin-left: 100px;
         text-align: center;
     }*/
+    .daily .daily_content .showSearchImg{
+        margin-top:10px;
+        margin-bottom:10px;
+        margin-left: 100px;
+        border: 1px solid darkgrey;
+        border-radius: 5px;
+    }
     .daily .daily_content .daily-title{
     	font-size: 14px;
         font-weight: bold;
@@ -1791,18 +1830,32 @@
     .isnotification{
         width:500px;
         height: 300px;
-        background-color: #fff;
-        border-radius: 3px;
+        background-color: #F8F8FF;
+        border-radius: 5px;
         position: fixed;
+        /*top: 100px;*/
+        /*right:10px;*/
         top: 100px;
-        right:10px;
+        right: 50px;
         clear: both;
         z-index: 999;
         font-size: 14px;
-        -webkit-box-shadow:10px 0px 20px gray,0px 10px 20px gray;  
-        -moz-box-shadow:10px 0px 20px gray,0px 10px 20px gray;  
-        box-shadow:10px 0px 20px gray,0px 10px 20px gray;
+        -webkit-box-shadow:5px 5px 5px #888888;
+        -moz-box-shadow:5px 5px 5px #888888;
+        box-shadow:5px 5px 5px #888888;  
+        border: 1px solid #888888;
         overflow-y:auto;
+    }
+    .triangle-up {
+        position: absolute;
+        width: 0;
+        height: 0;
+        top:45px;
+        left:-4px;
+        z-index:1000;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-bottom: 30px solid #F8F8FF;
     }
     .isnotification ul{
         display: block;

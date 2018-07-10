@@ -45,14 +45,17 @@ public class WebApplication extends ResourceConfig {
         }
 
         CORSFilter.init(sConfig.getProperty("cors.static_host"));
-        MongoUtil.init(sConfig.getProperty("web.mongodb"), sConfig.getProperty("web.mongodb.db"));
+//        MongoUtil.init(sConfig.getProperty("web.mongodb"), sConfig.getProperty("web.mongodb.db"));
+        MongoUtil.init(sConfig.getProperty("web.mongodb.host"), sConfig.getProperty("web.mongodb.port"),
+                sConfig.getProperty("web.mongodb.db"),sConfig.getProperty("web.mongodb.user"),sConfig.getProperty("web.mongodb.password"));
         MailUtil.init(sConfig.getProperty("mail.host"), sConfig.getProperty("mail.from"), sConfig.getProperty("mail.env"),sConfig.getProperty("mail.user"), sConfig.getProperty("mail.password"));
         StringUtils.init(sConfig.getProperty("string.host_url"));
         RedisUtil.init(sConfig.getProperty("redis.hostName"),
                 Integer.parseInt(sConfig.getProperty("redis.port")),
                 Integer.parseInt(sConfig.getProperty("redis.databaseIndex")),
                 Integer.parseInt(sConfig.getProperty("redis.timeout")),
-                sConfig.getProperty("redis.tag"));
+                sConfig.getProperty("redis.tag"),
+                        sConfig.getProperty("redis.pass"));
 
         WechatUtil.APPID = sConfig.getProperty("wechat.appid");
         WechatUtil.SECRET = sConfig.getProperty("wechat.appsecret");

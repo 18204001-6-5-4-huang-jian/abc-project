@@ -156,7 +156,7 @@
             },
             deltag(){
                 var self = this;
-                this.$emit("savepoint",self.tagpoint,undefined);
+                this.$emit("deletepoint",self.tagpoint,undefined);
                 $("#charttag").hide();
             },
             changecolor(color){

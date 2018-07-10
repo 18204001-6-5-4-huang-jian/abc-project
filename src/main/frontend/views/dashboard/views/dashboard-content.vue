@@ -85,12 +85,11 @@ export default {
         //日报跳转进入看板
        var self = this;
        setTimeout(function(){
-            // console.log(self.titleArray);
-            // console.log(localStorage.getItem("dailyjoin"));
-            let daily_id = localStorage.getItem("dailyjoin")
+            if(localStorage.getItem("dailyjoin")){
+                 let daily_id = localStorage.getItem("dailyjoin")
             for(let i = 0;i<self.titleArray.length;i++){
                 if(self.titleArray[i].id == daily_id){
-                    console.log(self.titleArray[i].id);
+                    // console.log(self.titleArray[i].id);
                     let element = $('#widget-' + self.titleArray[i].id).parent();
                     $('.dashboard-content-success-wrapper').animate({scrollTop:($(element).offset().top)-50},300);
                      // $('.dashboard-content-success-wrapper').scrollTop(($(element).offset().top)-50);
@@ -98,7 +97,21 @@ export default {
                     localStorage.removeItem("dailyjoin");
                 }
             }
-        },1500)
+          }else if(localStorage.getItem('iconScrollTopId')){
+                 //全屏之后的返回
+                let iconScrollTopId = localStorage.getItem('iconScrollTopId');
+                for(let i = 0;i<self.titleArray.length;i++){
+                if(self.titleArray[i].id == iconScrollTopId){
+                    let element = $('#widget-' + self.titleArray[i].id).parent();
+                    $('.dashboard-content-success-wrapper').animate({scrollTop:($(element).offset().top)-50},300);
+                     //清除iconScrollTopId
+                    localStorage.removeItem('iconScrollTopId');
+                  }
+                }
+               }
+        },2000)
+      
+       
     },
     data(){
         return {

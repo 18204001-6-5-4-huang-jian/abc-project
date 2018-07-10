@@ -97,7 +97,7 @@
 				  	    </div>
 				  	</li>
 				  	<li class="published_box">
-				  		<textarea class="_textarea" @click="textarea_click($event)"></textarea>
+				  		<textarea class="_textarea" @click="textarea_click($event)" placeholder=" 发表观点..."></textarea>
 				  		<button class="Button" @click="create_publish()" v-text="lang == 'zh_CN'?'发表':'Post'"></button>
 				  		<input type="checkbox"  class="anonymity" checked="checked"/><span class="anonymity_span" v-text="lang == 'zh_CN'?'匿名':'Anonymous'"></span>
 				  	</li>
@@ -157,7 +157,7 @@
 				  		</div>
 				  	</li>
 				  	<li class="published_boxmy">
-				  		<textarea class="_textareamy" @click="textarea_clickmy($event)">
+				  		<textarea class="_textareamy" @click="textarea_clickmy($event)" placeholder=" 发表观点...">
 				  		</textarea>
 				  		<button class="Button_my" @click="create_publishmy()" v-text="lang == 'zh_CN'?'发表':'Post'"></button>
 				  		<input type="checkbox" class="anonymity_my"checked="checked"/>
@@ -806,6 +806,14 @@
                 success:function(res){
                 	self.discuss_Array = res.data.list;
                 	$(".discussDiv").show();
+                	//评论框显示，给html绑定事件
+                	// self.$nextTick(function(){
+                	// 	$('html').click(function(){
+                	// 		if($(".discussDiv").is(":hidden")){return;}
+                 //                $(".discussDiv").hide();
+                	// 			$("html").unbind('click');
+                	// 	})
+                	// })
                 	self.discussDiv_drag();
 				if(self.lang == ""){
 		          	  self.to_en();
@@ -2987,7 +2995,8 @@
 	.comment_div{
 		width: 398px;
 		height: 650px;
-		border: 1px solid gray;
+		/*border: 1px solid gray;*/
+		border: 1px solid #2E2F3B;
 		color: #7985A3;
 		overflow-y: auto;
 		overflow-x: hidden;
@@ -3052,7 +3061,9 @@
 		text-indent:7px;
 		color: white;
 		width:180px;
-		border:1px solid gray;
+		border: 1px solid #8B9BBF;
+        border-radius: 3px 4px 4px 4px;
+		/*border:1px solid gray;*/
 	}
 	.comment_div .content_header li .search_input::-webkit-input-placeholder{
 	     color: #7985A3;
@@ -3103,7 +3114,8 @@
 	}
 	.comment_div .content_discuss li{
 		width:398px;
-		border: 1px solid gray;
+		/*border: 1px solid gray;*/
+		border: 1px solid #2E2F3B;
 		position: relative;
 		border-top:none;
 		border-left:none;
@@ -3113,6 +3125,10 @@
 		word-wrap:break-word;
 		width:330px;
 		line-height: 20px;
+		font-family: PingFangSC-Regular;
+		font-size: 14px;
+		color: #8B9BBF;
+		letter-spacing: 0;
 	} 
 	.comment_div .content_discuss li .my_all_total_count{
 		height:20px;
@@ -3316,7 +3332,8 @@
 		right: 0;
 		z-index:998;
 		background:#151922;
-		border-left:1px solid gray;
+		/*border-left:1px solid gray;*/
+		border-left: 1px solid #2E2F3B;
 	}
 	.comment_div .content_discuss li ._textarea{
 		color:#7985A3;
@@ -3325,7 +3342,9 @@
 		resize:none;
 		width: 220px;
 		height: 40px;
-		border: 1px solid gray;
+		/*border: 1px solid gray;*/
+		border: 1px solid #525466;
+        border-radius: 6px;
 		margin-left: 55px;
 		margin-bottom: 10px;
 	}
@@ -3338,13 +3357,13 @@
 		margin-left: 25px;
 		margin-bottom: 10px;
 		background: deepskyblue;
-		color: black;
+		color:#ffffff;
 		border-radius:20%;
 	}
 	.comment_div .content_discuss li .anonymity{
 		display: block;
-		width: 18px;
-		height: 18px;
+		width: 16px;
+		height: 16px;
 		border: 1px solid gray;
 		margin-left: 65px;
 		margin-top:-30px;
@@ -3354,10 +3373,11 @@
 	.comment_div .content_discuss li .anonymity_span{
 		display:none;
 		position: absolute;
-		left: 96px;
+		left: 90px;
 		top: 85px;
 		z-index: 999;
 		color:#7985A3;
+		font-size: 12px;
 	}
 	.comment_div .content_discuss li .h6{
 		display: none;
@@ -3501,7 +3521,8 @@
 		display: none;
 		width: 398px;
 		height: 650px;
-		border: 1px solid gray;
+		/*border: 1px solid gray;*/
+		border: 1px solid #2E2F3B;
 		color: #7985A3;
 	}
 	.comment_my .content_header{
@@ -3569,7 +3590,8 @@
 	.comment_my .content_discuss li{
 		width:398px;
 		position: relative;
-		border: 1px solid gray;
+		/*border: 1px solid gray;*/
+		border:1px solid #2E2F3B;
 		overflow:hidden;
 		border-bottom: none;
 	}
@@ -3585,7 +3607,8 @@
 		right: 0;
 		z-index:9999;
 		background:#151922;
-		border-bottom: 1px solid gray;
+		/*border-bottom: 1px solid gray;*/
+		border-bottom: 1px solid #2E2F3B;
 	}
 	.comment_my .content_discuss i{
 		font-style: normal;
@@ -3621,14 +3644,16 @@
 		resize:none;
 		width: 220px;
 		height: 40px;
-		border: 1px solid gray;
+		/*border: 1px solid gray;*/
+		border: 1px solid #525466;
+        border-radius: 6px;
 		margin-left: 55px;
 	}
 	.comment_my .content_discuss li .anonymity_my{
 		display: block;
 		float: left;
-		width: 18px;
-		height:18px;
+		width: 16px;
+		height:16px;
 		margin-left: 60px;
 		margin-top: -30px;
 		z-index: 999;
@@ -3642,16 +3667,17 @@
 		margin-left: 25px;
 		margin-bottom: 10px;
 		background:deepskyblue;
-		color: black;
+		color:#ffffff;
 		border-radius:20%;
 	}
 	.comment_my .content_discuss li .anonymity_spanmy{
 		display: none;
 		position: absolute;
-		left: 90px;
+		left:85px;
 		top: 80px;
 		z-index: 999;
 		color:#7985A3;
+		font-size: 12px;
 	}
 	.comment_my .content_discuss .prompt_box{
 		visibility: hidden;

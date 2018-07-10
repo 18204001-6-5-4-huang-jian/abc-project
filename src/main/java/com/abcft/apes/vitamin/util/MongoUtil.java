@@ -1,8 +1,6 @@
 package com.abcft.apes.vitamin.util;
 
-import com.mongodb.Block;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
+import com.mongodb.*;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -65,11 +63,19 @@ public class MongoUtil {
     //    public static final String QUARTERLY_REPORT = "quarterly_report_temp"; //季报
     public static final String QUARTERLY_REPORT = "earning_day"; //季报
 
-    public static void init(String connStr, String dbName) {
-        MongoClientURI connectionString = new MongoClientURI(connStr);
-        mongo = new MongoClient(connectionString);
-        database = mongo.getDatabase(dbName);
+//    public static void init(String connStr, String dbName) {
+//        MongoClientURI connectionString = new MongoClientURI(connStr);
+//        mongo = new MongoClient(connectionString);
+//        database = mongo.getDatabase(dbName);
+//
+//        initDb();
+//    }
 
+    public static void init(String host, String portStr, String db, String user, String password) {
+        MongoCredential credential = MongoCredential.createCredential(user, db, password.toCharArray());
+        int port = Integer.parseInt(portStr);
+        mongo = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
+        database = mongo.getDatabase(db);//获取数据库
         initDb();
     }
 

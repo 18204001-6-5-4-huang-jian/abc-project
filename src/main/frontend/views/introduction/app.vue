@@ -1,7 +1,8 @@
 <template>
-	<div class="introduction-wrap">
-		<div class="introduction-content">
-			<div class="introduction-banner">
+	<div class="introduction-wrap swiper-container">
+		<div class="introduction-content swiper-wrapper">
+		<!-- introduction-banner -->
+			<div class="introduction-banner introduction-banner swiper-slide">
 				<div class="introduction-nav-bar clearfix">
 					<div class="logo abcdata-icon pointer" @click="direct('introduction')"></div>
 					<div class="login" @click="direct('registration')" v-if="!isLogin">
@@ -24,9 +25,15 @@
 					<h2 class="introduction-title">ONE OF THE SHARPEST TOOLS ON THE MARKET</h2>
 					<h2 class="introduction-subtitle">OBTAIN AHEAD OF MARKET INSIGHT OF COMPANIES' CRITICAL OPERATIONAL DATA</h2>
 				</div>
+				<div class="introduction-footer">
+					<div class="gonext">
+						<img class="img" src="../../../webapp/images/gonext.png">
+					</div>
+				</div>
 			</div>
-			<div class="introduction-description">
-				<div class="item-1180">
+			<!-- introduction-description -->
+			<div class="introduction-description introduction-banner swiper-slide">
+				<div class="item-1180 introduction-description-container">
 					<h2 class="description-title">
 						Eversight.AI is an artificial intelligence equity research company that transforms public data into market business intelligence that is ahead of the curve.
 					</h2>
@@ -35,8 +42,9 @@
 					</div>
 				</div>
 			</div>
-			<div class="introduction-product-list">
-				<div class="item-1180">
+			<!-- introduction-product-list -->
+			<div class="introduction-product-list introduction-banner swiper-slide">
+				<div class="item-1180 introduction-product-list-container">
 					<div class="production-list-title section-title" v-text="lang=='zh_CN'?'我 们 覆 盖 的 股 票':'Stocks We Cover'"></div>
 					<ul class="introduction-products clearfix">
 						<li class="introduction-products-item">
@@ -70,96 +78,12 @@
 							<i class="abcdata-icon vip"></i>
 						</li>
 					</ul>
-<!-- 					<div class="more-products">
-						<router-link class="more-products-link" :to="{name:'order'}">
-							MORE PRODUCTS
-							<i class="abcdata-icon arrow"></i>
-						</router-link>
-					</div> -->
 				</div>
 			</div>
-			<div class="introduction-price">
+			<!-- introduction-price -->
+			<div class="introduction-price introduction-banner swiper-slide">
 				<div class="item-1180 clearfix">
-					<!--<div class="price-title section-title">Plan & Price</div>-->
 					<div class="price-title section-title" v-text="lang=='zh_CN'?'我 们 的 预 测':'Our predictions'"></div>
-					<!--<ul class="price-list clearfix">
-
-						<li class="price-list-card standard">
-							<div class="serve-category">Standard</div>
-							<ul class="rights-list">
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">$100,000 per year for a single company 
-You'll be able to see basic real-time information about a company</span>
-								</li>
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">Taking advantage of cutting-edge information</span>
-								</li>
-							</ul>
-							<div class="purchase-panel">
-								<div class="amount">$100,000</div>
-								<div class="unit-price">
-									per company/year
-								</div>
-								<button class="btn-purchase" @click="purchase(0)">BUY NOW</button>
-							</div>
-						</li>
-						<li class="price-list-card advanced">
-							<div class="serve-category">Advanced</div>
-							<ul class="rights-list">
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">$200,000 per year for a single company with competitor view</span>
-								</li>
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">Taking advantage of seeing not only your portfolio company but its competitors’ real-time information</span>
-								</li>
-							</ul>
-							<div class="purchase-panel">
-								<div class="amount">$200,000</div>
-								<div class="unit-price">
-									per company/year
-								</div>
-								<button class="btn-purchase" @click="purchase(1)">BUY NOW</button>
-							</div>
-						</li>
-						<li class="price-list-card last enterprise">
-							<div class="serve-category">Enterprise</div>
-							<ul class="rights-list">
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">$600,000 per year for all the companies that we have covered </span>
-								</li>
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">Taking advantage of everything from Modeling.AI.</span>
-								</li>
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">One of the most powerful & sharpest weapons in the market</span>
-								</li>
-								<li class="rights">
-									<i class="icon-rights abcdata-icon"></i>
-									<span class="rights-text">More than 10 companies added per month</span>
-								</li>
-							</ul>
-							<div class="purchase-panel">
-								<div class="amount">$600,000</div>
-								<div class="unit-price">
-									for everything/year
-								</div>
-								<button class="btn-purchase" @click="purchase(2)">BUY NOW</button>
-							</div>
-						</li>
-					</ul>-->
-<!-- 					<div class="demo">
-						<button class="btn-demo" @click="demo">
-							GET A DEMO
-							<i class="abcdata-icon arrow"></i>
-						</button>
-					</div> -->
 					<!--3d-->
 					<ul id="box">
 					<li class="threedslide" v-for="item in product">
@@ -178,8 +102,9 @@ You'll be able to see basic real-time information about a company</span>
 				    </ul>
 				</div>
 			</div>
-			<div class="introduction-contact-us">
-				<div class="item-1180">
+			<!-- introduction-contact-us -->
+			<div class="introduction-contact-us introduction-banner swiper-slide">
+				<div class="item-1180 introduction-contact-us-container">
 					<div class="contact-us-title section-title" v-text="lang=='zh_CN'?'联 系 我 们':'Contact Us'"></div>
 					<ul class="contact-methods-wrap clearfix">
 						<li class="contact-methods email">
@@ -210,6 +135,7 @@ You'll be able to see basic real-time information about a company</span>
 				</div>
 			</div>
 		</div>
+		<div class="swiper-pagination"></div>
 	</div>
 </template>
 
@@ -277,6 +203,18 @@ export default{
 				}
 			})
 		})
+		//swiper
+		var mySwiper = new Swiper('.swiper-container', {
+			direction: 'vertical',
+            mousewheel: true,
+            pagination: {
+		        el: '.swiper-pagination',
+		        clickable: true,
+		    }
+		})
+		 $('.gonext').click(function(){
+		    mySwiper.slideNext();
+		  })
 	},
 	filters:{
         	currency(value){
@@ -310,17 +248,9 @@ export default{
 				name:'order'
 			})
 		},
-		demo(){
-			console.log('demo')
-		},
 		changelang(lang){
-			if(lang == 'zh_CN'){
-				//中文
-				this.$store.commit('hj_changlang','zh_CN')
-			}else if(lang == ''){
-				//英文
-				this.$store.commit('hj_changlang','')
-			}
+			//切换介绍页中英文
+			this.$store.commit('hj_changlang',lang);
 		}
 	}
 }
@@ -332,6 +262,7 @@ export default{
 		text-align: center;
 		background: url(/images/img-banner.jpg) no-repeat center;
 		background-size: cover;
+		height:100%;
 	}
 	.introduction-nav-bar{
 		height: 110px;
@@ -382,6 +313,10 @@ export default{
 		left: 50%;
 		opacity: 0.2;
 		transform: translateX(-50%);
+		-ms-transform:translateX(-50%); 	/* IE 9 */
+		-moz-transform:translateX(-50%); 	/* Firefox */
+		-webkit-transform:translateX(-50%); /* Safari 和 Chrome */
+		-o-transform:translateX(-50%); 	/* Opera */
 		color: #fff;
 		font-family: "goodTimes";
 	}
@@ -395,8 +330,8 @@ export default{
 	.introduction-description{
 		background: url(/images/img-description.jpg) no-repeat center;
 		background-size: cover;
-		padding-top: 100px;
-		height: 475px;
+		padding-top:100px;
+		height: 100%;
 		text-align: center;
 	}
 	.description-title{
@@ -410,8 +345,47 @@ export default{
 	.description-text{
 		font-size: 16px;
 		color: #fff;
-		line-height: 1.5;
+		line-height:4;
 		letter-spacing: 1px;
+	}
+	.introduction-footer{
+		width: 80%;
+		height: 50px;
+		line-height: 50px;
+		position: absolute;
+		bottom:5%;
+		left: 10%;
+		/*border: 2px solid #ffffff;*/
+	}
+	.introduction-footer .gonext{
+		border: 2px solid #fff;
+	    height: 45px;
+	    width: 30px;
+	    border-radius: 30px;
+	    cursor: pointer;
+	    position: relative;
+	    margin:0 auto;
+	}
+	.introduction-footer .gonext .img{
+		width: 16px;
+		vertical-align: middle;
+	    position: absolute;
+	    top: 12px;
+	    left: 50%;
+	    -ms-transform:translateX(-50%); 	/* IE 9 */
+		-moz-transform:translateX(-50%); 	/* Firefox */
+		-webkit-transform:translateX(-50%); /* Safari 和 Chrome */
+		-o-transform:translateX(-50%); 	/* Opera */
+	    transform: translateX(-50%);
+	    animation: indexmove 1s infinite;
+	}
+	@keyframes indexmove{
+	 from{
+	     top:0; 
+	     }
+      to{
+	       top:18px;
+	   }
 	}
 	.section-title{
 		/*font-family: 'irisUpc';*/
@@ -428,8 +402,10 @@ export default{
 	}
 	.introduction-product-list{
 		padding-top: 70px;
-		height: 600px;
+		/*height: 600px;*/
+		height: 100%;
 		text-align: center;
+		background: none;
 	}
 	.introduction-products{
 		margin-top: 60px;
@@ -517,7 +493,7 @@ export default{
 	}
 	/*价格列表*/
 	.introduction-price{
-		height: 850px;
+		height: 100%;
 		background: url(/images/price-bg.jpg) no-repeat center;
 		background-size: cover;
 		padding-top: 70px;
@@ -613,7 +589,8 @@ export default{
 	}
 	/*联系我们*/
 	.introduction-contact-us{
-		padding-top: 70px;
+		padding-top:70px;
+		background: none;
 	}
 	.contact-methods{
 		float: left;
@@ -751,7 +728,6 @@ export default{
 		line-height:30px;
 		text-align:center;
 		float: left;
-		/*font-weight: bold;*/
 		cursor: pointer;
 		color:#FFFFFF;
 		opacity: 0.6;
@@ -760,4 +736,15 @@ export default{
 		color:#FFFFFF !important;
 		opacity: 1 !important;
 	}
+	/*swiper修改pagination样式*/
+	.swiper-container{
+      width: 100%;
+      height: 100%;
+    }
+	.swiper-container-vertical > .swiper-pagination-bullets{
+		right:30px;
+	}
+    .introduction-description-container,.introduction-contact-us-container,.introduction-product-list-container{
+    	margin:150px auto;
+    }
 </style>

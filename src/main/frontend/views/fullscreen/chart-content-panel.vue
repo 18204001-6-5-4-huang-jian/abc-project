@@ -3,7 +3,7 @@
         <div class="cc-body" :class="{'editing':showEditPanel}">
             <!-- 引入组件charttag -->
            <ChartTag :_left="tagLeft" :_top="tagTop" :sc="sc" @changetagcolor="changetagcolor" :tagpoint="tagpoint" :admin="admin" :newtag="newtag" :spantext="spantext"
-            @changenewtag="changenewtag" @changespantext="changespantext" @savepoint="savepoint" :cleantagtext="cleantagtext"
+            @changenewtag="changenewtag" @changespantext="changespantext" @savepoint="savepoint" @deletepoint="deletepoint" :cleantagtext="cleantagtext"
             :tagxname="tagxname" :taglinename="taglinename">
            </ChartTag>
             <!--chart-->
@@ -247,15 +247,19 @@ export default{
                     url:"/api/v1/chart/markers/"+self.curWatchChart.id,
                     contentType:'application/json;chartset=utf-8',
                     success:(res)=>{
-                        console.log(res);
+                        // console.log(res);
                         if (!res.success){
-                            layer.msg(res.message);
+                            // layer.msg(res.message);
+                            new PNotify({
+                              text:res.message,
+                              type:'error'
+                           });
                         }else{
                              self.arr = res.data.list;
                         }
                     },
                     complete(){
-                        console.log("----请求标注数据成功----");
+                        //console.log("----请求标注数据成功----");
                     }
                 })
             }
@@ -693,35 +697,66 @@ export default{
         },
         //保存标注点信息
         savepoint(point,_marker){
-            // console.log(point);
-            if(_marker){
-                var self = this;
-                console.log("-----保存标注------");
-                $.post({
-                    //设置数据点标注信息
-                    url:"/api/v1/chart/set-marker/" + self.curWatchChart.id,
-                    contentType: 'application/json;chartset=utf-8',
-                    data:JSON.stringify({
-                        series_id: point.series.index,
-                        point_id: point.name?point.name:point.x,//有name优先使用name
-                        marker: _marker,
-                        series_name:point.series.name
-                    }),
-                    success:(resp)=>{
-                        if(self.showtype != "caption"){
-                            point.update({
-                            marker: _marker
+                if(_marker){
+                    if(point.series ==  null){
+                      new PNotify({
+                        text:'标注失败，请重新标注',
+                        type:'error'
+                       })
+                    }else{
+                        var self = this;
+                        $.post({
+                            //设置数据点标注信息
+                            url:"/api/v1/chart/set-marker/" + self.curWatchChart.id,
+                            contentType: 'application/json;chartset=utf-8',
+                            data:JSON.stringify({
+                                series_id: point.series.index,
+                                point_id: point.name?point.name:point.x,//有name优先使用name
+                                marker: _marker,
+                                series_name:point.series.name
+                            }),
+                            success:(resp)=>{
+                                if(self.showtype != "caption"){
+                                    point.update({
+                                      marker: _marker
+                                })
+                              }
+                            },
+                            complete(){
+                              //console.log("-----保存标注------");                         
+                            }
                         })
                       }
-                    },
-                    complete(){
-                        
-                    }
-                })
             }else{
                 //取消数据点标注
-                var self = this;
-                $.post({
+                if(point.series ==  null){
+                    //layer.msg('取消标注失败')
+                }else{
+                    var self = this;
+                    $.post({
+                        url:"/api/v1/chart/unset-marker/" + self.curWatchChart.id,
+                        contentType:'application/json;chartset=utf-8',
+                        data:JSON.stringify({
+                            series_id: point.series.index,
+                            point_id: point.name?point.name:point.x,
+                            series_name:point.series.name
+                        }),
+                        success:(resp)=>{
+                            point.update({
+                                marker: _marker
+                            });
+                        },
+                        complete(){
+                            //console.log("-----取消标注------");   
+                        }
+                    })
+              }
+            }
+        },
+        deletepoint(point,_marker){
+               var self = this;
+               if(point.series != null){
+                  $.post({
                     url:"/api/v1/chart/unset-marker/" + self.curWatchChart.id,
                     contentType:'application/json;chartset=utf-8',
                     data:JSON.stringify({
@@ -737,9 +772,14 @@ export default{
                     complete(){
                         
                     }
-                })
-                
-            }
+                 })
+               }else{
+                  new PNotify({
+                        text:'对不起，删除标注点失败',
+                        type:'error'
+                  })
+               }
+
         },
         changetagcolor(color){
             this.sc = color;
@@ -747,7 +787,7 @@ export default{
         
        //编辑说明
         saveText(){
-            console.log("------编辑说明------");
+            //console.log("------编辑说明------");
             var self = this;
             self.curWatchChart.description = self.message;
              $.post({
@@ -760,7 +800,7 @@ export default{
                      console.log(res);
                   },
                  complete(){
-                      console.log("------修改说明成功------");
+                      //console.log("------修改说明成功------");
                   }
               })
          },      
@@ -772,7 +812,7 @@ export default{
         $(".triangleoutright").show();
         $(".triangleout").hide();
         $("#charttag").show(100,function(){
-                console.log("------子组件charttag---------");
+                //console.log("------子组件charttag---------");
             });
             self.tagpoint = {
                 series:{

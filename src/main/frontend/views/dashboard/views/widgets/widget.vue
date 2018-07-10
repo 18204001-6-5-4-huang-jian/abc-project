@@ -18,7 +18,7 @@
 						</select>
 				</div>
 				<!--全屏按钮-->
-				<div v-show="chartStatus === 4" class="widget-header-btn-wrapper btn-fullscreen" @click="handleEvent('fullscreen')" @mousedown="onMouseDownFullScreen">
+				<div v-show="chartStatus === 4" class="widget-header-btn-wrapper btn-fullscreen" @click="handleEvent('fullscreen',undefined,$event)" @mousedown="onMouseDownFullScreen">
 					<div class="icon">
 					</div>
 				</div>
@@ -249,9 +249,15 @@
 				this.handleEvent('edit-name', false);
 			},
 			//点击全屏事件
-			handleEvent(eventType, options){
+			handleEvent(eventType, options,_event){
+				//存入某个全屏按钮距离顶端距离，用于返回滑动
 				var self = this;
-				console.log(self.dashBoard);
+				if(_event){
+					// console.log($(_event.target).offset().top);
+					// console.log(self.chartId)
+					localStorage.setItem('iconScrollTopId',self.chartId);
+				}
+				//console.log(self.dashBoard);
 				if (eventType != 'edit-name'){
 					self.onBlurNameWidget();
 				}
@@ -451,7 +457,6 @@
 	    }
 	}
 </style>
-
 <style type="text/css" scoped>
 	.widget-wrapper {
 		display: -webkit-flex;

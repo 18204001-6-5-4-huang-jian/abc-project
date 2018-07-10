@@ -1,673 +1,692 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>email-bind</title>
-		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-	    <script type="text/javascript" src="/vendor/jquery-md5/jquery.md5.js"></script>
-	    <script type="text/javascript" src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
-	</head>
-	<style type="text/css">
-	    *{
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>email-bind</title>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+	<script type="text/javascript" src="/vendor/jquery-md5/jquery.md5.js"></script>
+	<script type="text/javascript" src="https://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+</head>
+<style type="text/css">
+	* {
 		padding: 0;
 		margin: 0;
-	    }
-		body,html{
-			height: 100%;
-			width: 100%;
-			overflow: auto;
-		}
-		.header{
-			width: 100%;
-			height:200px;
-			background:#091f27;
-		}
-		.header .img{
-			width: 70px;
-		    height: 70px;
-		    float: left;
-		    margin-left: 50px;
-		    margin-top: 30px;
-		    cursor: pointer;
-		}
-		.header .title{
-			color:#FFFFFF;
-			float: left;
-			margin-top: 120px;
-			margin-left: 100px;
-		}
-		.user_form{
-			width: 830px;
-			height:600px;
-			margin: 0 auto;
-		}
-		.form{
-			margin-top:10px;
-		}
-		.user_form .form-container{
-			width: 100%;
-			height:500px;
-			margin-top:30px;
-		}
-		.user_form .form-container ul{
-			list-style: none;
-			margin:0 auto;
-		}
-		.user_form .form-container ul li{
-			padding:20px 0;
-			width: 100%;
-			height: 30px;
-			line-height: 30px;
-			vertical-align: middle;
-		}
-		.user_form .form-container ul li input{
-			font-size:14px;
-			margin-top: -25px;
-			display: block;
-			width:300px;
-			float: right;
-			margin-right:290px;
-			outline: none;
-			border: none;
-			border-bottom: 1px solid gray;
-		}
-		.user_form .form-container ul li input::-webkit-input-placeholder{
-		     color:#C9C9C9;
-	    }
-		.user_form .form-container ul li label{
-			display: block;
-			float: right;
-			margin-right: 600px;
-			white-space: nowrap;
-		}
-		.form-container .confirm{
-			width: 302px;
-			height: 40px;
-			line-height: 40px;
-			text-align: center;
-			background:#355867;
-			color:#FFFFFF;
-			margin-left:240px;
-			margin-top: 20px;
-			border: none;
-			cursor: pointer;
-			font-size: 16px;
-			border-radius:5px;
-		}
-		.shape{
+	}
+
+	body,
+	html {
+		height: 100%;
+		width: 100%;
+		overflow: auto;
+	}
+
+	.header {
+		width: 100%;
+		height: 200px;
+		background: #091f27;
+	}
+
+	.header .img {
+		width: 70px;
+		height: 70px;
+		float: left;
+		margin-left: 50px;
+		margin-top: 30px;
+		cursor: pointer;
+	}
+
+	.header .title {
+		color: #FFFFFF;
+		float: left;
+		margin-top: 120px;
+		margin-left: 100px;
+	}
+
+	.user_form {
+		width: 830px;
+		height: 600px;
+		margin: 0 auto;
+	}
+
+	.form {
+		margin-top: 10px;
+	}
+
+	.user_form .form-container {
+		width: 100%;
+		height: 500px;
+		margin-top: 30px;
+	}
+
+	.user_form .form-container ul {
+		list-style: none;
+		margin: 0 auto;
+	}
+
+	.user_form .form-container ul li {
+		padding: 20px 0;
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		vertical-align: middle;
+	}
+
+	.user_form .form-container ul li input {
+		font-size: 14px;
+		margin-top: -25px;
+		display: block;
+		width: 300px;
+		float: right;
+		margin-right: 290px;
+		outline: none;
+		border: none;
+		border-bottom: 1px solid gray;
+	}
+
+	.user_form .form-container ul li input::-webkit-input-placeholder {
+		color: #C9C9C9;
+	}
+
+	.user_form .form-container ul li label {
+		display: block;
+		float: right;
+		margin-right: 600px;
+		white-space: nowrap;
+	}
+
+	.form-container .confirm {
+		width: 302px;
+		height: 40px;
+		line-height: 40px;
+		text-align: center;
+		background: #355867;
+		color: #FFFFFF;
+		margin-left: 240px;
+		margin-top: 20px;
+		border: none;
+		cursor: pointer;
+		font-size: 16px;
+		border-radius: 5px;
+	}
+
+	.shape {
 		display: none;
 		position: absolute;
-		z-index:9999;
-		width:100%;
+		z-index: 9999;
+		width: 100%;
 		height: 100%;
-		background:#0B1D27;
+		background: #0B1D27;
+	}
+
+	.shape .loadEffect {
+		width: 60px;
+		height: 60px;
+		position: relative;
+		margin: 0 auto;
+		margin-top: 350px;
+	}
+
+	.shape .loadEffect span {
+		display: inline-block;
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: #FFFFFF;
+		position: absolute;
+		-webkit-animation: load 1.04s ease infinite;
+	}
+
+	@-webkit-keyframes load {
+		0% {
+			opacity: 1;
 		}
-		.shape .loadEffect{
-		 width: 60px;
-		 height:60px; 
-		 position: relative;
-		 margin: 0 auto;
-		 margin-top:350px; 
-		} 
-		.shape .loadEffect span{
-		 display: inline-block;
-		 width: 6px; 
-		 height: 6px; 
-		 border-radius: 50%;
-		 background:#FFFFFF; 
-		 position: absolute;
-		 -webkit-animation: load 1.04s ease infinite; 
-		 } 
-		@-webkit-keyframes load{
-	 	 0%{ opacity: 1;
-	    } 
-	    100%{ opacity: 0.2; } 
-	    } 
-		.shape .loadEffect span:nth-child(1){ 
-		left:5px;
-		top: 50%; 
-		margin-top:-5px;
-		-webkit-animation-delay:0.13s; 
-		} 
-		.shape .loadEffect span:nth-child(2){
-	    left: 9px;
-	    top: 13px;
-	    -webkit-animation-delay:0.26s; 
-	     } 
-	    .shape .loadEffect span:nth-child(3){ 
-     	left: 50%; 
-     	top:8px; 
-     	margin-left: -8px;
-     	-webkit-animation-delay:0.39s; 
-     	} 
-     	.shape .loadEffect span:nth-child(4){
-     	top: 14px;
-     	right:17px;
-     	-webkit-animation-delay:0.52s;
-     	} 
-     	.shape .loadEffect span:nth-child(5){
-     	right:12px;
-     	top: 50%; 
-     	margin-top:-5px;
-	 	-webkit-animation-delay:0.65s; 
-	 	}
-	 	.shape .loadEffect span:nth-child(6){
-	    right: 17px;
-	    bottom:15px;
-	    -webkit-animation-delay:0.78s;
-	    }
-	    .shape .loadEffect span:nth-child(7){
-	    bottom: 10px;
-	    left: 50%; 
-	    margin-left: -8px; 
-	    -webkit-animation-delay:0.91s; 
-	    } 
-	    .shape .loadEffect span:nth-child(8){ 
-	    bottom: 15px; 
-	    left: 10px; 
-	    -webkit-animation-delay:1.04s; 
-	    }
-        h2{
-        	margin-left: 220px;
-        	margin-top:60px;
-        }
-	</style>
-	<body>
-		<div class="shape">
-			<div class="loadEffect">
-				<span></span> 
-				<span></span> 
-				<span></span> 
-				<span></span> 
-				<span></span> 
-				<span></span> 
-				<span></span>
-				<span></span>
-			</div>
+		100% {
+			opacity: 0.2;
+		}
+	}
+
+	.shape .loadEffect span:nth-child(1) {
+		left: 5px;
+		top: 50%;
+		margin-top: -5px;
+		-webkit-animation-delay: 0.13s;
+	}
+
+	.shape .loadEffect span:nth-child(2) {
+		left: 9px;
+		top: 13px;
+		-webkit-animation-delay: 0.26s;
+	}
+
+	.shape .loadEffect span:nth-child(3) {
+		left: 50%;
+		top: 8px;
+		margin-left: -8px;
+		-webkit-animation-delay: 0.39s;
+	}
+
+	.shape .loadEffect span:nth-child(4) {
+		top: 14px;
+		right: 17px;
+		-webkit-animation-delay: 0.52s;
+	}
+
+	.shape .loadEffect span:nth-child(5) {
+		right: 12px;
+		top: 50%;
+		margin-top: -5px;
+		-webkit-animation-delay: 0.65s;
+	}
+
+	.shape .loadEffect span:nth-child(6) {
+		right: 17px;
+		bottom: 15px;
+		-webkit-animation-delay: 0.78s;
+	}
+
+	.shape .loadEffect span:nth-child(7) {
+		bottom: 10px;
+		left: 50%;
+		margin-left: -8px;
+		-webkit-animation-delay: 0.91s;
+	}
+
+	.shape .loadEffect span:nth-child(8) {
+		bottom: 15px;
+		left: 10px;
+		-webkit-animation-delay: 1.04s;
+	}
+
+	h2 {
+		margin-left: 220px;
+		margin-top: 60px;
+	}
+</style>
+
+<body>
+	<div class="shape">
+		<div class="loadEffect">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
 		</div>
-		<div class="header">
-			<img src="../../images/bind-logo.png" class="img" onclick="img_click()"/>
-			<h1 class="title">Welcome to EVERSIGHT.AI!</h1>
+	</div>
+	<div class="header">
+		<img src="../../images/bind-logo.png" class="img" onclick="img_click()" />
+		<h1 class="title">Welcome to EVERSIGHT.AI!</h1>
+	</div>
+	<h2>Complete account information</h2>
+	<div class="user_form form">
+		<div class="form-container">
+			<ul>
+				<li>
+					<label class="first-label">Your Full Name : </label>
+					<input type="text" class="name" />
+				</li>
+				<li>
+					<label class="second-label">Institution Name : </label>
+					<input type="text" class="company" />
+				</li>
+				<li>
+					<label class="third-label">Business Email : </label>
+					<input type="email" class="email" placeholder="Applicable for email login" />
+				</li>
+				<li>
+					<label class="fourth-label">Password : </label>
+					<input type="password" class="password huangjian" placeholder="At least 6 characters" />
+				</li>
+				<li>
+					<label class="last-label">invitation Code(optional) : </label>
+					<input type="text" class="code" placeholder="Please enter your referral's phone number" />
+				</li>
+			</ul>
+			<input type="button" value="Create an account" class="confirm" onclick="confirm()" />
 		</div>
-		<h2>Complete account information</h2>
-		<div class="user_form form">
-			<div class="form-container">
-				<ul>
-					<li>
-						<label class="first-label">Your Full Name : </label>
-						<input type="text" class="name"/>
-					</li>
-					<li>
-						<label class="second-label">Institution Name : </label>
-						<input type="text" class="company" />
-					</li>
-					<li>
-						<label class="third-label">Business Email : </label>
-						<input type="email" class="email" placeholder="Applicable for email login"/>
-					</li>
-					<li>
-						<label class="fourth-label">Password : </label>
-						<input type="password" class="password huangjian" placeholder="At least 6 characters"/>
-					</li>
-					<li>
-						<label class="last-label">invitation Code(optional) : </label>
-						<input type="text" class="code" placeholder="Please enter your referral's phone number"/>
-					</li>
-				</ul>
-				<input type="button" value="Create an account" class="confirm" onclick="confirm()"/>
-			</div>
-		</div>
-	</body>
-	<script type="text/javascript">
-	(function(){
-		 if (window.location.hostname == 'www.eversight.ai'){
-			 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-			  ga('create', 'UA-99297697-1', 'auto');
-				ga('set', 'userId', window.localStorage.getItem('uid')); // 使用已登录的 user_id 来设置用户 ID
-				ga('set', 'dimension1', window.localStorage.getItem('uid'));
-			  ga('send', 'pageview');
+	</div>
+</body>
+<script type="text/javascript">
+	(function () {
+		if (window.location.hostname == 'www.eversight.ai') {
+			(function (i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date(); a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+			ga('create', 'UA-99297697-1', 'auto');
+			ga('set', 'userId', window.localStorage.getItem('uid')); // 使用已登录的 user_id 来设置用户 ID
+			ga('set', 'dimension1', window.localStorage.getItem('uid'));
+			ga('send', 'pageview');
 		};
 	})()
-	</script>
-	<script type="text/javascript">
-		if(localStorage.getItem("lang") == ''){
-			$(".title").text("Welcome to EVERSIGHT.AI!");
-		}else if(localStorage.getItem("lang") == 'zh_CN'){
-			$(".title").text("欢迎使用EVERSIGHT.AI");
-			$('h2').text("完善账户资料");
-			$('.first-label').text("您的姓名 : ");
-			$('.second-label').text("机构名称 : ");
-			$('.third-label').text("公司邮箱 : ");
-			$('.fourth-label').text("设置密码 : ");
-			$('.last-label').text("邀请码(选填) : ");
-			$('.confirm').val("完成");
-			$(".email").attr('placeholder',"可用于邮箱登录");
-			$('.password').attr('placeholder',"请输入至少6位密码");
-			$('.code').attr('placeholder',"如有请填写邀请人11位手机号码，如无不填");
+</script>
+<script type="text/javascript">
+	if (localStorage.getItem("lang") == '') {
+		$(".title").text("Welcome to EVERSIGHT.AI!");
+	} else if (localStorage.getItem("lang") == 'zh_CN') {
+		$(".title").text("欢迎使用EVERSIGHT.AI");
+		$('h2').text("完善账户资料");
+		$('.first-label').text("您的姓名 : ");
+		$('.second-label').text("机构名称 : ");
+		$('.third-label').text("公司邮箱 : ");
+		$('.fourth-label').text("设置密码 : ");
+		$('.last-label').text("邀请码(选填) : ");
+		$('.confirm').val("完成");
+		$(".email").attr('placeholder', "可用于邮箱登录");
+		$('.password').attr('placeholder', "请输入至少6位密码");
+		$('.code').attr('placeholder', "如有请填写邀请人11位手机号码，如无不填");
+	}
+</script>
+<script type="text/javascript">
+	if (localStorage.getItem("status") == 1) {
+		var user_id = localStorage.getItem('uid');
+		var username = localStorage.getItem("username");
+		var useremail = localStorage.getItem("useremail");
+		var usercompany = localStorage.getItem("usercompany");
+		var userpassword = "********";
+		$(".name").attr("value", username);
+		$(".email").attr("value", useremail);
+		$(".company").attr("value", usercompany);
+		$(".password").attr("value", userpassword);
+	}
+	var _openid = localStorage.getItem("openid");
+	var _email = $(".email");
+	var _name = $(".name");
+	var _company = $(".company");
+	var _password = $(".password");
+	var _code = $(".code");
+	var huang = _password.val();
+	var str = huang.substring(0, 2) + "******" + huang.substring(huang.length - 2, huang.length);
+	// console.log(str);
+	var reg_mail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+	var reg_password = /^[a-zA-Z\d_*]{6,}$/;
+	function confirm() {
+		if (localStorage.getItem("status") == 1) {
+			if (_name.val().trim() == "") {
+				layer.msg("输入名字不能为空!");
+				return false;
+			}
+			if (_company.val().trim() == "") {
+				layer.msg("输入公司不能为空!");
+				return false;
+			}
+			if (_email.val().trim() == "") {
+				layer.msg("输入邮箱不能为空!");
+				return false;
+			}
+			if ((_email.val().trim().indexOf("@")) >= 0) {
+
+			} else {
+				layer.msg("输入邮箱不合法");
+				return false;
+			}
+			if (_password.val().trim() == "") {
+				layer.msg("输入密码不能为空!");
+				return false;
+			}
+			if (reg_password.test(_password.val().trim()) == false) {
+				layer.msg("密码不可以少于6位，支持数字、字母、星号或下划线");
+				return false;
+			}
+			//status=1时
+			$.ajax({
+				url: "/api/v1/account/first-login-bind",
+				type: "post",
+				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+				data: {
+					email: _email.val(),
+					name: _name.val(),
+					company: _company.val(),
+					password: $(".password").val() == "********" ? "" : $.md5(_password.val()),
+					pwd_ends: $(".password").val() == "********" ? "**********" : str
+				},
+				success: function (res) {
+					//   console.log(res);
+					if (res.success == false && res.status == 2) {
+						//提示用户邮箱已经绑定微信
+						layer.msg('该邮箱已经绑定微信');
+						//						$(".shape").hide();
+					} else if (res.success == true) {
+						var day = new Date(res.data.token.expiry.slice(0, -4)).getTime() - new Date();
+						$.cookie("token", res.data.token.auth_token, {
+							expires: parseInt(day / 1000 / 3600 / 24),
+							path: '/'
+						});
+						//保留token用于重置密码
+						localStorage.setItem("token", res.data.token.auth_token);
+						localStorage.setItem("uid", res.data.user.id);
+						localStorage.setItem("username", res.data.user.username);
+						savePass(res.data.user.id, res.data.user.username, res.data.user.email);
+						var userid = res.data.user.id;
+						$.ajax({
+							url: "/api/v1/account/" + userid,
+							type: "get",
+							contentType: 'application/json;chartset=utf-8',
+							success: function (res) {
+								localStorage.setItem("useremail", res.data.email);
+								localStorage.setItem("usercompany", res.data.company);
+								localStorage.setItem("userpassword", res.data.pwd_ends);
+								localStorage.setItem("userheadimg", res.data.head_img);
+								if (document.location.protocol == "https:") {
+									location.href = 'https://' + location.hostname + '/#/my';
+								} else {
+									location.href = 'http://' + location.host + '/#/my';
+								}
+							},
+							error: function (error) {
+								// console.log(error);
+							}
+						})
+						sessionStorage.setItem('openid', res.data.openid);
+					}
+				},
+				error: function (error) {
+					if (error.status == 401) {
+						layer.msg("请您到邮箱确认登录后再点击即可修改")
+					}
+				}
+			})
+			return false;
 		}
-	</script>
-	<script type="text/javascript">
-	    if(localStorage.getItem("status") == 1){
-	    	        var user_id = localStorage.getItem('uid');
-					var username = localStorage.getItem("username");
-					var useremail = localStorage.getItem("useremail");
-					var usercompany = localStorage.getItem("usercompany");
-					var userpassword = "********";
-					$(".name").attr("value",username);
-				    $(".email").attr("value",useremail);
-				    $(".company").attr("value",usercompany);
-				    $(".password").attr("value",userpassword);
-	    }
-	    var _openid = localStorage.getItem("openid");
-		var _email = $(".email");
-	    var _name = $(".name");
-	    var _company = $(".company");
-	    var _password = $(".password");
-	    var _code = $(".code");
-	    var huang = _password.val();
-	    var str = huang.substring(0,2) + "******" + huang.substring(huang.length-2,huang.length);
-	    console.log(str);
-	    var reg_mail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
-	    var reg_password = /^[a-zA-Z\d_*]{6,}$/;
-		function confirm(){
-			if(localStorage.getItem("status") == 1){
-				if(_name.val().trim() == ""){
-				 layer.msg("输入名字不能为空!");
-				 return false;
+		//正常微信扫码绑定
+		if (_name.val().trim() == "") {
+			layer.msg("输入名字不能为空!");
+			return false;
+		}
+		if (_company.val().trim() == "") {
+			layer.msg("输入公司不能为空!");
+			return false;
+		}
+		if (_email.val().trim() == "") {
+			layer.msg("输入邮箱不能为空!");
+			return false;
+		}
+		if ((_email.val().trim().indexOf("@")) >= 0) {
+
+		} else {
+			layer.msg("输入邮箱不合法");
+			return false;
+		}
+		if (_password.val().trim() == "") {
+			layer.msg("输入密码不能为空!");
+			return false;
+		}
+		if (reg_password.test(_password.val().trim()) == false) {
+			layer.msg("密码不可以少于6位，支持数字、字母、星号或下划线");
+			return false;
+		}
+		//$(".shape").show();
+		$.ajax({
+			url: "/api/wechat/email/bind",
+			type: "post",
+			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+			data: {
+				openid: _openid,
+				email: _email.val(),
+				name: _name.val(),
+				company: _company.val(),
+				password: $(".password").val() == "********" ? "" : $.md5(_password.val()),
+				pwd_ends: $(".password").val() == "********" ? "**********" : str,
+				invite_code: _code.val()
+			},
+			success: function (res) {
+				//   console.log(res);
+				if (res.success == false && res.status == 2) {
+					//提示用户邮箱已经绑定微信
+					layer.msg('该邮箱已经绑定微信');
+					//$(".shape").hide();
+				} else if (res.success == true) {
+					var day = new Date(res.data.token.expiry.slice(0, -4)).getTime() - new Date();
+					$.cookie("token", res.data.token.auth_token, {
+						expires: parseInt(day / 1000 / 3600 / 24),
+						path: '/'
+					});
+					//保留token用于重置密码
+					localStorage.setItem("token", res.data.token.auth_token);
+					localStorage.setItem("uid", res.data.user.id);
+					localStorage.setItem("username", res.data.user.username);
+					localStorage.setItem("plan_name", res.data.plan_name);
+					localStorage.setItem("plan_name_zh_CN", res.data.plan_name_zh_CN);
+					// 判断客户管理权限
+					if (typeof res.data.manager === 'number') {
+						localStorage.setItem("manager", res.data.manager);
+					}
+					savePass(res.data.user.id, res.data.user.username, res.data.user.email);
+					var userid = res.data.user.id;
+					$.ajax({
+						url: "/api/v1/account/" + userid,
+						type: "get",
+						contentType: 'application/json;chartset=utf-8',
+						success: function (res) {
+							localStorage.setItem("useremail", res.data.email);
+							localStorage.setItem("usercompany", res.data.company);
+							localStorage.setItem("userpassword", res.data.pwd_ends);
+							localStorage.setItem("userheadimg", res.data.head_img);
+							if (document.location.protocol == "https:") {
+								location.href = 'https://' + location.hostname + '/#/my';
+							} else {
+								location.href = 'http://' + location.host + '/#/my';
+							}
+						},
+						error: function (error) {
+							// console.log(error);
+						}
+					})
+					sessionStorage.setItem('openid', res.data.openid);
 				}
-				if(_company.val().trim() == ""){
+			},
+			error: function (error) {
+				// console.log(error);
+			}
+		})
+	}
+	$('.huangjian').bind('keypress', function (event) {
+		if (event.keyCode == "13") {
+			if (localStorage.getItem("status") == 1) {
+				if (_name.val().trim() == "") {
+					layer.msg("输入名字不能为空!");
+					return false;
+				}
+				if (_company.val().trim() == "") {
 					layer.msg("输入公司不能为空!");
 					return false;
 				}
-				if(_email.val().trim() == ""){
+				if (_email.val().trim() == "") {
 					layer.msg("输入邮箱不能为空!");
 					return false;
 				}
-//				if(reg_mail.test(_email.val().trim()) == false){
-//					layer.msg("输入邮箱不合法");
-//					return false;
-//				}
-				if((_email.val().trim().indexOf("@"))>=0){
-					
-				}else{
+				if ((_email.val().trim().indexOf("@")) >= 0) {
+
+				} else {
 					layer.msg("输入邮箱不合法");
 					return false;
 				}
-				if(_password.val().trim() == ""){
+				if (_password.val().trim() == "") {
 					layer.msg("输入密码不能为空!");
 					return false;
 				}
-				if(reg_password.test(_password.val().trim()) == false){
-				layer.msg("密码不可以少于6位，支持数字、字母、星号或下划线");
-				return false;
-			    }
+				if (reg_password.test(_password.val().trim()) == false) {
+					layer.msg("密码不可以少于6位，支持数字、字母、星号或下划线");
+					return false;
+				}
 				//status=1时
 				$.ajax({
-				url:"/api/v1/account/first-login-bind",
-				type:"post",
-				contentType:'application/x-www-form-urlencoded;charset=utf-8',
-				data:{
-					email:_email.val(),
-					name:_name.val(),
-					company:_company.val(),
-					password:$(".password").val() == "********" ? "" : $.md5(_password.val()),
-					pwd_ends:$(".password").val() == "********" ? "**********" : str
-				},
-					success:function(res){
-					  console.log(res);
-					if(res.success == false && res.status == 2){
-						//提示用户邮箱已经绑定微信
-						layer.msg('该邮箱已经绑定微信');
-//						$(".shape").hide();
-					}else if(res.success == true){
-						    var day = new Date(res.data.token.expiry.slice(0,-4)).getTime()-new Date();
-							$.cookie("token",res.data.token.auth_token,{
-								expires:parseInt(day/1000/3600/24),
-								path:'/'
+					url: "/api/v1/account/first-login-bind",
+					type: "post",
+					contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+					data: {
+						email: _email.val(),
+						name: _name.val(),
+						company: _company.val(),
+						password: $(".password").val() == "********" ? "" : $.md5(_password.val()),
+						pwd_ends: $(".password").val() == "********" ? "**********" : str
+					},
+					success: function (res) {
+						//   console.log(res);
+						if (res.success == false && res.status == 2) {
+							//提示用户邮箱已经绑定微信
+							layer.msg('该邮箱已经绑定微信');
+							//$(".shape").hide();
+						} else if (res.success == true) {
+							var day = new Date(res.data.token.expiry.slice(0, -4)).getTime() - new Date();
+							$.cookie("token", res.data.token.auth_token, {
+								expires: parseInt(day / 1000 / 3600 / 24),
+								path: '/'
 							});
 							//保留token用于重置密码
-							localStorage.setItem("token",res.data.token.auth_token);
-							localStorage.setItem("uid",res.data.user.id);
-							localStorage.setItem("username",res.data.user.username);
-							savePass(res.data.user.id,res.data.user.username,res.data.user.email);
+							localStorage.setItem("token", res.data.token.auth_token);
+							localStorage.setItem("uid", res.data.user.id);
+							localStorage.setItem("username", res.data.user.username);
+							savePass(res.data.user.id, res.data.user.username, res.data.user.email);
 							var userid = res.data.user.id;
 							$.ajax({
-								url:"/api/v1/account/" + userid,
-								type:"get",
-								contentType:'application/json;chartset=utf-8',
-					            success:function(res){
-					            	 localStorage.setItem("useremail",res.data.email);
-					            	 localStorage.setItem("usercompany",res.data.company);
-					            	 localStorage.setItem("userpassword",res.data.pwd_ends);
-					            	 localStorage.setItem("userheadimg",res.data.head_img);
-					            	 if(document.location.protocol == "https:"){  
-									        location.href = 'https://' + location.hostname + '/#/my';  
-									}else{
-									    	location.href = 'http://' + location.host + '/#/my';
+								url: "/api/v1/account/" + userid,
+								type: "get",
+								contentType: 'application/json;chartset=utf-8',
+								success: function (res) {
+									localStorage.setItem("useremail", res.data.email);
+									localStorage.setItem("usercompany", res.data.company);
+									localStorage.setItem("userpassword", res.data.pwd_ends);
+									localStorage.setItem("userheadimg", res.data.head_img);
+									if (document.location.protocol == "https:") {
+										location.href = 'https://' + location.hostname + '/#/my';
+									} else {
+										location.href = 'http://' + location.host + '/#/my';
 									}
-					            },
-					            error:function(error){
-					            	console.log(error);
-					            }
+								},
+								error: function (error) {
+									// console.log(error);
+								}
 							})
-					sessionStorage.setItem('openid',res.data.openid);
+							sessionStorage.setItem('openid', res.data.openid);
+						}
+					},
+					error: function (error) {
+						if (error.status == 401) {
+							layer.msg("请您到邮箱确认登录后再点击即可修改")
+						}
 					}
-				},
-				error:function(error){
-					if(error.status == 401){
-						layer.msg("请您到邮箱确认登录后再点击即可修改")
-					}
-				}
 				})
 				return false;
 			}
 			//正常微信扫码绑定
-			if(_name.val().trim() == ""){
-				 layer.msg("输入名字不能为空!");
-				 return false;
+			if (_name.val().trim() == "") {
+				layer.msg("输入名字不能为空!");
+				return false;
 			}
-			if(_company.val().trim() == ""){
+			if (_company.val().trim() == "") {
 				layer.msg("输入公司不能为空!");
 				return false;
 			}
-			if(_email.val().trim() == ""){
+			if (_email.val().trim() == "") {
 				layer.msg("输入邮箱不能为空!");
 				return false;
 			}
-//			if(reg_mail.test(_email.val().trim()) == false){
-//				layer.msg("输入邮箱不合法");
-//				return false;
-//			}
-             if((_email.val().trim().indexOf("@"))>=0){
-					
-				}else{
-					layer.msg("输入邮箱不合法");
-					return false;
-				}
-			if(_password.val().trim() == ""){
+			if ((_email.val().trim().indexOf("@")) >= 0) {
+
+			} else {
+				layer.msg("输入邮箱不合法");
+				return false;
+			}
+			if (_password.val().trim() == "") {
 				layer.msg("输入密码不能为空!");
 				return false;
 			}
-			if(reg_password.test(_password.val().trim()) == false){
+			if (reg_password.test(_password.val().trim()) == false) {
 				layer.msg("密码不可以少于6位，支持数字、字母、星号或下划线");
 				return false;
 			}
-//			$(".shape").show();
+			//$(".shape").show();
 			$.ajax({
-				url:"/api/wechat/email/bind",
-				type:"post",
-				contentType:'application/x-www-form-urlencoded;charset=utf-8',
-				data:{
-					openid:_openid,
-					email:_email.val(),
-					name:_name.val(),
-					company:_company.val(),
-					password:$(".password").val() == "********" ? "" : $.md5(_password.val()),
-					pwd_ends:$(".password").val() == "********" ? "**********" : str,
-					invite_code:_code.val()
+				url: "/api/wechat/email/bind",
+				type: "post",
+				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+				data: {
+					openid: _openid,
+					email: _email.val(),
+					name: _name.val(),
+					company: _company.val(),
+					password: $(".password").val() == "********" ? "" : $.md5(_password.val()),
+					pwd_ends: $(".password").val() == "********" ? "**********" : str,
+					invite_code: _code.val()
 				},
-				success:function(res){
-					  console.log(res);
-					if(res.success == false && res.status == 2){
+				success: function (res) {
+					//   console.log(res);
+					if (res.success == false && res.status == 2) {
 						//提示用户邮箱已经绑定微信
 						layer.msg('该邮箱已经绑定微信');
-//						$(".shape").hide();
-					}else if(res.success == true){
-						    var day = new Date(res.data.token.expiry.slice(0,-4)).getTime()-new Date();
-							$.cookie("token",res.data.token.auth_token,{
-								expires:parseInt(day/1000/3600/24),
-								path:'/'
-							});
-							//保留token用于重置密码
-							localStorage.setItem("token",res.data.token.auth_token);
-							localStorage.setItem("uid",res.data.user.id);
-							localStorage.setItem("username",res.data.user.username);
-							localStorage.setItem("plan_name",res.data.plan_name);
-							localStorage.setItem("plan_name_zh_CN",res.data.plan_name_zh_CN);
-							// 判断客户管理权限
-							if(typeof res.data.manager === 'number' ){
-								localStorage.setItem("manager",res.data.manager);
+						//$(".shape").hide();
+					} else if (res.success == true) {
+						var day = new Date(res.data.token.expiry.slice(0, -4)).getTime() - new Date();
+						$.cookie("token", res.data.token.auth_token, {
+							expires: parseInt(day / 1000 / 3600 / 24),
+							path: '/'
+						});
+						//保留token用于重置密码
+						localStorage.setItem("token", res.data.token.auth_token);
+						localStorage.setItem("uid", res.data.user.id);
+						localStorage.setItem("username", res.data.user.username);
+						localStorage.setItem("plan_name", res.data.plan_name);
+						localStorage.setItem("plan_name_zh_CN", res.data.plan_name_zh_CN);
+						// 判断客户管理权限
+						if (typeof res.data.manager === 'number') {
+							localStorage.setItem("manager", res.data.manager);
+						}
+						savePass(res.data.user.id, res.data.user.username, res.data.user.email);
+						var userid = res.data.user.id;
+						$.ajax({
+							url: "/api/v1/account/" + userid,
+							type: "get",
+							contentType: 'application/json;chartset=utf-8',
+							success: function (res) {
+								localStorage.setItem("useremail", res.data.email);
+								localStorage.setItem("usercompany", res.data.company);
+								localStorage.setItem("userpassword", res.data.pwd_ends);
+								localStorage.setItem("userheadimg", res.data.head_img);
+								if (document.location.protocol == "https:") {
+									location.href = 'https://' + location.hostname + '/#/my';
+								} else {
+									location.href = 'http://' + location.host + '/#/my';
+								}
+							},
+							error: function (error) {
+								// console.log(error);
 							}
-							savePass(res.data.user.id,res.data.user.username,res.data.user.email);
-							var userid = res.data.user.id;
-							$.ajax({
-								url:"/api/v1/account/" + userid,
-								type:"get",
-								contentType:'application/json;chartset=utf-8',
-					            success:function(res){
-					            	 localStorage.setItem("useremail",res.data.email);
-					            	 localStorage.setItem("usercompany",res.data.company);
-					            	 localStorage.setItem("userpassword",res.data.pwd_ends);
-					            	 localStorage.setItem("userheadimg",res.data.head_img);
-					            	 if(document.location.protocol == "https:"){  
-									        location.href = 'https://' + location.hostname + '/#/my';  
-									}else{
-									    	location.href = 'http://' + location.host + '/#/my';
-									}
-					            },
-					            error:function(error){
-					            	console.log(error);
-					            }
-							})
-					sessionStorage.setItem('openid',res.data.openid);
+						})
+						sessionStorage.setItem('openid', res.data.openid);
 					}
 				},
-				error:function(error){
-					console.log(error);
+				error: function (error) {
+					// console.log(error);
 				}
 			})
-	}	
-	$('.huangjian').bind('keypress',function(event){
-		 if(event.keyCode == "13"){
-	      		if(localStorage.getItem("status") == 1){
-				if(_name.val().trim() == ""){
-				 layer.msg("输入名字不能为空!");
-				 return false;
-				}
-				if(_company.val().trim() == ""){
-					layer.msg("输入公司不能为空!");
-					return false;
-				}
-				if(_email.val().trim() == ""){
-					layer.msg("输入邮箱不能为空!");
-					return false;
-				}
-//				if(reg_mail.test(_email.val().trim()) == false){
-//					layer.msg("输入邮箱不合法");
-//					return false;
-//				}
-                if((_email.val().trim().indexOf("@"))>=0){
-					
-				}else{
-					layer.msg("输入邮箱不合法");
-					return false;
-				}
-				if(_password.val().trim() == ""){
-					layer.msg("输入密码不能为空!");
-					return false;
-				}
-				if(reg_password.test(_password.val().trim()) == false){
-				layer.msg("密码不可以少于6位，支持数字、字母、星号或下划线");
-				return false;
-			    }
-				//status=1时
-				$.ajax({
-				url:"/api/v1/account/first-login-bind",
-				type:"post",
-				contentType:'application/x-www-form-urlencoded;charset=utf-8',
-				data:{
-					email:_email.val(),
-					name:_name.val(),
-					company:_company.val(),
-					password:$(".password").val() == "********" ? "" : $.md5(_password.val()),
-					pwd_ends:$(".password").val() == "********" ? "**********" : str
-				},
-					success:function(res){
-					  console.log(res);
-					if(res.success == false && res.status == 2){
-						//提示用户邮箱已经绑定微信
-						layer.msg('该邮箱已经绑定微信');
-//						$(".shape").hide();
-					}else if(res.success == true){
-						    var day = new Date(res.data.token.expiry.slice(0,-4)).getTime()-new Date();
-							$.cookie("token",res.data.token.auth_token,{
-								expires:parseInt(day/1000/3600/24),
-								path:'/'
-							});
-							//保留token用于重置密码
-							localStorage.setItem("token",res.data.token.auth_token);
-							localStorage.setItem("uid",res.data.user.id);
-							localStorage.setItem("username",res.data.user.username);
-							savePass(res.data.user.id,res.data.user.username,res.data.user.email);
-							var userid = res.data.user.id;
-							$.ajax({
-								url:"/api/v1/account/" + userid,
-								type:"get",
-								contentType:'application/json;chartset=utf-8',
-					            success:function(res){
-					            	 localStorage.setItem("useremail",res.data.email);
-					            	 localStorage.setItem("usercompany",res.data.company);
-					            	 localStorage.setItem("userpassword",res.data.pwd_ends);
-					            	 localStorage.setItem("userheadimg",res.data.head_img);
-					            	 if(document.location.protocol == "https:"){  
-									        location.href = 'https://' + location.hostname + '/#/my';  
-									}else{
-									    	location.href = 'http://' + location.host + '/#/my';
-									}
-					            },
-					            error:function(error){
-					            	console.log(error);
-					            }
-							})
-					sessionStorage.setItem('openid',res.data.openid);
-					}
-				},
-				error:function(error){
-					if(error.status == 401){
-						layer.msg("请您到邮箱确认登录后再点击即可修改")
-					}
-				}
-				})
-				return false;
-			}
-			//正常微信扫码绑定
-			if(_name.val().trim() == ""){
-				 layer.msg("输入名字不能为空!");
-				 return false;
-			}
-			if(_company.val().trim() == ""){
-				layer.msg("输入公司不能为空!");
-				return false;
-			}
-			if(_email.val().trim() == ""){
-				layer.msg("输入邮箱不能为空!");
-				return false;
-			}
-//			if(reg_mail.test(_email.val().trim()) == false){
-//				layer.msg("输入邮箱不合法");
-//				return false;
-//			}
-            if((_email.val().trim().indexOf("@"))>=0){
-					
-				}else{
-					layer.msg("输入邮箱不合法");
-					return false;
-				}
-			if(_password.val().trim() == ""){
-				layer.msg("输入密码不能为空!");
-				return false;
-			}
-			if(reg_password.test(_password.val().trim()) == false){
-				layer.msg("密码不可以少于6位，支持数字、字母、星号或下划线");
-				return false;
-			}
-//			$(".shape").show();
-			$.ajax({
-				url:"/api/wechat/email/bind",
-				type:"post",
-				contentType:'application/x-www-form-urlencoded;charset=utf-8',
-				data:{
-					openid:_openid,
-					email:_email.val(),
-					name:_name.val(),
-					company:_company.val(),
-					password:$(".password").val() == "********" ? "" : $.md5(_password.val()),
-					pwd_ends:$(".password").val() == "********" ? "**********" : str,
-					invite_code:_code.val()
-				},
-				success:function(res){
-					  console.log(res);
-					if(res.success == false && res.status == 2){
-						//提示用户邮箱已经绑定微信
-						layer.msg('该邮箱已经绑定微信');
-//						$(".shape").hide();
-					}else if(res.success == true){
-						    var day = new Date(res.data.token.expiry.slice(0,-4)).getTime()-new Date();
-							$.cookie("token",res.data.token.auth_token,{
-								expires:parseInt(day/1000/3600/24),
-								path:'/'
-							});
-							//保留token用于重置密码
-							localStorage.setItem("token",res.data.token.auth_token);
-							localStorage.setItem("uid",res.data.user.id);
-							localStorage.setItem("username",res.data.user.username);
-							localStorage.setItem("plan_name",res.data.plan_name);
-							localStorage.setItem("plan_name_zh_CN",res.data.plan_name_zh_CN);
-							// 判断客户管理权限
-							if(typeof res.data.manager === 'number' ){
-								localStorage.setItem("manager",res.data.manager);
-							}
-							savePass(res.data.user.id,res.data.user.username,res.data.user.email);
-							var userid = res.data.user.id;
-							$.ajax({
-								url:"/api/v1/account/" + userid,
-								type:"get",
-								contentType:'application/json;chartset=utf-8',
-					            success:function(res){
-					            	 localStorage.setItem("useremail",res.data.email);
-					            	 localStorage.setItem("usercompany",res.data.company);
-					            	 localStorage.setItem("userpassword",res.data.pwd_ends);
-					            	 localStorage.setItem("userheadimg",res.data.head_img);
-					            	 if(document.location.protocol == "https:"){  
-									        location.href = 'https://' + location.hostname + '/#/my';  
-									}else{
-									    	location.href = 'http://' + location.host + '/#/my';
-									}
-					            },
-					            error:function(error){
-					            	console.log(error);
-					            }
-							})
-					sessionStorage.setItem('openid',res.data.openid);
-					}
-				},
-				error:function(error){
-					console.log(error);
-				}
-			})
-		 }
+		}
 	})
-	function img_click(){
-	 	if(document.location.protocol == "https:"){  
-		        location.href = 'https://' + location.hostname + '/#/';  
-		}else{
-		    	location.href = 'http://' + location.host + '/#/';
+	function img_click() {
+		if (document.location.protocol == "https:") {
+			location.href = 'https://' + location.hostname + '/#/';
+		} else {
+			location.href = 'http://' + location.host + '/#/';
 		}
-	 }
-	 function savePass(uid,name,email){
-				if(!window.sessionStorage){return false;}
-				if(uid && name && email){
-					sessionStorage.setItem('uid',uid);
-					sessionStorage.setItem('username',name);
-					sessionStorage.setItem('email',email);
-				}
-    }
-	</script>
+	}
+	function savePass(uid, name, email) {
+		if (!window.sessionStorage) { return false; }
+		if (uid && name && email) {
+			sessionStorage.setItem('uid', uid);
+			sessionStorage.setItem('username', name);
+			sessionStorage.setItem('email', email);
+		}
+	}
+</script>
+
 </html>

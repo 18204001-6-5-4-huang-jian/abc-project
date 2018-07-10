@@ -88,7 +88,7 @@
 				},
 				timeout: 5000,
 				error:function(e){
-					layer.msg('网络异常');
+					layer.msg('您的账号在其他地方已经登录,请重新登录');
 				}
 			})
 		},

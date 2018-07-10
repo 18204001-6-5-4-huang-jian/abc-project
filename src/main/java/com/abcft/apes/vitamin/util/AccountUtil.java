@@ -1158,7 +1158,8 @@ public class AccountUtil {
                     .append("login_date", TimeUtil.date2String(accountDoc.getOrDefault("login_date", ""), pattern))
                     .append("trail", accountDoc.getOrDefault("trail", false))
                     .append("paid", accountDoc.getOrDefault("paid", false))
-                    .append("deleted", accountDoc.getOrDefault("deleted", false));
+                    .append("deleted", accountDoc.getOrDefault("deleted", false))
+                    .append("email_verify", accountDoc.getOrDefault("email_verify", false));
             accountList.add(account);
         });
 

@@ -160,6 +160,10 @@ public class ReportUtil {
                 return "A";
             };
             Map<String, String> pidStockMap = ProductUtil.getMapOfAllProducts(keyMapper1, valMapper1);
+            Function<? super Document, String> valMapper2 = (Document doc) -> {
+                return doc.getOrDefault("image_url", "").toString();
+            };
+            Map<String, String> pidImgMap = ProductUtil.getMapOfAllProducts(keyMapper1, valMapper2);
             boolean ispidUidMapEmpty = pidUidMap.isEmpty();
 
             String timeFilter = "";
@@ -207,6 +211,7 @@ public class ReportUtil {
                                 .append("chart_id", doc.getOrDefault("chart_id", ""));
                 repo.put("up_id", freePids.contains(pid) ? pid : pidUidMap.getOrDefault(pid, pid));
                 repo.put("type", pidStockMap.get(pid));
+                repo.put("image_url", pidImgMap.get(pid));
                 repoList.add(repo);
             }
             int total = MongoUtil.getDBCount(MongoUtil.REPORT_COL, conds);

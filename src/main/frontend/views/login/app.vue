@@ -174,9 +174,7 @@
 //					this.wrongTip = 'illegal email';
 //					return false;
 //				}
-                if(this.email.trim().indexOf("@")>=0){
-                	
-                }else{
+                if(this.email.trim().indexOf('@') == -1){
                 	this.wrongTip = 'illegal email';
 					return false;
                 }
@@ -213,7 +211,7 @@
 					timeout:5000,
 					success:(resp)=>{
 						if(resp.success){
-							console.log(resp);
+							//console.log(resp);
 							if(resp.status == 0){
 								 //判断新老用户
 							var day = new Date(resp.data.token.expiry.slice(0,-4)).getTime()-new Date();

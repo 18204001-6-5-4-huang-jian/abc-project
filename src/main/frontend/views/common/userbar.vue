@@ -17,7 +17,6 @@
         </ul>
     </div>
 </template>
-
 <script type="text/javascript">
     export default{
         name:'userBar',
@@ -62,6 +61,8 @@
     		   this.isheadimg = true;
     		   this.headimgpath = sessionStorage.getItem("headimg");
         	}
+            //监听滚动事件
+              window.addEventListener('scroll', this.handleScroll,true);
         },
         methods:{
             direct(target) {
@@ -71,15 +72,18 @@
             },
             showUserBar(){
                 var self = this;
-                this.isShowUserBar = true;
-                
-                this.$nextTick(function(){
-                    $("html").click(function(){
-                        if(!self.isShowUserBar){return;}
-                        self.isShowUserBar = false;
-                        $("html").unbind('click');
+                if(self.isShowUserBar){
+                    self.isShowUserBar = false;
+                }else{
+                    self.isShowUserBar = true;
+                    self.$nextTick(function(){
+                        $("html").click(function(){
+                            if(!self.isShowUserBar){return;}
+                            self.isShowUserBar = false;
+                            $("html").unbind('click');
+                        })
                     })
-                })
+                }
             },
             logOut(){
                 U.logout();
@@ -99,6 +103,10 @@
               this.$router.push({
               	name:"orderhistory"
               })
+            },
+            handleScroll(){
+                // console.log('handleScroll');
+                this.isShowUserBar = false;
             }
         },
     }
@@ -150,7 +158,7 @@
         border-radius: 3px;
         position: fixed;
         top: 100px;
-        right: 0;
+        right:5px;
         text-align: left;
         font-weight: normal;
         cursor: default;
@@ -161,12 +169,16 @@
         height: 36px;
         color: #000;
         line-height: 36px;
-        margin:  8px 0;
+        /*margin:8px 0;*/
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         padding: 0 12px;
         cursor: pointer;
+        border-bottom: 1px solid #ddd;
+    }
+    .userBar .user-bar-dropdown li:last-child{
+        border-bottom:none;
     }
     .userBar .user-bar-dropdown li:hover{
         background-color: #d6dee1;

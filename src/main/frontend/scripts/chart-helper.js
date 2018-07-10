@@ -746,20 +746,16 @@
 
 			if (_.isEmpty(_dataTable.series)) {//旧的数据结构，需要转换
 				//时间维度数据倒序校验
-
 				//数据抽样
 				// if(chartType === 'line' && (!config.mode || config.mode !== 'fullscreen') && _dataTable.data.rows.length > 500){
 				// 	_dataTable.data.rows = _dataTable.data.rows.filter(function(curValue, index, arr) {
 				// 		return index == 0 ? true : index == arr.length-1 ? true : index % 2 == 0;
 				// 	});
 				// }
-
 				return this._transformToSeries(chartType, chart);
 			}else {//新的数据结构
 				//时间维度数据倒序校验
-
 				//数据抽样
-
 				if (!_.isEmpty(_dataTable.series) && _dataTable.series instanceof Array) {
 					if (typeof chart.options.series == 'undefined' || _.isEmpty(chart.options.series)) {
 						chart.options.series = [];

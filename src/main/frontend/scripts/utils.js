@@ -1,6 +1,6 @@
 /*
-	kzhang
-	2017-5-10
+	jhuang
+	2017-6-25
  */
 (function(W,$,doc){
 	var utils = {
@@ -81,7 +81,7 @@
 					if(resp.success){
 						sessionStorage.clear();
 						$.cookie('token',null,{path:"/"});
-						window.location.href = '/#/login';
+						window.location.href = '/#/';
 					}else{
 						layer.msg(resp.message || '登出失败');
 					}

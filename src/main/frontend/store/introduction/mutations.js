@@ -4,5 +4,8 @@ export default{
 	},
 	hj_changlang(state,lang){
 		state.lang = lang;
+	},
+	hj_saveEmail(state,email){
+		state.email = email;
 	}
 }

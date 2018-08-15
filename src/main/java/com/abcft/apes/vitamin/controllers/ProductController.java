@@ -317,6 +317,35 @@ public class ProductController extends BaseController {
             return getResponse(false, 1, "get predictions had exceptions");
         }
     }
+    /**
+     * 获取预测成果
+     *
+     * @return
+     */
+    @Path("v1/products/predictions2")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject getPredictions2(
+            @DefaultValue("") @QueryParam("q") String query,
+            @DefaultValue("") @QueryParam("sort") String sort,
+            @DefaultValue("") @QueryParam("order") String order,
+            @DefaultValue("0") @QueryParam("offset") int offset,
+            @DefaultValue("50") @QueryParam("limit") int limit,
+            @DefaultValue("") @QueryParam("lang") String lang
+    ) {
+
+        try {
+            Document document = ProductUtil.getPredictions2(query, sort, order, offset, limit, lang);
+            return document == null
+                    ? getResponse(false, 2, "get predictions failed")
+                    : getResponse(true, document);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+            return getResponse(false, 1, "get predictions had exceptions");
+        }
+    }
 
     /**
      * 设置预测成果

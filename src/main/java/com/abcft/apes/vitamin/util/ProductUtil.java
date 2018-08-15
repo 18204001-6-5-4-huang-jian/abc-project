@@ -1,7 +1,6 @@
 package com.abcft.apes.vitamin.util;
 
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.model.Filters;
 import org.apache.log4j.Logger;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -14,6 +13,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static com.mongodb.client.model.Filters.*;
 
 /**
  * Created by zhyzhu on 17-4-23.
@@ -88,7 +89,7 @@ public class ProductUtil {
                 document.getOrDefault("_id", null))))));
         List<String> names = new ArrayList<>();
         List<Bson> conds = new ArrayList<>();
-        conds.add(Filters.in("_id", ids));
+        conds.add(in("_id", ids));
         List<Document> proList = MongoUtil.getDBList(MongoUtil.PRODUCT_COL, conds);
         proList.forEach(document -> names.add(org.apache.commons.lang3.
                 StringUtils.capitalize(document.getString("name" + lang))));
@@ -124,7 +125,7 @@ public class ProductUtil {
         List<ObjectId> poidList = new ArrayList<>();
         pids.forEach(s -> poidList.add(new ObjectId(s)));
         List<Bson> conds = new ArrayList<>();
-        conds.add(Filters.in("_id", poidList));
+        conds.add(in("_id", poidList));
         return MongoUtil.getDBList(COL, conds);
     }
 
@@ -145,10 +146,11 @@ public class ProductUtil {
                 lang = "_" + lang;
             }
             List<Bson> conds = new ArrayList<>();
+            conds.add(exists("date", false));
             if (!query.isEmpty())
-                conds.add(Filters.or(
-                        Filters.regex("name" + lang, query, "i"),
-                        Filters.regex("name", query, "i")
+                conds.add(or(
+                        regex("name" + lang, query, "i"),
+                        regex("name", query, "i")
                 ));
             List<Document> list = MongoUtil.getDBList(MongoUtil.PREDICTION_COL, conds, sort, order, offset, limit);
             if (list.isEmpty()) {
@@ -159,7 +161,45 @@ public class ProductUtil {
                 document.put("date_release_ours", TimeUtil.date2String(document.getDate("date_release_ours"), "yyyy-MM-dd"));
                 document.put("date_release_official", TimeUtil.date2String(document.getDate("date_release_official"), "yyyy-MM-dd"));
             });
-            int total = MongoUtil.getDBCount(MongoUtil.PREDICTION_COL);
+            int total = MongoUtil.getDBCount(MongoUtil.PREDICTION_COL, conds);
+            return new Document("total", total)
+                    .append("list", list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.info(e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * 获取预测成果
+     *
+     * @param query
+     * @param sort
+     * @param order
+     * @param offset
+     * @param limit
+     * @param lang
+     * @return
+     */
+    public static Document getPredictions2(String query, String sort, String order, int offset, int limit, String lang) {
+        try {
+            if (!lang.isEmpty() && !lang.startsWith("_")) {
+                lang = "_" + lang;
+            }
+            List<Bson> conds = new ArrayList<>();
+            conds.add(exists("date"));
+            if (!query.isEmpty())
+                conds.add(or(
+                        regex("name" + lang, query, "i"),
+                        regex("name", query, "i")
+                ));
+            List<Document> list = MongoUtil.getDBList(MongoUtil.PREDICTION_COL, conds, sort, order, offset, limit);
+            if (list.isEmpty()) {
+                logger.error("can't find predictions from db");
+                return null;
+            }
+            int total = MongoUtil.getDBCount(MongoUtil.PREDICTION_COL, conds);
             return new Document("total", total)
                     .append("list", list);
         } catch (Exception e) {
@@ -205,7 +245,7 @@ public class ProductUtil {
             document.append("date_release_official", dateOffiDate);
         }
         List<Bson> conds = new ArrayList<>();
-        conds.add(Filters.regex("name", name, "i"));
+        conds.add(regex("name", name, "i"));
         boolean res = MongoUtil.upsertOne(MongoUtil.PREDICTION_COL, conds, document);
         return res ? document : null;
     }
@@ -230,7 +270,7 @@ public class ProductUtil {
         if (nameList.isEmpty()) {
             return new ArrayList<>();
         }
-        conds.add(Filters.in("name", nameList));
+        conds.add(in("name", nameList));
         return MongoUtil
                 .getDBList(MongoUtil.PRODUCT_COL, conds)
                 .stream()
@@ -242,20 +282,20 @@ public class ProductUtil {
     public static Document getProducts(String sort, String order, int offset, int limit, String query, String lang, int type, int capitalize) {
         Document document = new Document();
         List<Bson> conditions = new ArrayList<>();
-        conditions.add(Filters.exists("board_id"));
+        conditions.add(exists("board_id"));
         if (StringUtils.isEmpty(query)) {
-            conditions.add(Filters.regex("name", query, "i"));
+            conditions.add(regex("name", query, "i"));
         }
         if (type != 3) {
 
             if (type == PlanUtil.Plan.Basic.ordinal()) {
-                conditions.add(Filters.nin("_id", ReportUtil.getFreeReportsProductsOIds()));
+                conditions.add(nin("_id", ReportUtil.getFreeReportsProductsOIds()));
             } else if (type == PlanUtil.Plan.Standard.ordinal()) {
-                conditions.add(Filters.nin("_id", getFreeProductsOIds()));
+                conditions.add(nin("_id", getFreeProductsOIds()));
             } else if (type == PlanUtil.Plan.Enterprise.ordinal()) {
                 List<ObjectId> ninList = ReportUtil.getFreeReportsProductsOIds();
                 ninList.retainAll(getFreeProductsIds());
-                conditions.add(Filters.nin("_id", ninList));
+                conditions.add(nin("_id", ninList));
             }
         }
         List<Document> productList = new ArrayList<>();
@@ -297,9 +337,9 @@ public class ProductUtil {
     public static List<String> getUserProductNames(String userId) {
         Date now = new Date();
         List<Bson> conds = Arrays.asList(
-                Filters.eq("user_id", userId),
-                Filters.lte("start_time", now),
-                Filters.gte("stop_time", now));
+                eq("user_id", userId),
+                lte("start_time", now),
+                gte("stop_time", now));
         return MongoUtil.getDBList(MongoUtil.USER_PRODUCT_COL, conds)
                 .stream()
                 .map(document -> document.getOrDefault("name", "").toString())
@@ -312,7 +352,7 @@ public class ProductUtil {
         if (stockCodes.isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        conds.add(Filters.in("stock_code", stockCodes));
+        conds.add(in("stock_code", stockCodes));
         return MongoUtil.getDBList(MongoUtil.PRODUCT_COL, conds)
                 .stream()
                 .map(document -> document.getOrDefault("id", "").toString())
@@ -348,12 +388,13 @@ public class ProductUtil {
                 ctg.retainAll(Arrays.asList(category));
             }
             List<Bson> conds = new ArrayList<>(Arrays.asList(
-                    Filters.or(
-                            Filters.in("_id", pids.stream().map(ObjectId::new)
+                    or(
+                            in("_id", pids.stream().map(ObjectId::new)
                                     .collect(Collectors.toList())),
-                            Filters.in("stock_category.0", ctg),
-                            Filters.in("stock_category.1", ctg),
-                            Filters.in("stock_category.2", ctg)
+//                            Filters.in("stock_category.0", ctg),
+//                            Filters.in("stock_category.1", ctg),
+//                            Filters.in("stock_category.2", ctg)
+                            in("stock_category", ctg)
                     )
             ));
             return MongoUtil.getDBList(MongoUtil.PRODUCT_COL, conds);
@@ -469,12 +510,12 @@ public class ProductUtil {
 
     public static boolean resetUserProductsTerm(String userId, List<String> productIds) {
         List<Bson> conditions = Arrays.asList(
-                Filters.eq("user_id", userId),
-                Filters.in("product_id", productIds)
+                eq("user_id", userId),
+                in("product_id", productIds)
         );
         try {
             MongoUtil.getCollection(MongoUtil.USER_PRODUCT_COL)
-                    .find(Filters.and(conditions))
+                    .find(and(conditions))
                     .forEach(new Consumer<Document>() {
                         @Override
                         public void accept(Document userProductDoc) {
@@ -503,8 +544,8 @@ public class ProductUtil {
 
     public static boolean setUserProductsTerm(String userId, List<String> pids, Date startTime, Date stopTime) {
         List<Bson> conds = new ArrayList<>();
-        conds.add(Filters.eq("user_id", userId));
-        conds.add(Filters.in("product_id", pids));
+        conds.add(eq("user_id", userId));
+        conds.add(in("product_id", pids));
         Document updateDoc =
                 new Document("$set",
                         new Document("start_time", startTime)
@@ -546,7 +587,7 @@ public class ProductUtil {
         int size = 0;
         if (pids.size() > maxLen) {
             List<Bson> conds = new ArrayList<>(Arrays.asList(
-                    Filters.eq("user_id", userId)
+                    eq("user_id", userId)
             ));
             Optional<Document> lastOrderDoc = MongoUtil.getDBList(
                     MongoUtil.ORDER_COL, conds, "create_at", "desc"
@@ -650,11 +691,11 @@ public class ProductUtil {
         List<Bson> conds = new ArrayList<>();
 
         List<Bson> orConds = new ArrayList<>();
-        categorys.forEach(s -> orConds.add(Filters.eq("stock_category", s)));
-        conds.add(Filters.or(orConds));
+        categorys.forEach(s -> orConds.add(eq("stock_category", s)));
+        conds.add(or(orConds));
 
         if (containBoardId) {
-            conds.add(Filters.exists("board_id"));
+            conds.add(exists("board_id"));
         }
 
         Function<? super Document, ? extends String> mapper = document ->
@@ -813,18 +854,18 @@ public class ProductUtil {
             if (!AccountUtil.isEmailExpired(email)) {
 //                logger.error("!AccountUtil.isEmailExpired(email)");
                 List<Bson> conditions = new ArrayList<>();
-                conditions.add(Filters.eq("user_id", userId));
-                conditions.add(Filters.gt("stop_time", new Date()));
+                conditions.add(eq("user_id", userId));
+                conditions.add(gt("stop_time", new Date()));
 
                 if (!StringUtils.isEmpty(query)) {
-                    conditions.add(Filters.regex("name", query, "i"));
+                    conditions.add(regex("name", query, "i"));
                 }
 
 
                 List<String> catePids = new ArrayList<>(cateProductsMap.keySet());
                 catePids.removeAll(fpids);
                 if (!catePids.isEmpty()) {
-                    conditions.add(Filters.in("product_id", catePids));
+                    conditions.add(in("product_id", catePids));
                     FindIterable<Document> findIterable = MongoUtil
                             .getDBFindIterable(USER_PRODUCT_COL, conditions, sort, order, offset, limit);
                     findIterable.forEach((Consumer<Document>) document1 -> {
@@ -867,7 +908,7 @@ public class ProductUtil {
 //            List<String> fpids = getFreeProductsIds(category);
             List<ObjectId> fpoids = fpids.stream().map(ObjectId::new).collect(Collectors.toList());
             fpoids.removeAll(pIdList);
-            List<Bson> conds3 = Arrays.asList(Filters.in("_id", fpoids));
+            List<Bson> conds3 = Arrays.asList(in("_id", fpoids));
             FindIterable<Document> findIterable3 = MongoUtil.getDBFindIterable(MongoUtil.PRODUCT_COL, conds3);
             total += MongoUtil.getDBCount(COL, conds3);
             findIterable3.forEach((Consumer<Document>) document12 -> {
@@ -896,14 +937,14 @@ public class ProductUtil {
             });
 
             List<Bson> conditions2 = new ArrayList<>();
-            conditions2.add(Filters.nin("_id", pIdList));
+            conditions2.add(nin("_id", pIdList));
             if (!StringUtils.isEmpty(query)) {
-                conditions2.add(Filters.regex("name", query, "i"));
+                conditions2.add(regex("name", query, "i"));
             }
             if (!StringUtils.isEmpty(category)) {
                 conditions2.add(
-                        Filters.or(
-                                Filters.eq("stock_category.0", category.toUpperCase())));
+                        or(
+                                eq("stock_category.0", category.toUpperCase())));
             }
             if (StringUtils.isEmpty(sort)) {
                 sort = "idx";
@@ -946,7 +987,7 @@ public class ProductUtil {
 
     public static List<Object> getProductIdsMatchUserProducts(String userId, Class<?> clazz) {
         List<Bson> conds = new ArrayList<>();
-        conds.add(Filters.eq("user_id", userId));
+        conds.add(eq("user_id", userId));
         List<Object> ids = new ArrayList<>();
         List<Document> list = MongoUtil.getDBList(MongoUtil.USER_PRODUCT_COL, conds);
         if (clazz.isInstance("")) {
@@ -968,22 +1009,22 @@ public class ProductUtil {
 
         List<Bson> conds1 = new ArrayList<>();
         Date today = new Date();
-        conds1.add(Filters.eq("user_id", userId));
-        conds1.add(Filters.gte("stop_time", today));
+        conds1.add(eq("user_id", userId));
+        conds1.add(gte("stop_time", today));
         List<String> upids = MongoUtil.getDBList(MongoUtil.USER_PRODUCT_COL, conds1)
                 .stream()
                 .map(document -> String.valueOf(document.get("product_id")))
                 .collect(Collectors.toList());
         List<Bson> conds = new ArrayList<>();
-        conds.add(Filters.in("_id", upids
+        conds.add(in("_id", upids
                 .stream()
                 .map(ObjectId::new)
                 .collect(Collectors.toList())));
         if (!StringUtils.isEmpty(category)) {
-            conds.add(Filters.or(
-                    Filters.eq("stock_category.0", category.toUpperCase()),
-                    Filters.eq("stock_category.1", category.toUpperCase()),
-                    Filters.eq("stock_category.2", category.toUpperCase())
+            conds.add(or(
+                    eq("stock_category.0", category.toUpperCase()),
+                    eq("stock_category.1", category.toUpperCase()),
+                    eq("stock_category.2", category.toUpperCase())
             ));
         }
         return MongoUtil.getDBList(MongoUtil.PRODUCT_COL, conds);
@@ -1129,8 +1170,8 @@ public class ProductUtil {
      */
     public static Document getUserProductBoard(String upId, String userId, String lang) {
         List<Bson> conditions = Arrays.asList(
-                Filters.eq("_id", new ObjectId(upId)),
-                Filters.eq("user_id", userId)
+                eq("_id", new ObjectId(upId)),
+                eq("user_id", userId)
         );
         Document upDoc = MongoUtil.getOneByConditions(MongoUtil.USER_PRODUCT_COL, conditions);
         int status = getUserProductStatus(upDoc);
@@ -1316,22 +1357,22 @@ public class ProductUtil {
     public static List<Document> getUserProducts(String userId, String category) {
         List<Bson> conds = new ArrayList<>();
         List<String> pids = getProductIdsMatchUserProducts(userId, category);
-        conds.add(Filters.eq("user_id", userId));
-        conds.add(Filters.in("product_id", pids));
+        conds.add(eq("user_id", userId));
+        conds.add(in("product_id", pids));
         return MongoUtil.getDBList(MongoUtil.USER_PRODUCT_COL, conds);
     }
 
     public static List<Document> getAllProducts(String category, boolean containBoardId) {
         List<Bson> conds = new ArrayList<>();
         if (!category.isEmpty()) {
-            conds.add(Filters.or(
-                    Filters.eq("stock_category.0", category),
-                    Filters.eq("stock_category.1", category),
-                    Filters.eq("stock_category.2", category)
+            conds.add(or(
+                    eq("stock_category.0", category),
+                    eq("stock_category.1", category),
+                    eq("stock_category.2", category)
             ));
         }
         if (containBoardId) {
-            conds.add(Filters.exists("board_id"));
+            conds.add(exists("board_id"));
         }
         List<Document> proDoc = MongoUtil.getDBList(MongoUtil.PRODUCT_COL, conds);
         return proDoc;
@@ -1350,15 +1391,15 @@ public class ProductUtil {
      */
     public static List<Document> getProducts(List<String> pids, String category) {
         List<Bson> conds = new ArrayList<>();
-        conds.add(Filters.in("_id", pids
+        conds.add(in("_id", pids
                 .stream()
                 .map(ObjectId::new)
                 .collect(Collectors.toList())));
         if (!category.isEmpty()) {
-            conds.add(Filters.or(
-                    Filters.eq("stock_category.0", category),
-                    Filters.eq("stock_category.1", category),
-                    Filters.eq("stock_category.2", category)
+            conds.add(or(
+                    eq("stock_category.0", category),
+                    eq("stock_category.1", category),
+                    eq("stock_category.2", category)
             ));
         }
         return MongoUtil.getDBList(COL, conds);
@@ -1396,7 +1437,8 @@ public class ProductUtil {
         NoPurchase(0, "无购买记录"),
         Expired(1, "权限已过期"),
         Normal(2, "权限正常"),
-        Unknown(3, "未知权限状态"),;
+        Unknown(3, "未知权限状态"),
+        ;
 
         public int id;
         public String name;

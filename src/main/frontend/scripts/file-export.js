@@ -1,6 +1,6 @@
 /**
- *	author: lzhang
- *	date: 2017-4-5
+ *	author: jhuang
+ *	date: 2018-5-1
  *	desc: 实现SVG、HTML元素的导出功能
  */
 (function($, H) {

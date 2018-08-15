@@ -3,7 +3,8 @@
         <div class="order-wrap">
             <div class="order-head">
                 <div class="order-nav-bar clearfix">
-                    <div class="logo abcdata-icon pointer" @click="direct('introduction')"></div>
+                    <!-- <div class="logo abcdata-icon pointer" @click="direct('introduction')"></div> -->
+                    <div class="logo abcdata-icon pointer" @click="direct('my')"></div>
                     <user-bar></user-bar>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 /**
- *	author: lzhang
- *	date: 2017-4-5
- *	desc: 统一图表绘制参数 888
+ *	author:jhuang
+ *	date: 2018-5-1
+ *	desc: 统一图表绘制参数
  */
 (function($, H) {
 	this.ChartHelper = {

@@ -3,7 +3,7 @@
 		<div class="login-head">
 			<div class="logo pointer" @click="direct('introduction')"></div>
 		</div>
-		<!-- 登录 -->
+		<!-- 注册 -->
 		<div class="login-container" v-if="loginStatus==0">
 			<div class="login-welcome">WELCOME</div>
 		<div class="switch_bar" style="font-size: 14px;">
@@ -12,13 +12,13 @@
 			<span class="btn_underline" :class="{atLeft:loginway==0,atRight:loginway==1}"></span>
 		</div>
 		<!--二维码注册-->
-		<div id="login_container" class="loginway wechart" v-show="loginway==0">
+		<div id="login_container" class="loginway wechart" v-show="loginway == 0">
 			<div id="login_container_really"></div>
 			<span class="wxlogintext"><i v-text="lang=='zh_CN'?'微信扫一扫即可注册，':'Scan here to register,'"></i><i class="i" @click="loginway=1" v-text="lang=='zh_CN'?'海外版微信用户建议使用邮箱注册':' Email registration is HIGHLY RECOMMENDED for users overseas.'"></i></span>
 			<span class="wxloginErrortext" @click="openNewPageWx" v-text="lang=='zh_CN'?'二维码异常？':'Having troubles with QR code?'"></span>
 		</div>
 		<!--邮箱注册-->
-		<div class="login-form" v-show="loginway==1">
+		<div class="login-form" v-show="loginway == 1">
 				<div class="login-form-control">
 					<input type="text" :placeholder="lang=='zh_CN'?'您的姓名':'Your Full Name'" class="login-full-name" @keyup.enter="register()"/>
 				</div>
@@ -59,7 +59,7 @@
 </template>
 <script type="text/javascript">
 export default {
-  name: "login",
+  name: "registration",
   data() {
     return {
       loginStatus: 0, //0登录 1忘记密码
@@ -132,10 +132,6 @@ export default {
         this.wrongTip = "Your Full Name can't be empty";
         return false;
       }
-      //              if(!/^[^\s][A-Za-z0-9_\-\u4e00-\u9fa5\s]+[^\s]$/.test($(".login-full-name").val())){
-      //              	this.wrongTip = 'Your Full Name is illegal';
-      //					return false;
-      //              }
       if (
         !/^[^\s][A-Za-z0-9_\-\u4e00-\u9fa5\s]*[^\s]*$/.test(
           $(".login-full-name").val()
@@ -152,10 +148,6 @@ export default {
         this.wrongTip = "Your Institution Name can't be empty";
         return false;
       }
-      //				if(!/^[^\s][A-Za-z0-9_\-\u4e00-\u9fa5\s]+[^\s]$/.test($(".login-institution-name").val())){
-      //              	this.wrongTip = 'Your Institution Name is illegal';
-      //					return false;
-      //              }
       if (
         !/^[^\s][A-Za-z0-9_\-\u4e00-\u9fa5\s]*[^\s]*$/.test(
           $(".login-institution-name").val()
@@ -172,10 +164,6 @@ export default {
         this.wrongTip = "Your Business Email can't be empty";
         return false;
       }
-      //				if(!/^([0-9A-Za-z\-_\.]+)@([0-9a-zA-Z\-]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g.test($(".login-business-email").val())){
-      //					this.wrongTip = 'illegal email';
-      //					return false;
-      //				}
       if (
         $(".login-business-email")
           .val()
@@ -223,7 +211,7 @@ export default {
         },
         timeout: 1000,
         success: resp => {
-          if (resp.success) {
+          if (resp.success){
             console.log(resp);
             localStorage.setItem("status", resp.status);
             localStorage.setItem("uid", resp.data.user.id);

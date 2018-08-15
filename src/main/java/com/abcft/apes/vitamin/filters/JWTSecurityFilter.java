@@ -46,6 +46,7 @@ public class JWTSecurityFilter implements ContainerRequestFilter {
         //pathFilters.add("test/hello");
         pathFilters.add("v1/products");
         pathFilters.add("v1/products/predictions");
+        pathFilters.add("v1/products/predictions2");
         pathFilters.add("v1/plans");
         if ("get".equals(method) &&
             (pathFilters.contains(path) ||

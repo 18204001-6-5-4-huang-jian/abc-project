@@ -8,7 +8,7 @@ import com.mongodb.util.JSON;
 import org.apache.log4j.Logger;
 import org.bson.Document;
 
-import javax.json.*;
+import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
@@ -23,6 +23,7 @@ public class ChartController extends BaseController {
 
     /**
      * 查询图表数据
+     *
      * @param id
      * @param parameters
      * @param tqx
@@ -32,12 +33,11 @@ public class ChartController extends BaseController {
     @Path("query-data")
     @Produces(MediaType.APPLICATION_JSON)
     public JsonObject queryData(
-        @QueryParam("id") long id,
-        @QueryParam("parameters") String parameters,
-        @QueryParam("tqx") String tqx)
-    {
+            @QueryParam("id") long id,
+            @QueryParam("parameters") String parameters,
+            @QueryParam("tqx") String tqx) {
         try {
-			String userId = getCurrentUserId();
+            String userId = getCurrentUserId();
 
             if (StringUtils.isEmpty(userId)) {
                 return getResponse(false, 1, "无访问该图表数据权限");
@@ -68,8 +68,8 @@ public class ChartController extends BaseController {
     @Path("/{id: \\d+}")
     @Produces(MediaType.APPLICATION_JSON)
     public JsonObject get(
-        @PathParam("id") long id,
-        @DefaultValue("0") @QueryParam("detail") int detail
+            @PathParam("id") long id,
+            @DefaultValue("0") @QueryParam("detail") int detail
     ) {
         String uid = getCurrentUserId();
         /*
@@ -90,8 +90,8 @@ public class ChartController extends BaseController {
     @Path("query-param-data")
     @Produces(MediaType.APPLICATION_JSON)
     public String queryAPIData(
-        @QueryParam("id") long _id,
-        @QueryParam("parameters") @DefaultValue("") String parameters
+            @QueryParam("id") long _id,
+            @QueryParam("parameters") @DefaultValue("") String parameters
     ) {
         Document result = new Document();
         try {
@@ -114,13 +114,16 @@ public class ChartController extends BaseController {
     @Path("query-custom-data")
     @Produces(MediaType.APPLICATION_JSON)
     public String queryCustomData(
-        @QueryParam("id") long _id,
-        @DefaultValue("") @QueryParam("tp") String timePoint
+            @QueryParam("id") long _id,
+            @DefaultValue("") @QueryParam("tp") String timePoint
     ) {
         Document result = new Document();
         try {
+            long start = System.currentTimeMillis();
             Document table = ChartUtil.queryCustomData2(_id, timePoint);
-
+            long end = System.currentTimeMillis();
+            float costTime = (end - start) / 1000f;
+            logger.info(String.format("[QUERY_CUSTOM_DATA] cost %s secs, ID: <%s>, TP: <%s>", costTime, _id, timePoint));
             result.put("success", true);
             result.put("message", "");
             result.put("table", table);
@@ -136,6 +139,7 @@ public class ChartController extends BaseController {
 
     /**
      * 设置数据点标注
+     *
      * @return
      */
     @POST
@@ -160,6 +164,7 @@ public class ChartController extends BaseController {
 
     /**
      * 设置数据点标注
+     *
      * @return
      */
     @POST
@@ -199,6 +204,7 @@ public class ChartController extends BaseController {
 
     /**
      * 取消数据点标注
+     *
      * @return
      */
     @POST
@@ -213,8 +219,7 @@ public class ChartController extends BaseController {
         String uid = getCurrentUserId();
 
         if (!markerData.containsKey("series_id") ||
-                !markerData.containsKey("point_id"))
-        {
+                !markerData.containsKey("point_id")) {
             return getResponse(false, 1, "参数错误");
         }
 
@@ -231,6 +236,7 @@ public class ChartController extends BaseController {
 
     /**
      * 获取marker列表
+     *
      * @return
      */
     @GET

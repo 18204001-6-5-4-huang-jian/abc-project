@@ -1,6 +1,6 @@
 /**
- *	author: kygeng
- *	date: 2017-5-2
+ *	author: jhuang
+ *	date: 2018-5-2
  *	desc: 图表数据更新定时器
  */
 (function($) {

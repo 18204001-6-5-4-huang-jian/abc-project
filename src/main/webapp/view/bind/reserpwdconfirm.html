@@ -119,7 +119,7 @@
 </style>
 
 <body>
-	<div class="header">
+	<!-- <div class="header">
 		<img src="../../images/bind-logo.png" class="img" onclick="img_click()" />
 	</div>
 	<div class="user_form form">
@@ -137,7 +137,7 @@
 			</ul>
 			<input type="button" value="Reset" class="confirm" onclick="Reset()" />
 		</div>
-	</div>
+	</div> -->
 </body>
 <script type="text/javascript">
 	(function () {
@@ -156,173 +156,170 @@
 	})()
 </script>
 <script type="text/javascript">
-	if (localStorage.getItem('lang') == '') {
-
-	} else if (localStorage.getItem('lang') == 'zh_CN') {
-		$('.user_form h2').text("重置密码");
-		$('.form-container .first-label').text("新密码 : ");
-		$('.form-container .password').attr('placeholder', '请输入至少6位密码');
-		$('.form-container .second-label').text("确认密码 : ");
-		$('.form-container ._password').attr('placeholder', '请再输入一遍密码');
-		$('.form-container .confirm').val("确认");
-	}
+	// if (localStorage.getItem('lang') == ''){
+	// } else if (localStorage.getItem('lang') == 'zh_CN') {
+	// 	$('.user_form h2').text("重置密码");
+	// 	$('.form-container .first-label').text("新密码 : ");
+	// 	$('.form-container .password').attr('placeholder', '请输入至少6位密码');
+	// 	$('.form-container .second-label').text("确认密码 : ");
+	// 	$('.form-container ._password').attr('placeholder', '请再输入一遍密码');
+	// 	$('.form-container .confirm').val("确认");
+	// }
 </script>
 <script type="text/javascript">
-	function img_click() {
-		if (document.location.protocol == "https:") {
-			location.href = 'https://' + location.hostname + '/#/';
-		} else {
-			location.href = 'http://' + location.host + '/#/';
-		}
-	}
-	function Reset() {
+	// function img_click() {
+	// 	if (document.location.protocol == "https:") {
+	// 		location.href = 'https://' + location.hostname + '/#/';
+	// 	} else {
+	// 		location.href = 'http://' + location.host + '/#/';
+	// 	}
+	// }
 		var url_ = location.href;
 		var id = url_.substring(url_.indexOf('id=') + 3);
 		var _id = id.substring(0, 24);
 		var token = url_.substring(url_.indexOf('token=') + 6);
 		var _token = token.substring(0, 227);
-		if ($(".password").val().trim() == "") {
-			layer.msg("输入新密码不能为空!");
-			return false;
+		localStorage.setItem('_id',_id)
+		localStorage.setItem('_token',_token);
+		localStorage.setItem('showpage',12);
+		if (document.location.protocol == "https:") {
+			location.href = 'https://' + location.hostname + '/#/';
+		} else {
+			location.href = 'http://' + location.host + '/#/';
 		}
-		if ($("._password").val().trim() == "") {
-			layer.msg("输入确认密码不能为空!");
-			return false;
-		}
-		$.ajax({
-			url: "/api/v1/account/forget-resetpasswd",
-			type: "post",
-			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-			data: {
-				id: _id,
-				token: _token,
-				password: $.md5($(".password").val()),
-				confirm_password: $.md5($("._password").val())
-			},
-			success: function (resp) {
-				// console.log(resp);
-				if (resp.success) {
-					//跳转到看板
-					if (resp.success) {
-						var day = new Date(resp.data.token.expiry.slice(0, -4)).getTime() - new Date();
-						$.cookie("token", resp.data.token.auth_token, {
-							expires: parseInt(day / 1000 / 3600 / 24),
-							path: '/'
-						});
-						window.localStorage.clear();
-						window.sessionStorage.clear();
-						localStorage.setItem("token", resp.data.token.auth_token);
-						localStorage.setItem("uid", resp.data.user.id);
-						localStorage.setItem("username", resp.data.user.username);
-						savePass(resp.data.user.id, resp.data.user.username, resp.data.user.email);
-						var userid = resp.data.user.id;
-						$.ajax({
-							url: "/api/v1/account/" + userid,
-							type: "get",
-							contentType: 'application/json;chartset=utf-8',
-							success: function (res) {
-								// console.log(res);
-								localStorage.setItem("useremail", res.data.email);
-								localStorage.setItem("usercompany", res.data.company);
-								localStorage.setItem("userpassword", res.data.pwd_ends);
-								localStorage.setItem("userheadimg", res.data.head_img);
-								if (document.location.protocol == "https:") {
-									location.href = 'https://' + location.hostname + '/#/my';
-								} else {
-									location.href = 'http://' + location.host + '/#/my';
-								}
-							},
-							error: function (error) {
-								console.log(error);
-							}
-						})
-					}
-				}
-			},
-			error: function (error) {
-				console.log(error);
-			}
-		})
-	}
+		// $.ajax({
+		// 	url: "/api/v1/account/forget-resetpasswd",
+		// 	type: "post",
+		// 	contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+		// 	data: {
+		// 		id: _id,
+		// 		token: _token,
+		// 		password: $.md5($(".password").val()),
+		// 		confirm_password: $.md5($("._password").val())
+		// 	},
+		// 	success: function (resp) {
+		// 		// console.log(resp);
+		// 		if (resp.success) {
+		// 			//跳转到看板
+		// 			if (resp.success) {
+		// 				var day = new Date(resp.data.token.expiry.slice(0, -4)).getTime() - new Date();
+		// 				$.cookie("token", resp.data.token.auth_token, {
+		// 					expires: parseInt(day / 1000 / 3600 / 24),
+		// 					path: '/'
+		// 				});
+		// 				window.localStorage.clear();
+		// 				window.sessionStorage.clear();
+		// 				localStorage.setItem("token", resp.data.token.auth_token);
+		// 				localStorage.setItem("uid", resp.data.user.id);
+		// 				localStorage.setItem("username", resp.data.user.username);
+		// 				savePass(resp.data.user.id, resp.data.user.username, resp.data.user.email);
+		// 				var userid = resp.data.user.id;
+		// 				$.ajax({
+		// 					url: "/api/v1/account/" + userid,
+		// 					type: "get",
+		// 					contentType: 'application/json;chartset=utf-8',
+		// 					success: function (res) {
+		// 						// console.log(res);
+		// 						localStorage.setItem("useremail", res.data.email);
+		// 						localStorage.setItem("usercompany", res.data.company);
+		// 						localStorage.setItem("userpassword", res.data.pwd_ends);
+		// 						localStorage.setItem("userheadimg", res.data.head_img);
+		// 						if (document.location.protocol == "https:") {
+		// 							location.href = 'https://' + location.hostname + '/#/my';
+		// 						} else {
+		// 							location.href = 'http://' + location.host + '/#/my';
+		// 						}
+		// 					},
+		// 					error: function (error) {
+		// 						console.log(error);
+		// 					}
+		// 				})
+		// 			}
+		// 		}
+		// 	},
+		// 	error: function (error) {
+		// 		console.log(error);
+		// 	}
+		// })
 	//回车事件
-	$('._password').bind('keypress', function (event) {
-		if (event.keyCode == "13") {
-			var url_ = location.href;
-			var id = url_.substring(url_.indexOf('id=') + 3);
-			var _id = id.substring(0, 24);
-			var token = url_.substring(url_.indexOf('token=') + 6);
-			var _token = token.substring(0, 227);
-			if ($(".password").val().trim() == "") {
-				layer.msg("输入新密码不能为空!");
-				return false;
-			}
-			if ($("._password").val().trim() == "") {
-				layer.msg("输入确认密码不能为空!");
-				return false;
-			}
-			$.ajax({
-				url: "/api/v1/account/forget-resetpasswd",
-				type: "post",
-				contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-				data: {
-					id: _id,
-					token: _token,
-					password: $.md5($(".password").val()),
-					confirm_password: $.md5($("._password").val())
-				},
-				success: function (resp) {
-					// console.log(resp);
-					if (resp.success) {
-						//跳转到看板
-						if (resp.success) {
-							var day = new Date(resp.data.token.expiry.slice(0, -4)).getTime() - new Date();
-							$.cookie("token", resp.data.token.auth_token, {
-								expires: parseInt(day / 1000 / 3600 / 24),
-								path: '/'
-							});
-							window.localStorage.clear();
-							window.sessionStorage.clear();
-							localStorage.setItem("token", resp.data.token.auth_token);
-							localStorage.setItem("uid", resp.data.user.id);
-							savePass(resp.data.user.id, resp.data.user.username, resp.data.user.email);
-							var userid = resp.data.user.id;
-							$.ajax({
-								url: "/api/v1/account/" + userid,
-								type: "get",
-								contentType: 'application/json;chartset=utf-8',
-								success: function (res) {
-									// console.log(res);
-									localStorage.setItem("useremail", res.data.email);
-									localStorage.setItem("usercompany", res.data.company);
-									localStorage.setItem("userpassword", res.data.pwd_ends);
-									localStorage.setItem("userheadimg", res.data.head_img);
-									if (document.location.protocol == "https:") {
-										location.href = 'https://' + location.hostname + '/#/my';
-									} else {
-										location.href = 'http://' + location.host + '/#/my';
-									}
-								},
-								error: function (error) {
-									console.log(error);
-								}
-							})
-						}
-					}
-				},
-				error: function (error) {
-					console.log(error);
-				}
-			})
-		}
-	})
-	function savePass(uid, name, email) {
-		if (!window.sessionStorage) { return false; }
-		if (uid && name && email) {
-			sessionStorage.setItem('uid', uid);
-			sessionStorage.setItem('username', name);
-			sessionStorage.setItem('email', email);
-		}
-	}
+	// $('._password').bind('keypress', function (event) {
+	// 	if (event.keyCode == "13") {
+	// 		var url_ = location.href;
+	// 		var id = url_.substring(url_.indexOf('id=') + 3);
+	// 		var _id = id.substring(0, 24);
+	// 		var token = url_.substring(url_.indexOf('token=') + 6);
+	// 		var _token = token.substring(0, 227);
+	// 		if ($(".password").val().trim() == "") {
+	// 			layer.msg("输入新密码不能为空!");
+	// 			return false;
+	// 		}
+	// 		if ($("._password").val().trim() == "") {
+	// 			layer.msg("输入确认密码不能为空!");
+	// 			return false;
+	// 		}
+	// 		$.ajax({
+	// 			url: "/api/v1/account/forget-resetpasswd",
+	// 			type: "post",
+	// 			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+	// 			data: {
+	// 				id: _id,
+	// 				token: _token,
+	// 				password: $.md5($(".password").val()),
+	// 				confirm_password: $.md5($("._password").val())
+	// 			},
+	// 			success: function (resp) {
+	// 				// console.log(resp);
+	// 				if (resp.success) {
+	// 					//跳转到看板
+	// 					if (resp.success) {
+	// 						var day = new Date(resp.data.token.expiry.slice(0, -4)).getTime() - new Date();
+	// 						$.cookie("token", resp.data.token.auth_token, {
+	// 							expires: parseInt(day / 1000 / 3600 / 24),
+	// 							path: '/'
+	// 						});
+	// 						window.localStorage.clear();
+	// 						window.sessionStorage.clear();
+	// 						localStorage.setItem("token", resp.data.token.auth_token);
+	// 						localStorage.setItem("uid", resp.data.user.id);
+	// 						savePass(resp.data.user.id, resp.data.user.username, resp.data.user.email);
+	// 						var userid = resp.data.user.id;
+	// 						$.ajax({
+	// 							url: "/api/v1/account/" + userid,
+	// 							type: "get",
+	// 							contentType: 'application/json;chartset=utf-8',
+	// 							success: function (res) {
+	// 								// console.log(res);
+	// 								localStorage.setItem("useremail", res.data.email);
+	// 								localStorage.setItem("usercompany", res.data.company);
+	// 								localStorage.setItem("userpassword", res.data.pwd_ends);
+	// 								localStorage.setItem("userheadimg", res.data.head_img);
+	// 								if (document.location.protocol == "https:") {
+	// 									location.href = 'https://' + location.hostname + '/#/my';
+	// 								} else {
+	// 									location.href = 'http://' + location.host + '/#/my';
+	// 								}
+	// 							},
+	// 							error: function (error) {
+	// 								console.log(error);
+	// 							}
+	// 						})
+	// 					}
+	// 				}
+	// 			},
+	// 			error: function (error) {
+	// 				console.log(error);
+	// 			}
+	// 		})
+	// 	}
+	// })
+	// function savePass(uid, name, email) {
+	// 	if (!window.sessionStorage) { return false; }
+	// 	if (uid && name && email) {
+	// 		sessionStorage.setItem('uid', uid);
+	// 		sessionStorage.setItem('username', name);
+	// 		sessionStorage.setItem('email', email);
+	// 	}
+	// }
 </script>
 
 </html>

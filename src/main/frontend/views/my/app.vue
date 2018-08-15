@@ -3,7 +3,8 @@
         <div class="order-wrap">
             <div class="order-head">
                 <div class="order-nav-bar clearfix">
-                    <div class="logo abcdata-icon pointer" @click="direct('introduction')"></div>
+                    <!-- <div class="logo abcdata-icon pointer" @click="direct('introduction')"></div> -->
+                    <div class="logo abcdata-icon pointer" @click="direct('my')"></div>
                    <div style="width: 30%;height:60px;position: absolute;left: 13%;" class="huangjian-box">
                    	 <div class="switch_bar" style="font-size:14px;">
                         <div class="switch_btn" @click="loginway=0" :class="{active:loginway==0,}" v-text="lang=='zh_CN'?'大数据日报':'Data daily'"></div>
@@ -124,7 +125,6 @@
                         </div>
                     </div>
                     <!-- 提示框 -->
-                   
                     <div class="hini-box" v-if="status==1">
                         <h4 v-show="buy==1">
                         <img src="../../../webapp/images/tishigantan.png" style="width:15px;height:15px;margin-top:-3px;" />&nbsp;
@@ -132,8 +132,6 @@
                         <h4 v-show="nobuy==1">
                         <img src="../../../webapp/images/tishigantan.png" style="width:15px;height:15px;margin-top:-3px;" />&nbsp;您尚未购买该公司看板，如需查看请<span @click="directorder()">点击购买</span></h4>
                     </div>
-                         <!-- 日报提示 -->
-                    
                     <!--看板-->
                     <div class="huang-dashboard" v-show="loginway == 1">
                             <!--<div class="item_box">-->
@@ -146,7 +144,8 @@
                         <!--tab切换看板-->
                         <div class="dashboard_tab_bar">
                         	<div class="dashboard_switch_btn" @click="dashboard=0" :class="{active_dashboard:dashboard==0,active_dashboard_:dashboard!==0}" v-text="lang=='zh_CN'?'A股市场':'Chinese Stock Market'"></div>
-                            <div class="dashboard_switch_btn" @click="dashboard=1" :class="{active_dashboard:dashboard==1,active_dashboard_:dashboard!==1}" v-text="lang=='zh_CN'?'美股市场':'US Stock Market'">美股市场</div>
+                            <div class="dashboard_switch_btn" @click="dashboard=1" :class="{active_dashboard:dashboard==1,active_dashboard_:dashboard!==1}" v-text="lang=='zh_CN'?'美股市场':'US Stock Market'"></div>
+                            <div class="dashboard_switch_btn" @click="dashboard=2" :class="{active_dashboard:dashboard==2,active_dashboard_:dashboard!==2}" v-text="lang=='zh_CN'?'试用看板':'Trial'"></div>
                         </div>
                         <p class="item-title" v-show="jhuang">&nbsp;&nbsp;&nbsp;&nbsp;您暂未开通EVERSIGHT看板权限，如需使用请&nbsp;<i
                                     @click="joinorder()">点击订阅</i>，或发送邮件至&nbsp;service@Eversight.ai&nbsp;申请试用版权限。<span
@@ -177,7 +176,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="order-footer clearfix item-1180" v-show="loginway == 1">
+                <div class="order-footer clearfix item-1180" v-show="loginway == 1 && products.length != 0" :class="{orderFooterMargin:products.length < 12}">
                     <div class="copyright">
                         Copyright &copy 2016 - 2017 Eversight.AI. All Rights Reserved.
                     </div>
@@ -221,6 +220,7 @@
                 dashboard:0,
                 a:"A",
                 m:"M",
+                s:"S",
                 allproductlist:[],
                 category:"",
                 quarterly:null,
@@ -298,15 +298,22 @@
             })
             //判断status
             if(localStorage.getItem("status") && localStorage.getItem("dashboard")){
+                //美股市场
             	if(localStorage.getItem("dashboard") == 1){
             		localStorage.removeItem("dashboard");
 	            	self.loginway = 1;
 	            	self.dashboard = 1;
             	}else if(localStorage.getItem("dashboard") == 0){
+                    //A股市场
                    localStorage.removeItem("dashboard");
 	            	self.loginway = 1;
 	            	self.dashboard = 0;
-            	}
+            	}else{
+                    //试用看板
+                    localStorage.removeItem("dashboard");
+                    self.loginway = 1;
+                    self.dashboard = 2;
+                }
             }else{
             	self.loginway = 0;
             }
@@ -430,7 +437,9 @@
             })
         },
         watch:{
-        	dashboard(newValue,old){
+            //Tab切换请求渲染list数据
+        	dashboard(newValue,oldValue){
+                //赋值给category用于从看板返回请求对应市场的数据
         		this.category = newValue;
         		if(newValue == 1){
         		$.get({
@@ -443,14 +452,14 @@
                             this.getcategory_m();
                         }else{
                             new PNotify({
-                                text: resp.message || '获取产品列表失败',
+                                text: resp.message || '获取美股市场列表失败',
                                 type: 'error'
                             })
                         }
                     },
                     error: () => {
                         new PNotify({
-                            text: '获取产品列表失败',
+                            text: '获取美股市场列表失败',
                             type: 'error'
                         })
                     }
@@ -466,19 +475,42 @@
                             this.getcategory_a();
                         }else{
                             new PNotify({
-                                text: resp.message || '获取产品列表失败',
+                                text: resp.message || '获取A股市场列表失败',
                                 type: 'error'
                             })
                         }
                     },
                     error: () => {
                         new PNotify({
-                            text: '获取产品列表失败',
+                            text: '获取A股市场列表失败',
                             type: 'error'
                         })
                     }
                 })
-        		}
+        		}else if(newValue == 2){
+                    //请求试用看板数据
+                    $.get({
+                        url: U.getApiPre() + '/api/v1/user-products?category=' + this.s,
+                        contentType: 'application/json;charset=utf-8',
+                        cache:false,
+                        success:(resp) => {
+                             if(resp.success){
+                                this.products = resp.data.list;
+                            }else{
+                                new PNotify({
+                                text: resp.message || '获取使用看板列表失败',
+                                type: 'error'
+                            })
+                            }
+                        },
+                        error: () => {
+                        new PNotify({
+                            text: '获取使用看板列表失败',
+                            type: 'error'
+                        })
+                    }
+                    })
+                }
         	},
             li_langchange(newvalue){
                 if(newvalue == 1){
@@ -561,7 +593,7 @@
             },
             lang(newvalue){
                  var self = this;
-            //获取季报消息提示信息
+                //获取季报消息提示信息
                if(localStorage.getItem("quarterly")==1){
                     localStorage.setItem("quarterly",1);
                  }else{
@@ -650,12 +682,18 @@
             }
         },
         methods: {
+            //从看板list跳转进入看板
             showDashborad(pro){
             	if(this.dashboard == 1){
+                    //从美股市场进入
             		localStorage.setItem("dashboard",1);
-            	}else{
+            	}else if(this.dashboard ==0){
+                    //从A股市场进入
             		localStorage.setItem("dashboard",0);
-            	}
+            	}else{
+                    //从试用看板进入
+                    localStorage.setItem("dashboard",2);
+                }
                 localStorage.setItem("dashboard-name",pro.name);
                 //GA监测进入哪些看板，pro.name为看板名字
                 GaHelper.sendEvent(GaHelper.Usercenter.read, pro.name);
@@ -690,7 +728,7 @@
             getMyproducts() {
                 var self = this;
                 let _load = layer.load(2);
-                if(this.category == 0 || this.category == ""){
+                if(self.category == 0 || self.category == ""){
                 	$.get({
                     url: U.getApiPre() + '/api/v1/user-products?category=' + self.a,
                     contentType: 'application/json;charset=utf-8',
@@ -698,16 +736,45 @@
                     success: (resp) => {
                         if (resp.success) {
                             self.products = resp.data.list;
+                            if(self.products.length == 0){
+                                setTimeout(function(){
+                                        $.get({
+                                            url: U.getApiPre() + '/api/v1/user-products?category=' + self.a,
+                                            contentType: 'application/json;charset=utf-8',
+                                            cache:false,
+                                            success: (resp) => {
+                                                if (resp.success) {
+                                                    self.products = resp.data.list;
+                                                }else{
+                                                    new PNotify({
+                                                        text: resp.message || '获取A股市场列表失败',
+                                                        type: 'error'
+                                                    })
+                                                }
+                                            },
+                                            error: () => {
+                                                new PNotify({
+                                                    text: '获取A股市场列表失败',
+                                                    type: 'error'
+                                                })
+                                            },
+                                            complete: () => {
+                                                layer.closeAll();
+                                                layer.close(_load);
+                                            }
+                                        })
+                                },3000)
+                            }
                         }else{
                             new PNotify({
-                                text: resp.message || '获取产品列表失败',
+                                text: resp.message || '获取A股市场列表失败',
                                 type: 'error'
                             })
                         }
                     },
                     error: () => {
                         new PNotify({
-                            text: '获取产品列表失败',
+                            text: '获取A股市场列表失败',
                             type: 'error'
                         })
                     },
@@ -716,7 +783,7 @@
                         layer.close(_load);
                     }
                 })
-                }else if(this.category == 1){
+                }else if(self.category == 1){
                 	$.get({
                     url: U.getApiPre() + '/api/v1/user-products?category=' + self.m,
                     contentType: 'application/json;charset=utf-8',
@@ -724,16 +791,45 @@
                     success: (resp) => {
                         if (resp.success) {
                             self.products = resp.data.list;
+                            if(self.products.length == 0){
+                                setTimeout(function(){
+                                        $.get({
+                                        url: U.getApiPre() + '/api/v1/user-products?category=' + self.m,
+                                        contentType: 'application/json;charset=utf-8',
+                                        cache:false,
+                                        success: (resp) => {
+                                            if (resp.success) {
+                                                self.products = resp.data.list;
+                                            }else{
+                                                new PNotify({
+                                                    text: resp.message || '获取美股市场列表失败',
+                                                    type: 'error'
+                                                })
+                                            }
+                                        },
+                                        error: () => {
+                                            new PNotify({
+                                                text: '获取美股市场列表失败',
+                                                type: 'error'
+                                            })
+                                        },
+                                        complete: () => {
+                                            layer.closeAll();
+                                            layer.close(_load);
+                                        }
+                                    })
+                                },3000)
+                            }
                         }else{
                             new PNotify({
-                                text: resp.message || '获取产品列表失败',
+                                text: resp.message || '获取美股市场列表失败',
                                 type: 'error'
                             })
                         }
                     },
                     error: () => {
                         new PNotify({
-                            text: '获取产品列表失败',
+                            text: '获取美股市场列表失败',
                             type: 'error'
                         })
                     },
@@ -742,6 +838,61 @@
                         layer.close(_load);
                     }
                 })
+                }else if(self.category == 2){
+                    $.get({
+                    url: U.getApiPre() + '/api/v1/user-products?category=' + self.s,
+                    contentType: 'application/json;charset=utf-8',
+                    cache:false,
+                    success: (resp) => {
+                        if (resp.success) {
+                            self.products = resp.data.list;
+                            if(self.products.length == 0){
+                                setTimeout(function(){
+                                        $.get({
+                                        url: U.getApiPre() + '/api/v1/user-products?category=' + self.s,
+                                        contentType: 'application/json;charset=utf-8',
+                                        cache:false,
+                                        success: (resp) => {
+                                            if (resp.success) {
+                                                self.products = resp.data.list;
+                                            }else{
+                                                new PNotify({
+                                                    text: resp.message || '获取试用看板列表失败',
+                                                    type: 'error'
+                                                })
+                                            }
+                                        },
+                                        error: () => {
+                                            new PNotify({
+                                                text: '获取试用看板列表失败',
+                                                type: 'error'
+                                            })
+                                        },
+                                        complete: () => {
+                                            layer.closeAll();
+                                            layer.close(_load);
+                                        }
+                                    })
+                                },3000)
+                            }
+                        }else{
+                            new PNotify({
+                                text: resp.message || '获取试用看板列表失败',
+                                type: 'error'
+                            })
+                        }
+                    },
+                    error: () => {
+                        new PNotify({
+                            text: '获取试用看板列表失败',
+                            type: 'error'
+                        })
+                    },
+                    complete: () => {
+                        layer.closeAll();
+                        layer.close(_load);
+                    }
+                  })
                 }
             },
             showUserBar() {
@@ -990,6 +1141,7 @@
                 self.$store.commit('hj_setcategory_1',1);
             },
             getcategory_m(){
+                //美股过期提醒
             	var self = this;
             	$.get({
             	url:"/api/v1/user-products/expiry?category=M",
@@ -1020,6 +1172,7 @@
 	                })
             },
             getcategory_a(){
+                //A股过期提醒
             	var self = this;
             	$.get({
             	url:"/api/v1/user-products/expiry?category=A",
@@ -1226,7 +1379,9 @@
         border-top: 1px solid #eee;
         font-size: 12px;
     }
-
+    .orderFooterMargin{
+        margin-top:260px;
+    }
     .order-footer .copyright {
         float: left;
     }
@@ -1459,7 +1614,7 @@
     	margin-top: 20px;
     }
     .huang-dashboard .dashboard_tab_bar .dashboard_switch_btn{
-    	width: 50%;
+    	width:33.33%;
     	height: 50px;
     	line-height: 50px;
     	float: left;
@@ -1467,6 +1622,9 @@
     	cursor: pointer;
     	font-size: 16px;
     	font-weight: bold;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
     }
     .huangjian_p{
     	line-height: 30px;

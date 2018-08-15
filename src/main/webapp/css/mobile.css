@@ -88,7 +88,7 @@ html,body{
 .abcdata-wrapper.mobile .introduction-price,
 .abcdata-wrapper.mobile .introduction-product-list,
 .abcdata-wrapper.mobile .introduction-contact-us{
-	padding: 3rem 0;
+	padding: 2rem 0;
 	height: auto;
 }
 /*暂时隐藏预测页面*//*liu轮播图*/
@@ -96,111 +96,45 @@ html,body{
    display: block;	
 }
 .abcdata-wrapper.mobile .section-title{
-	font-size: 2rem;
-	margin-bottom: 1.5rem;
-}
-.abcdata-wrapper.mobile .introduction-price #box{
-	width: 100%;
-	margin-left: 16.5rem;
-}
-.abcdata-wrapper.mobile #box li{
-	display: block;
-	width: 80% !important;
-}
-
-.abcdata-wrapper.mobile #box li .dashboard_img {
-	position: absolute;
-	left: 5.5rem;
-	top: 2rem;
-}
-
-.abcdata-wrapper.mobile #box li ._img {
-	width: 9rem;
-	position: absolute;
-	left: 0.5rem;
-	bottom: 1rem;
-}
-
-.abcdata-wrapper.mobile #box li h4 {
 	font-size: 1.5rem;
-	position: absolute;
-	left: 3rem;
-	bottom: 3.5rem;
-	text-align: center;
+	/*margin-bottom: 1.5rem;*/
+	margin-bottom: -4.2rem;
 }
-
-.abcdata-wrapper.mobile #box li h5 {
-	position: absolute;
-	left: 2.6rem;
-	bottom: 5.5rem;
-	font-size: 1.4rem;
+.abcdata-wrapper.mobile .contact-us-title.section-title{
+	margin-bottom: 1rem;
+       /* margin-bottom: -3rem;
+    margin-top: 0.1rem;
+    font-size: 1.5rem;
+*/
 }
-
-.abcdata-wrapper.mobile #box li .div {
-	width: 100%;
-	height: 5rem;
-	position: absolute;
-    top: 7rem;
-    left: 7.3rem;
+.abcdata-wrapper.mobile .contact-methods-wrap{
+	margin-top:3rem;
 }
-
-.abcdata-wrapper.mobile #box li .div p {
-	position: relative;
-	width: 100%;
-	height: 5rem;
+/*product list*/
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.htht{
+	background-position:7px 18px;
 }
-
-.abcdata-wrapper.mobile #box li .div p span {
-	font-size: 1.5rem;
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.east-money{
+    background-position:8px 18px;
 }
-
-.abcdata-wrapper.mobile #box li .div p .right-span {
-	position: absolute;
-    left: -0.5rem;
-    bottom: -1rem;
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.xdf{
+    background-position:10px 20px;
 }
-
-.abcdata-wrapper.mobile #box li .div p:nth-child(2) .left-span {
-	position: absolute;
-	left: 2rem;
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.rcl{
+    background-position:12px 24px;
 }
-
-.abcdata-wrapper.mobile #box li .div p:nth-child(3) {
-	position: absolute;
-	right: -7rem;
-	bottom: -12rem;
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.tal{
+    background-position:10px 20px;
 }
-
-.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
-	position: relative;
-	right: 1.5rem;
-	bottom: -2rem;
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.club{
+    background-position:10px 24px;
 }
-
-.abcdata-wrapper.mobile #box li .div p:nth-child(3) .right-span {
-	position: absolute;
-	left: -1rem;
-	bottom: -2.5rem;
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.ccl{
+    background-position:10px 24px;
 }
-
-.abcdata-wrapper.mobile #box li .div p:nth-child(4) {
-	position: absolute;
-	right: -7rem;
-	bottom: -17rem;
+.abcdata-wrapper.mobile .introduction-products .abcdata-icon.tuhuashun{
+    background-position:10px 24px;
 }
-
-.abcdata-wrapper.mobile #box li .div p:nth-child(4) .left-span {
-	position: absolute;
-	left: -1.2rem;
-    bottom: 0.5rem;
-}
-
-.abcdata-wrapper.mobile #box li .div p:nth-child(4) .right-span {
-	position: absolute;
-	left: -1rem;
-	bottom: -1.5rem;
-}
-
 .font-10{
 	font-size : 12px;
 	*font-size:10px;
@@ -219,7 +153,7 @@ html,body{
 	/*新增*/
 	margin-left: -1.5rem;
 	width: 8rem;
-	height: 3rem;
+	height: 8rem;
 	line-height: 3rem;
 	border-radius: .3rem;
 }
@@ -227,11 +161,13 @@ html,body{
 	width: 1rem;
 	height: 1.2rem;
 }
+/*introduction*/
 .abcdata-wrapper.mobile .introduction-title-wrap{
 	width: 100%;
 }
 .abcdata-wrapper.mobile .introduction-title{
 	font-size: 2rem;
+	padding: 0 1rem;
 	margin-bottom: 0;
 }
 .abcdata-wrapper.mobile .introduction-title:after{
@@ -245,6 +181,479 @@ html,body{
 	font-size: 1rem;
 	padding: 0 1rem;
 }
+/*重构介绍页登录*/
+.abcdata-wrapper.mobile .introduction-banner .lang-tab{
+    margin-top: 1.5rem;
+}
+/*邮箱登录*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset{
+	width: 18rem;
+	height: 34rem;
+	right: 1.5rem;
+	top: 7rem;
+	opacity: 0.9;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wx{
+	width: 2.5rem;
+    height: 2.5rem;
+    right:2px;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wx img{
+	width: 2.5rem;
+    height: 2.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logtitle{
+	font-size: 1.5rem;
+    left: 2rem;	
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logemail{
+	width: 15rem;
+    margin-top: -3rem;
+    font-size: 1.2rem;
+    left: 2rem;    
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logpwd{
+    width: 15rem;
+    margin-top: -3rem;
+    font-size: 1.2rem;
+    left: 2rem;    
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logpwd-text{
+    font-size: 1rem;
+    text-align: left;
+    width: 15rem;
+    margin-top: 19rem;
+    left: 2rem;    
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forget{
+    width: 15rem;
+    margin-top:22rem;
+    text-align: left;
+    font-size: 1rem;
+    left: -0.8rem;   
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-loginup{
+    font-size: 1rem;
+    width: 16rem;
+    margin-top: 25rem;
+    margin-left: 1rem;  
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-create{
+    font-size: 1rem;
+    left: 7rem;
+    top: 30rem;
+}
+/*微信登录*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wxlog{
+   width:2.5rem;
+   height:2.5rem;
+   right:2px;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wxlog img{
+   width:2.5rem;
+   height:2.5rem;
+
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wxtitle{
+	font-size: 1.5rem;
+    left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wximg{
+    width: 13rem;
+    height: 15rem;
+    /*background:red;*/
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wxtext{
+	width: 10rem;
+    margin-top: 1rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-create-fill{
+    top: 24rem;
+    
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-create{
+   margin-top:1rem; 
+}
+/*创建方法完善*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-join{
+    height: 2.5rem;
+    font-size: 1.5rem;
+    text-align: left;
+    margin-left:1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx{
+    width: 17.8rem;
+    margin-left: 0.1rem;
+    margin-top: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx-text{
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx-img img{
+    width: 2rem;
+    height: 2rem;
+    right: 1rem;
+    top: 14rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx-txt{
+   height:2.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail{
+    width: 17.8rem;
+    margin-left: 0.1rem;
+    margin-top: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-text{
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-img img{
+    width: 2rem;
+    height: 2rem;
+    right: 1rem;
+    top: 25rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-txt{
+   height:2.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_joinemail_txt_en{
+    width:12rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-local{
+   height:2.5rem;
+    margin-top: 1rem !important;
+    margin-left: 6rem;
+    font-size: 1rem ;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login_container_joinemail_local_en{
+    margin-left:4rem;
+}
+/*邮箱完善个人信息*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information{
+	font-size: 1.4rem;
+    text-align: left;
+	margin-left: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_Information_en{
+    font-size: 1.17rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationtext{
+
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationo{
+	margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;
+	margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationt{
+	margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;
+    margin-left: 2rem;    
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationh{
+    margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;   
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationf{
+    margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;    
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-back{
+    width: 4rem;
+    height: 3rem;
+    margin-left: 2rem;
+}  
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-sure{
+    width: 4rem;
+    height: 3rem;
+    margin-left: 5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-tooltip{
+	font-size: 1rem;
+	text-align: left;
+	margin-left: 2rem;
+}
+/*微信完善个人信息*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-wechat{
+    font-size: 1.4rem;
+    width: 9rem;
+    margin-left: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationtext-wechat{
+
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationo-wechat{
+    margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationt-wechat{
+    margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;
+    margin-left: 2rem;    
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationh-wechat{
+    margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;   
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationf-wechat{
+    margin-top: 0.1rem;
+    font-size: 1rem;
+    width: 14rem;
+    height: 4rem;    
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-back-wechat{
+    width: 4rem;
+    height: 3rem;
+    margin-left: 2rem;
+}  
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-sure-wechat{
+    width: 4rem;
+    height: 3rem;
+    margin-left: 5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-tooltip-wechat{
+    font-size: 1rem;
+    text-align: left;
+    margin-left: 2rem;
+}
+/*忘记密码*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetext{
+	font-size: 1.4rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetInfor{
+	font-size: 1rem;
+    width: 15rem;
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetInfortxt{
+    font-size: 1rem;
+    margin-left: -3rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetsure{
+    height: 3rem;
+    margin-top: -1rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetback{
+    height: 3rem;
+    margin-left: 2rem;
+    margin-top:-3rem;
+}
+/*忘记密码验证*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwtext{
+	font-size: 1.4rem;
+    margin-top: 1rem;
+    margin-left: -0.1rem;	
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_pwtext_en{
+    margin-left:2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwInfor{
+	font-size: 1rem;
+    margin-left: 2.4rem;
+    text-align: left;
+    margin-top: 1rem;
+    width: 16rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pb{
+    width: 15rem;
+    margin-left: 2.5rem;
+    margin-top: 2rem;	
+    font-size: 1.2rem;
+    color: red;
+    text-align: left;   
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwtsure{
+    height: 3rem;
+    margin-left: 2.5rem;
+    margin-top: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwback{
+    height: 3rem;
+    margin-left: 2.5rem;
+}
+/*修改密码*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-changpw{
+    font-size: 1.5rem;
+    text-align: left;
+    margin-top: 0.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-changeiniput{
+    width: 15rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-comtainer-changeagain{
+    width: 15rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-changetxt{
+    font-size: 0.5rem;
+    height: 1rem;
+    margin-top: 0.1rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-surepw{
+    margin-top: -8rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-callpw{
+    margin-top: -9rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset
+
+/*邮箱注册验证*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetlog {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-welcometxt{	
+    width: 15rem;
+    font-size: 1.4rem;
+    margin-left: 1.5rem;
+    margin-top: 4rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_welcometxt_en{
+    width: 100%;
+    margin-left: 0.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-gisrion{
+	width: 13rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_gisrion_en{
+    width: 20rem;
+    text-align: center;
+    margin-left: -2rem
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-cheek{
+	width: 14rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-left: 2.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-emailnum{
+    margin-top: 4rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-btuboom{
+    height: 3rem;
+    margin-top: 1rem;
+    margin-left: 2.5rem;  
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login-container-btugoback{
+    height: 3rem;
+    margin-top: -4.5rem;
+    margin-left: 0.2rem;
+}
+/*登录未注册*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login-container-warnlog{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login-container-warntext{
+    font-size: 1.4rem;
+    margin-top: 4rem;
+    text-indent: -12rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_warntext_en{
+    font-size: 1rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login-container-warntxt{
+    font-size: 1rem;
+    width: 15rem;
+    margin-top: 2rem;
+    margin-left: 2.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login-container-warnfill{
+    width: 5rem;
+    height: 3rem;
+    margin-top: 6rem;
+    margin-left: 2rem;
+    font-size: 1.2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login-container-warnback{
+    width: 5rem;
+    height: 3rem;
+    margin-left: 2rem;
+    line-height: 3rem;
+    font-size: 1.2rem;
+}
+/*微信邮箱验证*/
+/*.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetlogw  img{
+    width: 3rem;
+    height: 3rem;
+    margin-top: 2rem;
+    margin-left: -11rem;
+}*/
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-welcometxtw{	
+    font-size: 1.5rem;
+    margin-top: 3rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-gisrionw{
+    font-size: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_gisrionw_en{
+    width: 85%;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-cheekw{
+    font-size: 1rem;
+    margin-left: 1.5rem;
+    width: 16rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_cheekw_en{
+    width: 89%;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-emailnumw{
+    font-size: 1rem;
+    margin-left: 2rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-btuboomw{
+    height: 3rem;
+    margin-top: 1.5rem;
+}
+.abcdata-wrapper.mobile .introduction-banner .login-container-reset  .login-container-btugobackw{
+    height: 3rem;
+    margin-top: -7rem;
+}
+
 /*description*/
 .abcdata-wrapper.mobile .introduction-description{
 	height: auto;
@@ -252,8 +661,9 @@ html,body{
 	text-align: left;
 }
 .abcdata-wrapper.mobile .description-title{
-	margin-bottom: 2rem;
-	font-size: 2.7rem;	
+	margin-bottom:2rem;
+	font-size: 1.5rem;
+	word-spacing: 0.1rem;
 }
 .abcdata-wrapper.mobile .description-title:after{
 	content: '';
@@ -263,7 +673,62 @@ html,body{
 	width: 5rem;
 }
 .abcdata-wrapper.mobile .description-text{
-	font-size: 1rem;	
+	 width:90%;
+     height:30rem;
+     margin:0.67rem auto;
+     position: relative;
+}
+.abcdata-wrapper.mobile .description-text .description-text-img{
+      width: 12rem;
+      height:10rem;
+      position: absolute;
+      left:-13rem;
+      top: 10rem;
+      border-radius: 0.13rem;
+      background:url(/images/description-img.jpg) no-repeat;
+      background-size:12rem 10rem;
+      color: #ffffff;
+}
+.abcdata-wrapper.mobile .description-text .description-text-img h3{
+        margin-top:3rem;
+		margin-bottom:2.0rem;
+		font-family: PingFangSC-Medium;
+		font-size:0.24rem;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: 0.4rem;
+		text-shadow: 0 0.03rem 0.03rem rgba(0,0,0,0.10);
+}
+.abcdata-wrapper.mobile .description-text .description-text-img h4{
+        font-family: PingFangSC-Regular;
+		font-size: 0.43rem;
+		color: #FFFFFF;
+		text-align: center;
+		/*line-height: 0.4rem;*/
+		line-height: 1rem;
+		text-shadow: 0 0.03rem 0.03rem rgba(0,0,0,0.10);
+}
+.abcdata-wrapper.mobile .description-text .text{
+       float: right;
+       width:50%;
+       height:30rem;
+       margin:0 auto;
+       box-shadow: none;
+}
+.abcdata-wrapper.mobile .description-text .text .container{
+      display: block;
+      width:100%;
+      height:20rem;
+      margin:0 auto;
+      font-family: PingFangSC-Regular;
+	  font-size:0.43rem;
+	  color: #404040;
+	  line-height:1.5rem;
+      margin-top: 2rem;
+}
+.abcdata-wrapper.mobile .description-text .text .container_{
+    width: 15rem;
+    margin-top: -3rem !important;
 }
 /*product list*/
 .abcdata-wrapper.mobile .introduction-products{
@@ -294,7 +759,7 @@ html,body{
 	left: auto;
 	top: auto;
 }
-/*plan*/
+/*price*/
 .abcdata-wrapper.mobile .introduction-wrap .price-list{
 	padding: 0 1rem;
 }
@@ -391,12 +856,14 @@ html,body{
 	margin: 1rem;
 	font-size: 1.2rem;
 }
+.abcdata-wrapper.mobile .contact-methods-wrap{
+	width: auto;	
+}
 .abcdata-wrapper.mobile .footer{
 	margin-top: 2rem;
-	line-height: 1.5;
-	height: auto;
-	padding-top: 2rem;
-	font-size: 1rem;
+	line-height: 3rem;
+	height:3rem;
+	font-size:0.32rem;
 	text-align: center;
 }
 /*背景图微调*/
@@ -900,7 +1367,6 @@ html,body{
 }
 .abcdata-wrapper.mobile .order-nav-bar{
 	position: relative;
-	/*liu新增*/
 	margin-top: 0.8rem;
 }
 .abcdata-wrapper.mobile .form-wrapper .huang-dashboard{
@@ -911,7 +1377,6 @@ html,body{
 	margin:0 auto;
 	margin-top: 0.7rem;
 	width: 100%;
-	/*liu改*/
 	height: auto !important;
 	font-size: 1rem;
 	float: none;
@@ -928,7 +1393,6 @@ html,body{
 	width: 100%;
 	margin-top: 0;
 }
-/*liu修改*/
 .abcdata-wrapper.mobile .form-wrapper .daily .daily-title {
 	width: 100%;
 	height: auto;
@@ -988,7 +1452,6 @@ html,body{
 .abcdata-wrapper.mobile .order-nav-bar .userBar ul{
 	width: 50%;
 	font-size: 1rem;
-	/*liu修改*/
 	top: 4rem;
 }
 .abcdata-wrapper.mobile .order-nav-bar .userBar ul .try_product{
@@ -1003,25 +1466,25 @@ html,body{
      bottom: 1rem;
 }
 .abcdata-wrapper.mobile .order-nav-bar .switch_bar{
-	width: 130%;/*120%*/
+	width: 130%;
 	margin-left: 10%;
 	font-size: 1.4rem !important;
-	/*liu新增*/
 	position: absolute;
-	top: 0.45rem;
+	top:0.45rem;
 }
 .abcdata-wrapper.mobile .order-nav-bar .switch_bar .switch_btn{
 	width: 50%;
 	height: 6rem;
 	line-height: 6rem;
-	/*liu改字体大小*/
 	font-size: 1rem;
 	text-align: left;
 }
 .abcdata-wrapper.mobile .order-nav-bar .btn_underline{
 	width: 0;
 }
-/*my*/
+/*
+   my
+*/
 .abcdata-wrapper.mobile .order-wrap .item-title{
 	font-size: 1rem;
 }
@@ -1079,9 +1542,7 @@ html,body{
 /*liu修改头部*/
 .abcdata-wrapper.mobile .introduction-banner .language-tab {
 	margin: 1rem 0.4rem 0 !important;
-	position: absolute;
-    left: 6rem;
-    top: 0.8rem;
+    right:0.5rem;
     width: 10rem;
 }
 
@@ -1106,7 +1567,6 @@ html,body{
 	right: 3rem;
 	bottom: -2.5rem;
 }
-
 .abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification {
 	display: block;
     width: 95%;
@@ -1115,14 +1575,12 @@ html,body{
     position: fixed;
     top: 8rem; 
 }
-
 .abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul {
 	display: block;
     width: 100%;
     height: auto;
     font-size: 1rem;
 }
-
 .abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li {
 	display: block;
     width: 100%;
@@ -1130,7 +1588,6 @@ html,body{
     padding-top: 1px;
     position: relative;
 }
-
 .abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li .content {
 	clear: both;
     width: 80%;
@@ -1140,7 +1597,6 @@ html,body{
 	word-wrap: break-word; 
 	word-break: normal; 
 }
-
 .abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li .time {
 	clear: both;
     width: 80%;
@@ -1151,7 +1607,6 @@ html,body{
     margin-left: 2.9rem;
     margin-top: 0.9rem;
 }
-
 .abcdata-wrapper.mobile .order-nav-bar .notification-bell .isnotification ul li .timemargin {
 	position: absolute;
 	left: 2.9rem;
@@ -1168,11 +1623,9 @@ html,body{
 	height: auto;
 	margin-top: 0.7rem;
 }
-
 .abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly > div {
 	height: auto; 
 }
-
 .abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .divborder {
 	max-height: 10.2rem;
 }
@@ -1181,13 +1634,72 @@ html,body{
 	width: 90%;
 	margin: 0.4rem auto;
 }
-
 .abcdata-wrapper.mobile .form-wrapper .height_ p {
 	width: 90%;
 	margin: 0.4rem auto;
 }
-
-/*轮播*/ 
+/*新增轮播style*/
+.abcdata-wrapper.mobile .introduction-price #box{
+	width: 100%;
+	margin-left: 14rem;
+}
+.abcdata-wrapper.mobile .introduction-price #box .img{
+	width:22rem;
+	height:35rem;
+	position:absolute;
+	top:2rem;
+	left:4.3rem;
+}
+.abcdata-wrapper.mobile .introduction-price #box .dashboard_img{
+	position: absolute;
+	left: 8rem;
+	top: 4rem;
+	width:15rem;
+}
+.abcdata-wrapper.mobile .introduction-price #box h3{
+	width: 10rem;
+	position: absolute;
+	left:12rem;
+	top: 9rem;
+	font-size:1.5rem; 
+	font-family: PingFangSC-Regular;
+	color: #333333;
+}
+.abcdata-wrapper.mobile .introduction-price #box h4{
+	font-size: 2.5rem;
+	position: absolute;
+	left: 11rem;
+	top:13rem;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	color: #00518E;
+	letter-spacing: 0;
+}
+.abcdata-wrapper.mobile .introduction-price #box .div{
+	position: absolute;
+	left: 6rem;
+	top: 17rem;
+	width:20rem;
+}
+.abcdata-wrapper.mobile .introduction-price #box .div p{
+	margin-top:0.4rem;
+}
+.abcdata-wrapper.mobile .introduction-price #box .div .p{}
+.abcdata-wrapper.mobile .introduction-price #box .div p .left-span {
+	font-family: PingFangSC-Regular;
+	color: #777777;
+    font-size:1rem;
+}
+.abcdata-wrapper.mobile .introduction-price #box .div p .right-span {
+    font-size:1.3rem;
+    font-family: PingFangSC-Medium;
+	color: #333333;
+}
+.abcdata-wrapper.mobile .introduction-price .box-Pad{
+	height:5rem;
+	width:5rem;
+}
+/*412-732px*/
 @media only screen and (min-width: 412px) and (max-width: 732px) {
 	.abcdata-wrapper.mobile #box li {
 		position: absolute !important;
@@ -1200,53 +1712,40 @@ html,body{
 	    bottom: 3rem;
 	    text-align: center;
 	}
-
 	.abcdata-wrapper.mobile #box li h5 {
 	    position: absolute;
 	    left: 2.7rem;
 	    bottom: 5.5rem;
 	    font-size: 1.3rem;
 	}
-	
+	.abcdata-wrapper.mobile #box  li div p{
+		margin-top:1rem;
+	}
 	.abcdata-wrapper.mobile #box li .div p span {
 		font-size: 1.5rem;
 	}
 
 	.abcdata-wrapper.mobile #box li .div p .right-span{
 		position: absolute;
-	    left: 0.1rem;
-	    bottom: -0.3rem;
+	    left: 10rem;
 	}
 
 	.abcdata-wrapper.mobile #box li ._img {
 		position: absolute;
 		bottom: 0.5rem;
 	}
-
 	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
 		position: relative;
-    	right: 1.5rem;
-    	top: 1rem;
 	}
-
 	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .right-span {
 	    position: absolute;
-	    left: -1rem;
-	    top: 3rem;
 	}
-
 	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .left-span {
 	    position: absolute;
-	    left: -1.3rem;
-	    top: -0.3rem;
 	}
-
 	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .right-span {
 	    position: absolute;
-	    left: -1rem;
-	    top: 1.6rem;
 	}
-	
 	.abcdata-wrapper.mobile .form-wrapper .daily .daily-title {
 		padding: 0 11%;
 	}
@@ -1260,25 +1759,417 @@ html,body{
 
 }
 
-/*ipad*/
+/*768-1024px*/
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
 	/*头部*/
-	.abcdata-wrapper.mobile .introduction-banner .language-tab {
-		width: 13rem;
-    	margin: 1.7rem 1rem 0 !important;
+    .abcdata-wrapper.mobile .introduction-banner .lang-tab{
+        width: 8rem !important;
+        font-size: 1rem !important;
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset{
+		width:16rem !important;
+		height:27rem !important;
 	}
 
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wx{
+		width: 3rem !important;
+	    height: 3rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wx img{
+		    width: 2.5rem !important;
+		    height: 2.5rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logtitle{
+		width: 10rem;
+		margin-top:1rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logemail{
+	    margin-top: 1rem;
+	    width: 13rem;
+	    font-size: 1rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logpwd{
+		margin-top: 2rem;
+	    width: 13rem;
+	    font-size: 1rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Logpwd-text{
+		font-size: 1rem;
+		margin-top:13rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forget{
+		font-size: 0.9rem;
+    	margin-top: 15rem;
+   	 	margin-left: 3rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-loginup{
+		margin-top: 19rem;
+   		width: 13.5rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-create{
+		margin-top: 3rem;
+
+	}
+	/*创建账户*/
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-join{
+		width: 14rem;
+    	margin-top: 3rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx{
+		height: 7rem;
+	    width: 14.5rem;
+	    margin-left: 1rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx-text{
+		width: 5rem;
+    	font-size: 1rem;
+   		margin-left: 0.1rem;
+	}
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_joinwx_text_en{
+        width: 100%;
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx-txt{
+		font-size: 0.9rem;
+	    width: 9rem;
+	    margin-left: -0.5rem;
+	    margin-top: 2rem;	
+	}    
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_joinwx__txt_en{
+        width: 100%;
+        margin-left: 0.1rem;
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinwx-img img{
+		top: 9rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail{
+	    height: 7rem;
+	    width: 15.5rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-text{
+	    width: 5rem;
+	    font-size: 1rem;
+	    margin-left: 1rem;
+	}
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_joinemail_text_en{
+        width:100%;
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-txt{
+	    font-size: 0.9rem;
+	    width: 8rem;
+	    margin-top: 2rem;
+	}
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_joinemail_txt_en{
+        width: 83%;      
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-img img{
+		top: 18rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-joinemail-local{
+		width:5rem;
+		position: relative;
+		top:1.5rem;
+	}
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_joinemail_local_en{
+        width: 100%;
+    }
+	/*邮箱注册完善信息*/
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information{
+		 width: 13rem;
+	    height: 2rem;
+	    margin-top: 2rem;
+	}
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_Information_en{
+        font-size: 1rem;
+        width: 100%;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationtext{
+        margin-top: 1rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationo{
+        height:2rem;
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationt{
+		 width: 13rem;
+	    height: 2rem;
+	    margin-top: 1rem;
+	    font-size: 0.9rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationh{
+		width: 13rem;
+	    height: 2rem;
+	    margin-top: 1rem;
+	    font-size: 0.9rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationf{
+		width: 13rem;
+	    height: 2rem;
+	    margin-top: 1rem;
+	    font-size: 0.9rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-back{
+		width: 3rem;
+    	height: 2rem;
+    	margin-top: 2rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-sure{
+		width: 3rem;
+    	height: 2rem;
+    	margin-top: 2rem;	
+	}
+    /*微信注册完善信息*/
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_Information_wechat_en{
+        font-size: 1rem;
+        width: 100%;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationo-wechat{
+         width: 13rem;
+        height: 2rem;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationt-wechat{
+         width: 13rem;
+        height: 2rem;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationh-wechat{
+        width: 13rem;
+        height: 2rem;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Informationf-wechat{
+        width: 13rem;
+        height: 2rem;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-back-wechat{
+        width: 3rem;
+        height: 2rem;
+        margin-top: 2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-Information-sure-wechat{
+        width: 3rem;
+        height: 2rem;
+        margin-top: 2rem;   
+    }   
+	/*微信注册*/
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wxtitle{
+		margin-top: 1rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-wxtext{
+	    font-size: 0.8rem;
+	    margin-left: 3rem;
+        margin-top:-1rem;
+	}
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-create-fill{
+        font-size: 0.6rem;
+        margin-top: 0.8rem;
+    }
+    /*未注册邮箱*/
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-warnlog img{
+        width: 2.9rem;
+        height: 2.9rem;   
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-warntext{
+        width: 13rem;
+        margin-top: 3rem;
+        margin-left: 8rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-warntxt{
+        width: 13rem;
+        text-align: left;
+        margin-left: 2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-warnfill{
+        width: 5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-warnback{
+        width: 5rem;
+        height: 2.5rem;
+        line-height: 2.5rem;      
+    }
+	/*忘记密码*/
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetlog img{
+        width: 2.5rem;
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetext{
+		 margin-top: 2rem;
+   		 margin-left: 1.8rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetInfor{
+		 width: 13rem;
+		 font-size: 0.9rem;
+	}
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetInfortxt{
+        font-size: 0.9rem;
+        margin-left: 1.5rem;
+    }
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetsure{
+		width: 6rem;
+   	 	height: 2.5rem;
+   		margin-top: 3rem;
+   		font-size: 0.8rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-forgetback{
+	    width: 6rem;
+	    height: 2.5rem;
+	    margin-top: 4rem;
+	    font-size: 0.8rem;
+	}
+	/*忘记密码身份验证*/
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwtext{
+	    width: 6rem;
+    	margin-left: 1.2rem;
+    	margin-top: 1.5rem;	
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwInfor{
+		    width: 14rem;
+    		font-size: 0.8rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .bb{
+		    width: 14rem;
+   			margin-left: 1.5rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwtsure{
+		 width: 6rem;
+	    height: 2.5rem;
+	    margin-left: 1.5rem;
+	    font-size: 0.8rem;
+	}
+	.abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-pwback{
+		    width: 6rem;
+    		height: 2.5rem;
+    		margin-left: 1.5rem;
+    		font-size: 0.8rem;
+	}
+    /*邮箱注册验证*/
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-welcometxt{
+        width: 14rem;
+        margin-top: 3rem;
+        text-align: left;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_welcometxt_en{
+        width: 100%;
+        font-size: 1.2rem;
+        margin-left: 1.6rem;
+    }
+    .login_container_gisrion_en
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-gisrion{
+        font-size: 1rem;
+        margin-left: 0.2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login_container_gisrion_en{
+        margin-left: 1rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-cheek{
+        width: 13rem;
+        font-size: 0.8rem;
+        margin-left: 1.2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-emailnum{
+        background: red;
+        width: 14rem;
+        margin-left: 1.5rem;
+        margin-top: 2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-btuboom{
+        width: 5rem;
+        height: 2.5rem;
+        font-size: 0.9rem;
+        margin-left: 1.3rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-btugoback{
+        width: 5rem;
+        height: 2.5rem;
+        margin-top: 3rem;
+        margin-left: 0.1rem;
+    }
+    /*微信验证注册*/
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-welcometxtw{
+        width: 14rem;
+        margin-top: 3rem;
+        text-align: left;
+        margin-left: 1.3rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-gisrionw{
+        font-size: 0.8rem;
+        width: 14rem;
+        margin-left: 0.7rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-cheekw{
+        width: 13rem;
+        font-size: 0.7rem;
+        margin-left: 1.2rem;
+        margin-top: 1rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-emailnumw{
+        background: red;
+        width: 14rem;
+        margin-left: 1.5rem;
+        margin-top: 2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-btuboomw{
+        width: 5rem;
+        height: 2.5rem;
+        font-size: 0.9rem;
+        margin-left: 1.3rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-btugobackw{
+        width: 5rem;
+        height: 2.5rem;
+        margin-top: 3rem;
+        margin-left: 0.1rem;
+    }
+    /*重置密码*/
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-changpw{
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-changeiniput{
+        margin-top: 1.5rem;
+        font-size: 1rem;
+        width: 90%;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-comtainer-changeagain{
+            margin-top: 1.5rem;
+        font-size: 1rem;
+        width: 90%;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-changetxt{
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-surepw{
+        width: 6rem;
+        height: 2.5rem;
+        margin-top: 2rem;
+        font-size: 0.8rem;
+        margin-left: 1rem;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-callpw{
+        width: 6rem;
+        height: 2.5rem;
+        margin-top: 3rem;
+        font-size: 0.8rem;
+        margin-left: 1rem;
+    }
 	/*首页轮播*/
 	.abcdata-wrapper.mobile .introduction-price #box {
-		width: 100%;
-		margin-left: 1.5rem;
+		margin-left: -0.7rem;
 	}
-
 	.abcdata-wrapper.mobile #box li {
 		width: 80% !important;
 		height: 85% !important;
 	}
-	
+	.abcdata-wrapper.mobile #box .img{
+		width: 21rem !important;
+		height: 28rem !important;
+	}
 	.abcdata-wrapper.mobile #box li .dashboard_img {
 		width: 8rem;
 	    position: absolute;
@@ -1293,76 +2184,82 @@ html,body{
 	    bottom: 0.5rem;
 	}
 	
-	.abcdata-wrapper.mobile #box li h5 {
-		width: 3rem;
-	    position: absolute;
-	    left: 4rem;
-	    bottom: 4rem;
-	    font-size: 1rem;
+	.abcdata-wrapper.mobile #box li h3 {
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:10rem !important;
+	    left:13rem !important;
 	}
-
-
 	.abcdata-wrapper.mobile #box li h4 {
-		font-size: 1.5rem;
-	    position: absolute;
-	    left: 3.4rem;
-	    bottom: 2.5rem;
-	    text-align: center;
+		font-size: 1.5rem !important;
+	    position: absolute !important;
+	    left: 13.4rem !important;
+	    bottom: 2.5rem !important;
+	    text-align: center !important;
 	}
 
 	.abcdata-wrapper.mobile #box li .div p span {
-		font-size: 1.25rem;
+		position: absolute !important;
+	    font-size: 1rem !important;
+	    top:6rem !important;
+	    left:-7rem !important;
 	}
 
 	.abcdata-wrapper.mobile #box li .div {
-		width: 100%;
-	    height: 5rem;
-	    position: absolute;
-	    top: 4rem;
-	    left: 8rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:10rem !important;
+	    left:13rem !important;
 	}
 
 	.abcdata-wrapper.mobile #box li .div p .right-span {
-		position: absolute;
-	    left: 0;
-	    bottom: 1.8rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:6rem !important;
+	    left:5rem !important;
 	}
 
 	.abcdata-wrapper.mobile #box li .div p:nth-child(2) .left-span {
-		position: absolute;
-	    left: 2rem;
-	    bottom: 5.3rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:9rem !important;
+	    /*left:13rem !important;*/
 	}
 
 	.abcdata-wrapper.mobile #box li .div p:nth-child(2) .right-span {
-		position: absolute;
-		bottom: 3.8rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:9rem !important;
+	    left:5rem !important;
 	}
 
 	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
-	    position: relative;
-	    right: 1.5rem;
-	    bottom: 4.8rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:12rem !important;
+	    /*left:13rem !important;*/
 	}
 
 	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .right-span {
-	    position: absolute;
-	    left: -1rem;
-	    bottom: 6.8rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:12rem !important;
+	    left:5.2rem !important;
 	}
 
 	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .left-span {
-	    position: absolute;
-	    left: -1.2rem;
-	    bottom: 10.5rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:15rem !important;
+	    /*left:13rem !important;*/
 	}
 
 	.abcdata-wrapper.mobile #box li .div p:nth-child(4) .right-span {
-		position: absolute;
-	    left: -1rem;
-	    bottom: 9rem;
+	    position: absolute !important;
+	    font-size: 1rem !important;
+	    top:15rem !important;
+	    left:5.2rem !important;
 	}
-
 	.abcdata-wrapper.mobile .order-nav-bar .userBar {
 		width: 11rem;
 		height: 1rem;
@@ -1436,7 +2333,9 @@ html,body{
 		margin:0 auto;
 		margin-top: 0.4rem;
 	}
-
+    .abcdata-wrapper.mobile .description-text .description-text-img{
+        top:5rem;
+    }
 	.abcdata-wrapper.mobile .form-wrapper .tooltip_daily h5 {
 		font-size: 0.9rem;
 	}
@@ -1505,6 +2404,10 @@ html,body{
 	.abcdata-wrapper.mobile .form-wrapper .daily .daily_content .holder a{
 		font-size: 1rem;
 	}
+    .abcdata-wrapper.mobile .description-text .text .container{
+        font-size: 0.8rem;
+        margin-top: 0.1rem !important;
+    } 
 
 	/*英文*/
 	.abcdata-wrapper.mobile .form-wrapper .height_ {
@@ -1514,9 +2417,31 @@ html,body{
 	    font-size: 1rem;
 	    margin-top: 0.5rem;
 	}
+    .abcdata-wrapper.mobile .contact-us-title.section-title{
+        margin-bottom: -2rem;
+        margin-top: -1rem !important;
+    }
+    .abcdata-wrapper.mobile .introduction-products-item{
+        height: 4.5rem !important;
+        margin-top: 2.1rem;
+    }
+    .abcdata-wrapper.mobile .contact-methods{
+        padding: 0.3rem;
+        margin-top: -0.5rem;
+    }
+    .abcdata-wrapper.mobile .introduction-contact-us .contact-methods .abcdata-icon{
+        height: 4.9rem;
+
+    }
+    .abcdata-wrapper.mobile .introduction-contact-us .contact-methods .contact-text{
+        font-size: 1rem;
+    }
+    .abcdata-wrapper.mobile .introduction-contact-us .contact-methods .contact-detail{
+        font-size: 0.8rem;
+    }
 }
 
-/*ipad pro*/
+/*1024-1366px*/
 @media only screen and (min-width: 1024px) and (max-width: 1366px) {
 	/*首页轮播*/
 	.abcdata-wrapper.mobile .introduction-price #box {
@@ -1556,7 +2481,7 @@ html,body{
 
 	.abcdata-wrapper.mobile #box li .div p:nth-child(3) .left-span {
 	    position: relative;
-	    right: 1.5rem;
+	    /right: 1.5rem;*/
 	    bottom: 5.5rem;
 	}
 
@@ -1667,5 +2592,33 @@ html,body{
 	.abcdata-wrapper.mobile .form-wrapper .tooltip_quarterly .divborder {
 	    max-height: 6rem;
 	}
-
+    .abcdata-wrapper.mobile .section-title{
+        height:2rem;
+    }
+    .abcdata-wrapper.mobile .introduction-price #box {
+        margin-left: -3.8rem;
+        margin-top: 3rem;
+    }
+    ..abcdata-wrapper.mobile .footer{
+        font-size: 0.8rem !important;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-changeiniput{
+        margin-top: 2rem;
+        width: 90%;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-comtainer-changeagain{
+        margin-top: 1.5rem;
+        font-size: 1rem;
+        width: 90%;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-surepw{
+        margin-top: 4rem !important;
+    }
+    .abcdata-wrapper.mobile .introduction-banner .login-container-reset .login-container-callpw{
+        margin-top: 6rem !important;
+    }
+}
+/*Swiper Button*/
+.abcdata-wrapper.mobile .swiper-container-vertical .swiper-pagination-bullets{
+      right: 0.2rem;
 }

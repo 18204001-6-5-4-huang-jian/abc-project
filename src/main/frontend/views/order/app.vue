@@ -3,7 +3,8 @@
 	<div class="order-wrap">
 		<div class="order-head">
 			<div class="order-nav-bar clearfix">
-				<div class="logo abcdata-icon pointer" @click="direct('introduction')"></div>
+				<!-- <div class="logo abcdata-icon pointer" @click="direct('introduction')"></div> -->
+				<div class="logo abcdata-icon pointer" @click="direct('my')"></div>
 				<div class="login" @click="direct('login')" v-if="!isLogin">
 					<i class="abcdata-icon icon-login"></i>
 					<span>LOGIN</span>

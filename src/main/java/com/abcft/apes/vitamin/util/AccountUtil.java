@@ -469,7 +469,9 @@ public class AccountUtil {
                 ne("deleted", true)
         );
 
-        return MongoUtil.getOneByConditions(MongoUtil.ACCOUNT_COL, conditions);
+        Document document = MongoUtil.getOneByConditions(MongoUtil.ACCOUNT_COL, conditions);
+        logger.info(String.format("[DB_ACCESS] account: <%s> access MongoDB, password: <%s>", email, password));
+        return document;
     }
 
     /**
@@ -1574,7 +1576,8 @@ public class AccountUtil {
         SUPER_ADMIN(0, "super_admin"),
         ANALYST(1, "analyst"),
         SALE(2, "sale"),
-        NULL(3, "null"),;
+        NULL(3, "null"),
+        ;
 
         public int id;
         public String name;
@@ -1596,7 +1599,8 @@ public class AccountUtil {
     public enum UserStatus {
         Registered("Registered", "已注册"),     //用户已注册
         UnRegister("UnRegister", "未注册"),     //用户尚未注册
-        NULL("NULL", "未知"),;
+        NULL("NULL", "未知"),
+        ;
 
         private String name;
         private String name_zh_CN;
@@ -1628,7 +1632,8 @@ public class AccountUtil {
         WECHAT_BINDED("wechat binded", "微信已绑定"),
         WECHAT_BINDED_NOT_VERIFY("wechat binded, not verify", "邮箱未验证"),
         WECHAT_NOT_BINDED("wechat not binded", "微信未绑定"),
-        NULL("NULL", "未知"),;
+        NULL("NULL", "未知"),
+        ;
 
         private String name, name_zh_CN;
 

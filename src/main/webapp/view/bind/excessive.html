@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<title>code-login</title>
+	<title>weChat-login</title>
 </head>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
@@ -30,7 +30,6 @@
 	var url_ = location.href;
 	var codeStr = url_.substring(url_.indexOf('code=') + 5);
 	var code = codeStr.substring(0, 32);
-	// console.log(code);
 	$.ajax({
 		type: "post",
 		url: "/api/wechat/login",
@@ -39,10 +38,9 @@
 			code: code
 		},
 		success: function (resp) {
-			if (typeof (resp.data.status) == "undefined") {
-				if (resp.success) {
+			if (typeof (resp.data.status) == "undefined"){
+				if (resp.success){
 					//注册过用户直接登录
-					// console.log(resp);
 					var day = new Date(resp.data.token.expiry.slice(0, -4)).getTime() - new Date();
 					$.cookie("token", resp.data.token.auth_token, {
 						expires: parseInt(day / 1000 / 3600 / 24),
@@ -67,7 +65,6 @@
 						type: "get",
 						contentType: 'application/json;chartset=utf-8',
 						success: function (res) {
-							//  console.log(res);
 							localStorage.setItem("useremail", res.data.email);
 							localStorage.setItem("usercompany", res.data.company);
 							localStorage.setItem("userpassword", res.data.pwd_ends);
@@ -82,17 +79,27 @@
 							// console.log(error);
 						}
 					})
+				}else if(!resp.success){
+                     layer.msg('微信登录失败');
 				}
-			} else if (resp.data.status == 0) {
-				//微信扫码注册
-				//                  	window.localStorage.clear();
-				//                  	window.sessionStorage.clear();
-				//将openid存在localStorage中用于bind。html中
+			}else if(resp.data.status == 0){
+				//将openid存在localStorage中用于bind.html或者showpage=11中
+				//首次微信扫码登录,需要绑定邮箱，完善信息
 				localStorage.setItem('openid', resp.data.openid);
-				location.href = "bind.html";
-			} else if (resp.data.status == 1) {
+				localStorage.setItem("showpage",11);
+				if(document.location.protocol == "https:"){
+					location.href = 'https://' + location.hostname + '/#/';
+				} else {
+					location.href = 'http://' + location.host + '/#/';
+				}
+			}else if(resp.data.status == 1){
 				//存下status=1的时候调用接口获取email存在sessionstoraoge
-				location.href = "email-bind.html";
+				localStorage.setItem("showpage",10);
+				if (document.location.protocol == "https:") {
+					location.href = 'https://' + location.hostname + '/#/';
+				} else {
+					location.href = 'http://' + location.host + '/#/';
+				}
 			}
 		},
 		error: function (error) {

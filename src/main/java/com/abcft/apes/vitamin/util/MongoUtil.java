@@ -35,6 +35,7 @@ public class MongoUtil {
     private static MongoClient mongo = null;
     private static MongoDatabase database = null;
 
+    public static final String API_DATA_COL = "api_data";
     public static String ACCOUNT_COL = "account";               //用户帐号
     public static String WX_USER_COL = "wx_user";               //微信用户帐号
     public static String DASHBOARD_COL = "dashboard";           //看板

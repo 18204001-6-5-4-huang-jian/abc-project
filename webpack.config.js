@@ -80,7 +80,8 @@ module.exports = {
 		proxy:{
 			'/api/*':{
 				// target: "http://10.12.10.10:9280",
-				target: "http://10.12.0.30",
+				// target: "http://10.12.0.30",
+				target: "http://10.15.255.10:9280",
 				secure: false
 			}
 		}

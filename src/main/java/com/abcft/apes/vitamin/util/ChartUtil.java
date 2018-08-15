@@ -10,7 +10,6 @@ import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.result.UpdateResult;
 import com.mongodb.util.JSON;
 import com.udojava.evalex.Expression;
-import org.apache.commons.codec.language.DoubleMetaphone;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.http.HttpResponse;
@@ -25,7 +24,6 @@ import redis.clients.jedis.Jedis;
 import javax.json.JsonObject;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.UriBuilder;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -33,9 +31,9 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.*;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import static com.mongodb.client.model.Filters.*;
 import static com.mongodb.client.model.Sorts.ascending;
@@ -74,6 +72,7 @@ public class ChartUtil {
 
     /**
      * 插入图表
+     *
      * @param chart
      * @param userId
      * @return
@@ -112,7 +111,7 @@ public class ChartUtil {
         if (chartId instanceof String) {
             return Long.parseLong(chart.getString(key));
         } else if (chartId instanceof Number) {
-            return  ((Number)chart.get(key)).longValue();
+            return ((Number) chart.get(key)).longValue();
         }
 
         return -1;
@@ -124,13 +123,14 @@ public class ChartUtil {
 
     /**
      * 图表是否公开
+     *
      * @param id
      * @return
      */
     public static boolean isPublic(long id) {
         List<Bson> conditions = Arrays.asList(
-            eq("_id", id),
-            eq("share", CHART_SHARE_PUBLIC)
+                eq("_id", id),
+                eq("share", CHART_SHARE_PUBLIC)
         );
         Document docChart = MongoUtil.getOneByConditions(MongoUtil.CHART_COL, conditions);
         if (docChart != null) {
@@ -158,15 +158,14 @@ public class ChartUtil {
     }
 
     /**
-     *
      * @param id
      * @param uid
      * @return
      */
     public static boolean isCreator(long id, String uid) {
         List<Bson> conditions = Arrays.asList(
-            eq("_id", id),
-            eq("creator_id", uid)
+                eq("_id", id),
+                eq("creator_id", uid)
         );
         Document document = MongoUtil.getOneByConditions(MongoUtil.CHART_COL, conditions);
 
@@ -175,6 +174,7 @@ public class ChartUtil {
 
     /**
      * 获取chart
+     *
      * @param id
      * @param detail
      * @return
@@ -197,7 +197,7 @@ public class ChartUtil {
         }
 
         if (chartDoc.containsKey("chartSeries")) {
-            Document chartSeries = (Document)chartDoc.get("chartSeries");
+            Document chartSeries = (Document) chartDoc.get("chartSeries");
             if (chartSeries.containsKey("root_chart")) {
                 long rootChartId = Long.parseLong(chartSeries.get("root_chart").toString());
                 Document rootChartDoc = MongoUtil.getOneById(MongoUtil.CHART_COL, rootChartId);
@@ -214,6 +214,7 @@ public class ChartUtil {
 
     /**
      * 清空图表缓存
+     *
      * @param chartId
      */
     public static void clearChartCache(long chartId) {
@@ -223,7 +224,6 @@ public class ChartUtil {
     }
 
     /**
-     *
      * @param chartId
      * @return
      */
@@ -245,22 +245,22 @@ public class ChartUtil {
     public static String getOriginChartDataUpdateTime(Object chartId, String params) {
         List<Long> chartIds = new ArrayList<>();
         List<Bson> conditions = Arrays.asList(
-            eq("origin_chart", chartId)
+                eq("origin_chart", chartId)
         );
 
         MongoUtil.getCollection(MongoUtil.CHART_COL)
-            .find(and(conditions))
-            .forEach(new Block<Document>() {
-                @Override
-                public void apply(Document document) {
-                    chartIds.add(((Number)document.get("_id")).longValue());
-                }
-            });
+                .find(and(conditions))
+                .forEach(new Block<Document>() {
+                    @Override
+                    public void apply(Document document) {
+                        chartIds.add(((Number) document.get("_id")).longValue());
+                    }
+                });
 
         List<Bson> conditions2 = Arrays.asList(
-            in("chart_id", chartIds),
-            eq("params", params),
-            exists("chart_update_time", true)
+                in("chart_id", chartIds),
+                eq("params", params),
+                exists("chart_update_time", true)
         );
 
         Document chartData = MongoUtil.getOneByConditions(MongoUtil.CHART_DATA_COL, conditions2);
@@ -282,6 +282,7 @@ public class ChartUtil {
 
     /**
      * 更新图表缓存数据
+     *
      * @param chart
      * @param params
      * @return
@@ -315,7 +316,7 @@ public class ChartUtil {
         Document chartData = new Document();
         int refresh_interval = 600;
         if (chart.containsKey("refresh_interval")) {
-            refresh_interval = ((Number)chart.get("refresh_interval")).intValue();
+            refresh_interval = ((Number) chart.get("refresh_interval")).intValue();
         }
         chartData.append("refresh_time", TimeUtil.getRelateDate(new Date(), Calendar.SECOND, refresh_interval));
 
@@ -340,7 +341,7 @@ public class ChartUtil {
 
             MongoUtil.insertOne(MongoUtil.CHART_DATA_COL, chartData);
         } else {
-            int oldHash = ((Document)chartCache.get("table")).hashCode();
+            int oldHash = ((Document) chartCache.get("table")).hashCode();
             int newHash = table.hashCode();
             // 数据是否有更新
             if (newHash != oldHash) {
@@ -356,6 +357,7 @@ public class ChartUtil {
 
     /**
      * 获取图表数据
+     *
      * @param chartId
      * @param parameters
      * @return
@@ -448,6 +450,7 @@ public class ChartUtil {
 
     /**
      * 查询图表数据
+     *
      * @param chart
      * @param parameters
      * @return
@@ -913,7 +916,7 @@ public class ChartUtil {
                             if (str_v.length() == 10) {
                                 Date dt = DateUtils.parseDate(str_v, "yyyy-MM-dd");
                                 timeStamp = dt.getTime();
-                            } else if(str_v.length() == 19) {
+                            } else if (str_v.length() == 19) {
                                 Date dt = DateUtils.parseDate(str_v, "yyyy-MM-dd HH:mm:ss");
                                 timeStamp = dt.getTime();
                             }
@@ -1183,12 +1186,12 @@ public class ChartUtil {
                 String dataType = column.getString("dataType");
                 if (dataType != null && dataType.equals("date")) {
 //                    dataLatestTimestamp = value.toString();
-                    try{
+                    try {
                         long tmp = Long.parseLong(value.toString());
-                        if (tmp>updateTime) {
+                        if (tmp > updateTime) {
                             updateTime = tmp;
                         }
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         logger.error("get chart update time error: " + e.getMessage());
                     }
                 }
@@ -1245,12 +1248,12 @@ public class ChartUtil {
             }
             if ("date".equals(type)) {
                 value = new Date(Long.parseLong(value.toString()));
-            } else if (NumberUtils.isCreatable(value.toString())){
+            } else if (NumberUtils.isCreatable(value.toString())) {
                 value = NumberUtils.createNumber(value.toString());
             }
             // 对于分钟数据，endDate加一天，以便查询到endDate当天的数据
             if (collectionName != null && collectionName.equals("wind_wsi") && name.equals(":endDate")
-                && NumberUtils.isCreatable(value.toString())) {
+                    && NumberUtils.isCreatable(value.toString())) {
                 value = NumberUtils.toLong(value.toString()) + 86400000;
             }
             replaceValue(filter, name, value);
@@ -1292,6 +1295,7 @@ public class ChartUtil {
 
     /**
      * 获取符合条件的chart总数
+     *
      * @param conditions
      * @return
      */
@@ -1305,7 +1309,7 @@ public class ChartUtil {
 
         Document origin_map = new Document();
         long uniq_id = 0;
-        for(Document chart: charts) {
+        for (Document chart : charts) {
             uniq_id = chart.get("title").hashCode();
 //            if (chart.containsKey("origin_chart")) {
 //                uniq_id = ((Number) chart.get("origin_chart")).longValue();
@@ -1323,13 +1327,14 @@ public class ChartUtil {
 
     /**
      * 获取图表详细信息
+     *
      * @param chartId
      * @return
      */
     public static Document getChartDetail(Long chartId) {
         List<Bson> conditions = Arrays.asList(
-            eq("_id", chartId),
-            ne("deleted", true)
+                eq("_id", chartId),
+                ne("deleted", true)
         );
         Document chartSketch = MongoUtil.getOneByConditions(MongoUtil.CHART_COL, conditions);
         if (chartSketch == null) {
@@ -1362,7 +1367,7 @@ public class ChartUtil {
         } else if (chartSketch.containsKey("thumbnail")) {
             chartDetail.put("thumbnail", chartSketch.get("thumbnail"));
         }
-        if (chartSketch.containsKey("chartType")){
+        if (chartSketch.containsKey("chartType")) {
             chartDetail.put("chartType", chartSketch.get("chartType"));
         }
         if (chartSketch.containsKey("options")) {
@@ -1411,11 +1416,11 @@ public class ChartUtil {
 
     public static String getChartDataSourceUrl(long chartId, Document params) {
         StringBuilder sb = new StringBuilder();
-        try{
+        try {
             sb.append("/api/v1/chart/query-data?id=")
-                .append(Long.toString(chartId))
-                .append("&parameters=")
-                .append(URLEncoder.encode(JSON.serialize(params), "UTF-8"));
+                    .append(Long.toString(chartId))
+                    .append("&parameters=")
+                    .append(URLEncoder.encode(JSON.serialize(params), "UTF-8"));
 
         } catch (Exception e) {
             logger.warn("");
@@ -1426,6 +1431,7 @@ public class ChartUtil {
 
     /**
      * 获取符合条件的chart列表
+     *
      * @param conditions
      * @param offset
      * @param limit
@@ -1435,20 +1441,20 @@ public class ChartUtil {
      */
     public static List<Document> getChartList(List<Bson> conditions, int offset, int limit, String sort, String order, String boardId) {
         List<Document> results = new ArrayList<>();
-        try{
+        try {
             List<Document> charts = MongoUtil.getDBList(MongoUtil.CHART_COL, conditions, sort, order, 0, 0, null);
 
             Document origin_map = new Document();
             long uniq_id = 0;
             int offset2 = 0;
             int limit2 = 0;
-            for(Document chart: charts) {
-                    Document chartNew = new Document();
-                    chartNew.put("_id", chart.get("id"));
-                    chartNew.put("title", chart.get("title"));
-                    chartNew.put("chartType", chart.get("chartType"));
-                    chartNew.put("options", chart.get("options"));
-                    chartNew.put("timerange", chart.get("timerange"));
+            for (Document chart : charts) {
+                Document chartNew = new Document();
+                chartNew.put("_id", chart.get("id"));
+                chartNew.put("title", chart.get("title"));
+                chartNew.put("chartType", chart.get("chartType"));
+                chartNew.put("options", chart.get("options"));
+                chartNew.put("timerange", chart.get("timerange"));
 //                }
 
                 //
@@ -1477,7 +1483,7 @@ public class ChartUtil {
 
                 //
                 if (!StringUtils.isEmpty(boardId)) {
-                    long chartId = ((Number)chart.get("_id")).longValue();
+                    long chartId = ((Number) chart.get("_id")).longValue();
                     chartNew.put("inBoard", DashBoardUtil.isChartInBoard(boardId, chartId));
                 }
 
@@ -1498,7 +1504,7 @@ public class ChartUtil {
                     String creatorId = chart.getString("creator_id");
                     chartNew.put("creator_id", creatorId);
                     JsonObject user = AccountUtil.getUserById(creatorId);
-                    if (user!=null) {
+                    if (user != null) {
                         chartNew.put("creator_name", user.getString("username"));
                     }
                 }
@@ -1519,13 +1525,13 @@ public class ChartUtil {
         MongoCollection<Document> charts = MongoUtil.getCollection("charts");
 
         List<Bson> condition = Arrays.asList(
-            Filters.exists("sheetRef", false),
-            Filters.exists("board_id", false),
-            Filters.exists("origin_chart", false),
-            Filters.eq("company_id", "system")
+                Filters.exists("sheetRef", false),
+                Filters.exists("board_id", false),
+                Filters.exists("origin_chart", false),
+                Filters.eq("company_id", "system")
         );
         FindIterable<Document> dataIterable = charts.find(Filters.and(condition))
-            .sort(ascending("_id"));
+                .sort(ascending("_id"));
 
         List<Document> documents = dataIterable.into(new ArrayList<>());
         MongoUtil.fixKeys(documents, false);
@@ -1571,7 +1577,7 @@ public class ChartUtil {
 //        saveThumbnail(chartId, chart);
 
         UpdateResult result = MongoUtil.getCollection(MongoUtil.CHART_COL)
-            .replaceOne(eq("_id", chartId), chart);
+                .replaceOne(eq("_id", chartId), chart);
 
         //更新图表缓存数据
         clearChartCache(chartId);
@@ -1594,7 +1600,7 @@ public class ChartUtil {
         //更新图表缓存数据
         clearChartCache(chartId);
 
-        return (document!=null && !document.isEmpty());
+        return (document != null && !document.isEmpty());
     }
 
     public static List<Document> getDataSet(Document data) {
@@ -1602,18 +1608,18 @@ public class ChartUtil {
         sourceDef.put("dataSource", data);
         Document response = queryDataByChartDefinition(sourceDef, null);
 
-        List<Document> columns = (List<Document>)response.get("cols");
-        List<Document> rows = (List<Document>)response.get("rows");
+        List<Document> columns = (List<Document>) response.get("cols");
+        List<Document> rows = (List<Document>) response.get("rows");
         String[] colNames = new String[columns.size()];
-        for (int i=0; i < columns.size(); i++) {
+        for (int i = 0; i < columns.size(); i++) {
             colNames[i] = columns.get(i).getString("id");
         }
 
         List<Document> formatedResp = new ArrayList<Document>();
-        for (int i=0; i < rows.size(); i++) {
+        for (int i = 0; i < rows.size(); i++) {
             Document formatedRowData = new Document();
-            List<Document> rowData = (List<Document>)rows.get(i).get("c");
-            for (int j=0; j < rowData.size(); j++) {
+            List<Document> rowData = (List<Document>) rows.get(i).get("c");
+            for (int j = 0; j < rowData.size(); j++) {
                 if (colNames[j].equals("date")) {
                     Object value = rowData.get(j).get("f");
                     if (value == null) {
@@ -1636,7 +1642,7 @@ public class ChartUtil {
         // therefore, no need to save parameter in dash board record
         // 'params' field is used to check whether update the cache data.
         List<Bson> condition = Arrays.asList(
-            Filters.eq("chart_id", _id)
+                Filters.eq("chart_id", _id)
         );
         Document data_record = MongoUtil.getOneByConditions(MongoUtil.CHART_DATA_COL, condition);
         // check if out of date
@@ -1644,7 +1650,7 @@ public class ChartUtil {
             Date last = data_record.getDate("update_at");
             long delta = new Date().getTime() - last.getTime();
             if (delta >= ONEDAYINMILLIONSECS
-                || !StringUtils.isEmpty(parameter) && !parameter.equals(data_record.getString("params"))) {
+                    || !StringUtils.isEmpty(parameter) && !parameter.equals(data_record.getString("params"))) {
                 data_record = null;
             }
         }
@@ -1667,9 +1673,9 @@ public class ChartUtil {
             List<Document> parameters = toolbar.get("parameters", List.class);
 
             Date start = new Date();
-            Document data = queryApiData(parameters, params, target);
+            Document data = queryApiData(_id, parameters, params, target);
             Date stop = new Date();
-            logger.info(String.format("query api use time: %d",  TimeUtil.getTimeInterval(start, stop)) );
+            logger.info(String.format("query api use time: %d", TimeUtil.getTimeInterval(start, stop)));
 
             data_record = new Document("chartLib", "highChart");
             data_record.put("chart_id", _id);
@@ -1681,7 +1687,7 @@ public class ChartUtil {
             opt.upsert(true);
             data_record.put("update_at", new Date());
             MongoUtil.getCollection(MongoUtil.CHART_DATA_COL)
-                .updateOne(Filters.and(condition), new Document("$set", data_record), opt);
+                    .updateOne(Filters.and(condition), new Document("$set", data_record), opt);
 
             // update configed value to parameters
             boolean changed = false;
@@ -1694,15 +1700,15 @@ public class ChartUtil {
             }
             if (changed) {
                 MongoUtil.getCollection(MongoUtil.CHART_COL)
-                    .updateOne(Filters.eq("_id", _id),
-                        new Document("$set", new Document("toolbar.parameters", parameters)));
+                        .updateOne(Filters.eq("_id", _id),
+                                new Document("$set", new Document("toolbar.parameters", parameters)));
             }
 
             return data;
         }
     }
 
-    private static Document queryApiData(List<Document> parameters, Document params, String targetUrl) throws Exception {
+    private static Document queryApiData(long chartId, List<Document> parameters, Document params, String targetUrl) throws Exception {
         if (parameters == null) {
             return null;
         }
@@ -1717,9 +1723,9 @@ public class ChartUtil {
             }
 
             sb.append(name)
-                .append("=")
-                .append(value.toString())
-                .append("&");
+                    .append("=")
+                    .append(value.toString())
+                    .append("&");
             args.put(name, value.toString());
         }
         int len = sb.length();
@@ -1728,7 +1734,7 @@ public class ChartUtil {
         String url = String.format("%s%s", targetUrl, sb.toString());
 
         //String data = getApiCacheData(url);
-        String data = getApiData(url);
+        String data = getApiData(chartId, url);
 
         Document raw = Document.parse(data);
         if (raw.containsKey("args")) {
@@ -1738,9 +1744,9 @@ public class ChartUtil {
                 String key = item.getKey();
                 Object value = item.getValue();
                 sb.append(key)
-                    .append(" : ")
-                    .append(value)
-                    .append("\n");
+                        .append(" : ")
+                        .append(value)
+                        .append("\n");
 
                 if (args.containsKey(key)) {
                     args.put(key, value);
@@ -1757,12 +1763,15 @@ public class ChartUtil {
         return result;
     }
 
-    private static String getApiCacheData(String url) throws IOException {
-        String data=null;
+    private static String getApiCacheData(long chartId, String url) throws IOException {
+        long start = System.currentTimeMillis();
+        boolean miss = false;
+        String data = null;
         Jedis jedis = RedisUtil.getRedis();
         if (jedis == null) {
+            miss = true;
             logger.warn("jedis is null");
-            return getApiData(url);
+            return getApiData(chartId, url);
         }
 
         String key = RedisUtil.getRedisKey(url.toLowerCase());
@@ -1776,9 +1785,15 @@ public class ChartUtil {
                 return data;
             }
 
+//            data = getApiDataFromCol(url);
+//            if (data != null) {
+//                logger.info("get cache from col with url: " + url);
+//                return data;
+//            }
             // cache invalid
-            data = getApiData(url);
-            if (data.indexOf("unknown error occured") >=0 || data.length() < 10) {
+            miss = true;
+            data = getApiData(chartId, url);
+            if (data.indexOf("unknown error occured") >= 0 || data.length() < 10) {
                 logger.warn("get data error: " + url);
             } else {
                 // set cache expiry
@@ -1787,24 +1802,44 @@ public class ChartUtil {
                 }
                 if (key.indexOf("/stock/quote") > 0) {
                     jedis.expire(key, 60);
-                } else if(key.indexOf("refresh=s")>0){
+                } else if (key.indexOf("refresh=s") > 0) {
                     jedis.expire(key, 1);
-                } else if(key.indexOf("refresh=m")>0){
+                } else if (key.indexOf("refresh=m") > 0) {
                     jedis.expire(key, 60);
-                } else if(key.indexOf("refresh=h")>0){
-                    jedis.expire(key, 60*60);
+                } else if (key.indexOf("refresh=h") > 0) {
+                    jedis.expire(key, 60 * 60);
                 } else {
-                    jedis.expire(key, 60*60);
+                    //为了应对频繁的demo,现在缓存改成12小时更新一次 xyli 20180726
+                    jedis.expire(key, 12 * 60 * 60);
                 }
             }
             return data;
-        }
-        finally {
+        } finally {
             jedis.close();
+            long end = System.currentTimeMillis();
+            float costTime = (end - start) / 1000f;
+            logger.info(String.format(
+                    "[QUERY_REDIS] cost %s secs, ID: <%s>, MISSED: <%s>, KEY: <%s>",
+                    costTime, chartId, miss, key
+            ));
         }
     }
 
-    private static String getApiData(String url) {
+    private static String getApiDataFromCol(String url) {
+        try {
+            Document data = MongoUtil.getOneByField(MongoUtil.API_DATA_COL, "url", url);
+            if (data != null) {
+                logger.info(String.format("get data from api_data: %s", url));
+            }
+            return data.get("api_data", Document.class).toJson();
+        } catch (Exception e) {
+            logger.error(String.format("get data from api_data error:%s", e.getMessage()));
+            return null;
+        }
+    }
+
+    private static String getApiData(long chartId, String url) {
+        long start = System.currentTimeMillis();
         try {
             HttpClient client = HttpClientBuilder.create().build();
             HttpGet request = new HttpGet(url);
@@ -1819,12 +1854,19 @@ public class ChartUtil {
             return sb.toString();
         } catch (Exception e) {
             logger.error("Query data error: " + url, e);
+        } finally {
+            long end = System.currentTimeMillis();
+            float costTime = (end - start) / 1000f;
+            logger.info(String.format("[QUERY_EDEN] cost %s secs, ID: <%s>, URL: <%s>", costTime, chartId, url));
+            if (costTime > 5f) {
+                logger.warn(String.format("[SLOW_QUERY] cost %s secs, ID: <%s>, URL: <%s>", costTime, chartId, url));
+            }
         }
         return "{}";
     }
 
     public static String getCustomizeTargetUrl(Document customize) {
-        assert(customize.containsKey("target"));
+        assert (customize.containsKey("target"));
 
         String target = customize.getString("target");
 
@@ -1838,7 +1880,7 @@ public class ChartUtil {
             if (target_host != null) {
                 target = UriBuilder.fromUri(target_host).path(url.getPath()).toString();
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("get customize target url error: ", e);
         }
 
@@ -1855,7 +1897,7 @@ public class ChartUtil {
         if (!StringUtils.isEmpty(timepoint)) {
             defaultParams.add(new Document("name", "tp").append("value", timepoint));
         }
-        Document table = getCustomApiData(target, defaultParams);
+        Document table = getCustomApiData(_id, target, defaultParams);
 
         String dataUpdateTime = TimeUtil.getCurTimeStampStr();
         table.put("chartLib", record.get("chartLib"));
@@ -1870,11 +1912,12 @@ public class ChartUtil {
         } else {
             strPointId = pointId.toString();
         }
-        return String.format("%d_%s_%s",chartId, seriesId.toString(), strPointId);
+        return String.format("%d_%s_%s", chartId, seriesId.toString(), strPointId);
     }
 
     /**
      * 设置 data Marker
+     *
      * @param chartId
      * @return
      */
@@ -1893,6 +1936,7 @@ public class ChartUtil {
 
     /**
      * 设置 data desp
+     *
      * @param chartId
      * @return
      */
@@ -1927,7 +1971,7 @@ public class ChartUtil {
                         .append("series_name", doc.getOrDefault("series_name", ""))
                         .append("point_id", doc.getOrDefault("point_id", ""))
                         .append("chart_title", chart.get("title"))
-                        .append("marker", doc.get("marker") )
+                        .append("marker", doc.get("marker"))
                         .append("update_at", doc.get("update_at"));
 
                 orderList.add(item);
@@ -1944,6 +1988,7 @@ public class ChartUtil {
 
     /**
      * 设置 data Marker
+     *
      * @param chartId
      * @param marker
      * @return
@@ -1967,6 +2012,7 @@ public class ChartUtil {
 
     /**
      * 设置 data Marker
+     *
      * @param chartId
      * @param marker
      * @return
@@ -1987,6 +2033,7 @@ public class ChartUtil {
 
     /**
      * 取消 data Marker
+     *
      * @param markerId
      * @return
      */
@@ -2005,20 +2052,22 @@ public class ChartUtil {
 
         Document markerDoc = new Document();
         List<Document> markerList = MongoUtil.getDBList(MongoUtil.CHART_DATA_MARKER_COL, conditions);
-        for(Document doc: markerList) {
+        for (Document doc : markerList) {
             markerDoc.put(doc.getString("mid"), doc.get("marker"));
         }
 
         return markerDoc;
     }
 
-    private static Document getPointMarker(Document markerDoc, String markerId){
-        if (markerDoc.containsKey(markerId)){
+    private static Document getPointMarker(Document markerDoc, String markerId) {
+        if (markerDoc.containsKey(markerId)) {
             return markerDoc.get(markerId, Document.class);
         }
 
         return null;
-    };
+    }
+
+    ;
 
     private static List<Document> dataTableToSeriesData(Document chart, Document dataTable) {
         Document options = null;
@@ -2063,12 +2112,12 @@ public class ChartUtil {
         Object xAxisObj = options.get("xAxis");
         Document xAxis = null;
         if (xAxisObj instanceof List) {
-            List<Document> xAxises = (List)xAxisObj;
+            List<Document> xAxises = (List) xAxisObj;
             if (xAxises.size() > 0) {
                 xAxis = xAxises.get(0);
             }
         } else if (xAxisObj instanceof Document) {
-            xAxis = (Document)xAxisObj;
+            xAxis = (Document) xAxisObj;
         }
         String xType = "line";
         if (xAxis != null && xAxis.containsKey("type")) {
@@ -2181,8 +2230,7 @@ public class ChartUtil {
                     if (y != null && !"table".equals(chartType)) {
                         if (y.toString().equals("")) {
                             y = null;
-                        }
-                        else if (NumberUtils.isCreatable(y.toString())) {
+                        } else if (NumberUtils.isCreatable(y.toString())) {
                             y = NumberUtils.createFloat(y.toString());
                         } else {
                             continue;
@@ -2198,7 +2246,7 @@ public class ChartUtil {
                         pointData.append("y", y);
                     }
 
-                    String markerId = getMarkerId(chartId, colIndex-1, x);
+                    String markerId = getMarkerId(chartId, colIndex - 1, x);
                     Document marker = getPointMarker(markerDoc, markerId);
                     if (marker != null) {
                         pointData.append("marker", marker);
@@ -2249,7 +2297,7 @@ public class ChartUtil {
             String chartType = chart.getString("type");
             if (chartType.equals("live_chart")) {
                 Document optionsDoc = chart.get("options", Document.class);
-                if (optionsDoc!=null){
+                if (optionsDoc != null) {
                     if (optionsDoc.containsKey("chart")) {
                         Document optChart = optionsDoc.get("chart", Document.class);
                         if (optChart.containsKey("type")) {
@@ -2305,23 +2353,38 @@ public class ChartUtil {
         return dataTable;
 
     }
-    private static Document getCustomApiData(String target, List<Document> defaultParams) throws IOException {
+
+    private static Document getCustomApiData(long chartId, String target, List<Document> defaultParams) throws IOException {
         StringBuilder sb = new StringBuilder();
-        for (Document p : defaultParams) {
-            sb.append(p.getString("name"))
+//        for (Document p : defaultParams) {
+//            sb.append(p.getString("name"))
+//                    .append("=")
+//                    .append(URLEncoder.encode(p.getString("value"), "UTF-8"))
+//                    .append("&");
+//        }
+        Map<String, String> paramMap = defaultParams
+                .parallelStream()
+                .collect(Collectors.toMap(d -> String.valueOf(d.get("name")), d -> String.valueOf(d.get("value"))));
+        paramMap = new TreeMap<>(paramMap);
+        for (Map.Entry<String, String> entry : paramMap.entrySet()) {
+            String k = entry.getKey();
+            String v = entry.getValue();
+            sb
+                    .append(URLEncoder.encode(k, "UTF-8"))
                     .append("=")
-                    .append(URLEncoder.encode(p.getString("value"), "UTF-8"))
+                    .append(URLEncoder.encode(v, "UTF-8"))
                     .append("&");
         }
+
         sb.deleteCharAt(sb.length() - 1);
 
         String url = String.format("%s?%s", target, sb.toString());
 
-        Date start = new Date();
-        String data = getApiCacheData(url);
+//        Date start = new Date();
+        String data = getApiCacheData(chartId, url);
         //String data = getApiData(url);
-        Date stop = new Date();
-        logger.info(String.format("query chart data use time: %d ms %s",  TimeUtil.getTimeInterval(start, stop), url) );
+//        Date stop = new Date();
+//        logger.info(String.format("query chart data use time: %d ms %s", TimeUtil.getTimeInterval(start, stop), url));
 
         return Document.parse(data);
     }
@@ -2339,11 +2402,11 @@ public class ChartUtil {
 //            System.out.println(JSON.serialize(data));
 
             List<Document> params = Arrays.asList(
-                new Document("name", "date").append("value", ""),
-                new Document("name", "lang").append("value", ""),
-                new Document("name", "market").append("value", "google-play")
+                    new Document("name", "date").append("value", ""),
+                    new Document("name", "lang").append("value", ""),
+                    new Document("name", "market").append("value", "google-play")
             );
-            Document data = getCustomApiData("http://10.12.6.6:11000/1/cmcm/game_download_rank_line_chart?date=&lang=", params);
+            Document data = getCustomApiData(0, "http://10.12.6.6:11000/1/cmcm/game_download_rank_line_chart?date=&lang=", params);
             System.out.println(JSON.serialize(new Document("table", data)));
         } catch (Exception e) {
             e.printStackTrace();

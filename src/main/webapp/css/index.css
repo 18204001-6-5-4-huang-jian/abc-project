@@ -1330,7 +1330,9 @@ button{
 	right: 0;
 	top:0;
 	bottom: 0;
-	background: #0B1D27;
+	/*background: #0B1D27;*/
+	background:#333333;
+
 }
 .load-mask .loader-inner {
 	width: 100px;

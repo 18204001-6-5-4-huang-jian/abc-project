@@ -304,6 +304,7 @@ public class AccountController extends BaseController {
             @DefaultValue("") @FormParam("lang") String lang
     ) {
         try {
+            logger.info(String.format("[LOGIN] account: <%s> try to login, password: <%s>", email, password));
 
             if (StringUtils.isEmpty(email) || StringUtils.isEmpty(password)) {
                 return getResponse(false, 1, "邮箱或密码不能为空");
@@ -1819,4 +1820,31 @@ public class AccountController extends BaseController {
         }
 
     }
+
+    @Path("v1/account/redis")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public JsonObject connectSaleToUser(
+            @DefaultValue("") @QueryParam("find") String find,
+            @DefaultValue("") @QueryParam("del") String del
+    ) {
+        String cuid = getCurrentUserId();
+        if (AccountUtil.isNotSuperAdmin(cuid)) {
+            return getResponse(false, 1, "no operation authority");
+        }
+        if (!find.isEmpty() && del.equalsIgnoreCase("yes")) {
+            RedisUtil.del(find);
+            return getResponse(true, "del success");
+        }
+        if (!find.isEmpty()) {
+            Set<String> keys = RedisUtil.keys(find);
+            return getResponse(true, new Document("total", keys.size()).append("keys", keys));
+        }
+        return getResponse(false, "'find' can't be empty");
+    }
 }
+
+
+
+
+

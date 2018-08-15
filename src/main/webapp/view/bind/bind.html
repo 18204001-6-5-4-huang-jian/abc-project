@@ -310,7 +310,7 @@
 	// console.log(str);
 	var reg_mail = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
 	var reg_password = /^[a-zA-Z\d_*]{6,}$/;
-	function confirm() {
+	function confirm(){
 		if (localStorage.getItem("status") == 1) {
 			if (_name.val().trim() == "") {
 				layer.msg("输入名字不能为空!");
